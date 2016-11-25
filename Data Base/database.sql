@@ -1,7 +1,19 @@
 PRAGMA FOREIGN_KEYS = ON;
+
 .mode columns
 .header ON
 .nullvalue NULL
+
+DROP TABLE IF EXISTS user;
+DROP TABLE IF EXISTS owner;
+DROP TABLE IF EXISTS reviewer;
+DROP TABLE IF EXISTS resturant;
+DROP TABLE IF EXISTS location;
+DROP TABLE IF EXISTS category;
+DROP TABLE IF EXISTS review;
+DROP TABLE IF EXISTS reply;
+DROP TABLE IF EXISTS restaurantCategory;
+DROP TABLE IF EXISTS restauranteReview;
 
 CREATE TABLE user (
 	idUser INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -20,26 +32,26 @@ CREATE TABLE reviewer (
 );
 
 CREATE TABLE restaurant (
-	idRestaurante INTEGER PRIMARY KEY AUTOINCREMENT,
+	idRestaurant INTEGER PRIMARY KEY AUTOINCREMENT,
 	name CHAR(20) NOT NULL,
 	contact LONG,
 	email CHAR(20),
 	priceAVG DOUBLE,
 	evaluation DOUBLE,
-	CHECK(evaluation > -1),
-	CHECK(evaluation < 11)
 	idOwner INTEGER,
 	idLocation INTEGER,
 	idReview INTEGER,
-	FOREIGN KEY(idOwner) REFERENCES Local(owner)
+	FOREIGN KEY(idOwner) REFERENCES owner(idOwner)
 				ON DELETE SET NULL
 				ON UPDATE CASCADE,
-	FOREIGN KEY(idLocation) REFERENCES Local(location)
+	FOREIGN KEY(idLocation) REFERENCES location(idLocation)
 				ON DELETE SET NULL
 				ON UPDATE CASCADE,
-	FOREIGN KEY(idReview) REFERENCES Local(review)
+	FOREIGN KEY(idReview) REFERENCES review(idReview)
 				ON DELETE SET NULL
-				ON UPDATE CASCADE
+				ON UPDATE CASCADE,
+	CHECK(evaluation > -1),
+	CHECK(evaluation < 11)
 );
 
 CREATE TABLE location (
@@ -62,7 +74,7 @@ CREATE TABLE review (
 	score INTEGER,
 	comment CHAR(300),
 	idReviewer INTEGER,
-	FOREIGN KEY(idReviewer) REFERENCES Local(reviewer)
+	FOREIGN KEY(idReviewer) REFERENCES reviewer(idReviewer)
 				ON DELETE SET NULL
 				ON UPDATE CASCADE,
 	CHECK(score > -1),
@@ -75,24 +87,24 @@ CREATE TABLE reply (
 	idOwner INTEGER, 
 	idReviewer INTEGER,
 	idReview INTEGER,
-	FOREIGN KEY(idOwner) REFERENCES Local(owner)
+	FOREIGN KEY(idOwner) REFERENCES owner(idOwner)
 				ON DELETE SET NULL
 				ON UPDATE CASCADE,
-	FOREIGN KEY(idReview) REFERENCES Local(review)
+	FOREIGN KEY(idReview) REFERENCES review(idReview)
 				ON DELETE SET NULL
 				ON UPDATE CASCADE,
-	FOREIGN KEY(idReviewer) REFERENCES Local(reviewer)
+	FOREIGN KEY(idReviewer) REFERENCES reviewer(idReviewer)
 				ON DELETE SET NULL
-				ON UPDATE CASCADE,
+				ON UPDATE CASCADE
 );
 
 CREATE TABLE restaurantCategory (
 	idRestaurant INTEGER,
 	idCategory INTEGER,
-	FOREIGN KEY(idRestaurant) REFERENCES Local(restaurant)
+	FOREIGN KEY(idRestaurant) REFERENCES restaurant(idRestaurant)
 				ON DELETE SET NULL
 				ON UPDATE CASCADE,
-	FOREIGN KEY(idCategory) REFERENCES Local(category)
+	FOREIGN KEY(idCategory) REFERENCES category(idCategory)
 				ON DELETE SET NULL
 				ON UPDATE CASCADE
 );
@@ -100,10 +112,10 @@ CREATE TABLE restaurantCategory (
 CREATE TABLE restaurantReview (
 	idRestaurant INTEGER,
 	idReview INTEGER,
-	FOREIGN KEY(idRestaurant) REFERENCES Local(restaurant)
+	FOREIGN KEY(idRestaurant) REFERENCES restaurant(idRestaurant)
 				ON DELETE SET NULL
 				ON UPDATE CASCADE,
-	FOREIGN KEY(idReview) REFERENCES Local(review)
+	FOREIGN KEY(idReview) REFERENCES review(idReview)
 				ON DELETE SET NULL
 				ON UPDATE CASCADE
 );
