@@ -1,47 +1,81 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Hello</title>
-        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
-        <link rel="stylesheet" href="style.css" />
-        <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-        <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
-        <script src="Map.js"></script>
-    </head>
 
-    <body>
-        <div id="header">
-            <h1>Restaurant App</h1>
-        </div>
-        <div id="viewBar">
-            <ul>
-                <li><a href="#">List View</a></li>
-                <li><a href="#">Map View</a></li>
-            </ul>
-        </div>
-        <div id="parameters">
+<head>
+    <title>Hello</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
+    <script src="Map.js"></script>
+    <script src="data.js"></script>
+</head>
 
-
-        </div>
-        <div id="list">
-            <div class="restaurant">
-
+<body>
+    <div id="header">
+        <h1>Restaurant App</h1>
+        <div class="profile">
+            <button onclick="toggleSignUpMenu()" type="button" name="button">Sign Up</button>
+            <div id="signUpMenu" class="dropdown">
+                email: <br>
+                <input type="text" name="name" placeholder="example@gmail.com">
+                <br>password: <br>
+                <input type="password" name="name"> <br>
+                <input type="radio" name="name" value="">Owner
+                <input type="radio" name="sdvsvc" value="">Reviewer
+            </div>
+            <button onclick="toggleSignInMenu()" type="button" name="button">Sign In</button>
+            <div id="signInMenu" class="dropdown">
+                email: <br>
+                <input type="text" name="name" placeholder="example@gmail.com">
+                <br>password: <br>
+                <input type="password" name="name">
             </div>
         </div>
 
+    </div>
+    <br><br>
 
-        <div id="mapid"></div>
-        <script>
-             var mymap = new Map("mapid").setView([41.17, -8.59], 15);
+    <div id="viewBar">
+        <ul>
+            <li><a href="#">List View</a></li>
+            <li><a href="#">Map View</a></li>
+        </ul>
+    </div>
+    <div id="parameters">
+        <input type="number" name="Minimum Rating" min="0.0" max="10.00" value="0.00">
+        <input type="number" name="Maximum Rating" min="0.0" max="10.00" value="10.00">
+        <div id="categories">Categories<br>
+            <input type="checkbox" name="name" value=""> Insert from javascript
+        </div>
+        <div id="locations">Locations<br>
+            <input type="checkbox" name="name" value=""> Same as categories
+        </div>
 
-             var marker = L.marker([41.17, -8.59]).addTo(mymap);
-             marker.bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup();
 
-             function onMapClick(e) {
-                 alert("You clicked the map at " + e.latlng);
-             }
 
-             mymap.on('click', onMapClick);
-        </script>
-    </body>
+    </div>
+    <div id="list">
+        <div class="restaurant">
+
+        </div>
+    </div>
+
+
+    <div id="mapid"></div>
+    <script>
+        var mymap = new Map("mapid").setView([41.17, -8.59], 15);
+
+        var marker = L.marker([41.17, -8.59]).addTo(mymap);
+        marker.bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup();
+
+        function onMapClick(e) {
+            alert("You clicked the map at " + e.latlng);
+        }
+
+        mymap.on('click', onMapClick);
+    </script>
+</body>
+
 </html>

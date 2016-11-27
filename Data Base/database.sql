@@ -17,7 +17,7 @@ DROP TABLE IF EXISTS restauranteReview;
 
 CREATE TABLE user (
 	idUser INTEGER PRIMARY KEY AUTOINCREMENT,
-	user_name CHAR(10) NOT NULL,
+	userName CHAR(10) NOT NULL,
 	email CHAR(20) NOT NULL,
 	password CHAR(10) NOT NULL,
 	photo BOOLEAN
@@ -84,7 +84,7 @@ CREATE TABLE review (
 CREATE TABLE reply (
 	idReply INTEGER PRIMARY KEY AUTOINCREMENT,
 	comment CHAR(300),
-	idOwner INTEGER, 
+	idOwner INTEGER,
 	idReviewer INTEGER,
 	idReview INTEGER,
 	FOREIGN KEY(idOwner) REFERENCES owner(idOwner)
@@ -119,4 +119,3 @@ CREATE TABLE restaurantReview (
 				ON DELETE SET NULL
 				ON UPDATE CASCADE
 );
-

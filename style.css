@@ -1,1 +1,45 @@
-#mapid { height: 400px; }
+#mapid {
+    height: 400px;
+}
+
+#header {
+    display: inline-block;
+    width: 95%
+}
+
+.profile {
+    float: right;
+    display: inline-grid;
+}
+
+.dropdown:after {
+    float: inherit;
+    position:absolute;
+    right: 10px;
+    top: 10px;
+    width: 0;
+    height: 0;
+    content: '';
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-bottom: 20px solid #000000;
+}
+
+.dropdown {
+    text-align: center;
+    float: inherit;
+    top: 50px;
+    position: absolute;
+    display: none;
+    background-color: #f9f9f9;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    overflow: auto;
+    right: 0;
+    min-width: 200px;
+    min-height: 120px;
+    border-radius: 10px;
+}
+
+.show {
+    display: block;
+}

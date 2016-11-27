@@ -1,38 +1,40 @@
 <?php
 
-function getAll($dbh){
-    $allFrom = $dbh->prepare("SELECT * FROM ?");
-    $choice = $_GET['choice'];
-    $allFrom->execute(array($choice));
-    return $allFrom->fetchAll();
+function getAllRestaurants(){
+    global $dbh, $result, $choice;
+
+    $allFrom = $dbh->prepare("SELECT * FROM restaurants");
+    $allFrom->execute();
+    $result = $allFrom->fetchAll();
 }
 
-function getOwnedRestaurants($dbh, $id){
+function getOwnedRestaurants(){
+    global $dbh, $result;
     $restaurantsOwned = $dbh->prepare("SELECT * FROM restaurant WHERE idOwner = ?");
     $id = $_GET['id'];
     $restaurantsOwned->execute(array($id));
-    return $restaurantsOwned->fetchAll();
+    $result = $restaurantsOwned->fetchAll();
 }
 
 // Database connection
-$dbh = new PDO('sqlite:database.sql');
+$dbh = new PDO('sqlite:data.db');
 $dbh->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-$function = $_GET['function'];
-
+$function = $_GET["function"];
+$choice = $_GET["choice"];
+//exit();
 switch ($function) {
-    case 'getAll':
-        $result = getAll($dbh);
+    case "getAllRestaurants":
+        getAllRestaurants();
         break;
     case 'getOwnedRestaurants':
-        $result = getOwnedRestaurants($dbh);
+        getOwnedRestaurants();
         break;
     default:
         die("Invalid function");
         break;
 }
 
-echo json_encode($return);
-
+echo json_encode($result);
 ?>

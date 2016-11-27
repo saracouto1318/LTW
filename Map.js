@@ -5,7 +5,7 @@ function Map(id){
 
 Map.prototype.setView = function(coordinates, distance){
     this.map.setView(coordinates, distance);
-}
+};
 
 Map.prototype.getImage = function(){
     L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -13,4 +13,4 @@ Map.prototype.getImage = function(){
         subdomains: 'abc',
         maxZoom: 19
     }).addTo(this.map);
-}
+};
