@@ -8,11 +8,12 @@
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
     <script src="Map.js"></script>
+    <script src="data.js"></script>
   </head>
   <body>
     <header>
 		<img src="images/logoLTW.png" alt="Restaurants Reviewer"/>
-	
+
 		<ul id="init">
 			<?php
 				if (isset($_SESSION['username'])) {
@@ -20,7 +21,7 @@
 						include ('templates/logout.php');
 					echo '</li>';
 				}
-          
+
 				else {
 					echo '<li>';
 						include ('templates/login.php');
@@ -28,13 +29,13 @@
 					echo '<li>';
 						include ('templates/register.php');
 					echo '</li>';
-				}    
-          
+				}
+
 			?>
 	  </ul>
-	  
+
     </header>
-	  
+
 	<div id="mapid"></div>
 	  <script>
         var mymap = new Map("mapid").setView([41.17, -8.59], 15);

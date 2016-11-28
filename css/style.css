@@ -5,6 +5,7 @@ body {
 header {
 	margin-bottom: 10px;
 	background-color: #eed;
+	width:95%;
 }
 
 header img {
@@ -51,37 +52,53 @@ ul#init input {
 
 .profile {
     float: right;
+	left: 10px;
     display: inline-grid;
 }
 
 .dropdown:after {
-    float: inherit;
+    float:none;
     position:absolute;
-    right: 10px;
-    top: 10px;
+    right: 30px;
+    top: -10px;
     width: 0;
     height: 0;
     content: '';
     border-left: 20px solid transparent;
     border-right: 20px solid transparent;
-    border-bottom: 20px solid #000000;
+    border-bottom: 20px solid #c0c0c0;
 }
 
 .dropdown {
     text-align: center;
-    float: inherit;
-    top: 50px;
-    position: absolute;
+    float: relative;
+	z-index: 999;
+    top: 10px;
+    position:absolute;
     display: none;
-    background-color: #f9f9f9;
+    background-color: #c0c0c0;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     overflow: auto;
-    right: 0;
-    min-width: 200px;
-    min-height: 120px;
+    right: -85px;
+    width: 300px;
+    min-height: 300px;
     border-radius: 10px;
 }
 
+input[type=submit]{
+	max-height: 30px;
+	border-radius: 5px;
+}
+
 .show {
-    display: block;
+    display: inline-table;
+}
+
+.sign{
+	max-height: 20px;
+	min-width: 200px;
+}
+
+.userType{
+	display:inline;
 }
