@@ -1,11 +1,53 @@
+body {
+	background-color: #eee;
+}
+
+header {
+	margin-bottom: 10px;
+	background-color: #eed;
+}
+
+header img {
+    margin: 0;
+    width: 120px;
+    height: 100px;
+}
+
 #mapid {
+	margin: 0;
     height: 400px;
 }
 
-#header {
+
+ul#init {
     display: inline-block;
-    width: 95%
+	float: right;
+    list-style-type: none;
 }
+
+ul#init li {
+    float: right;
+}
+
+ul#init li form {
+    display: block;
+    color: black;
+	background-color: #000;
+    text-align: center;
+    text-decoration: none;
+}
+
+ul#init input {
+	background-color: #eed;
+	color: black;
+	border: none;
+	height: 60px;
+	width: 70px;
+    text-align: center;
+    display: inline-block;
+    font-size: 17px;
+}
+
 
 .profile {
     float: right;
