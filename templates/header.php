@@ -12,7 +12,6 @@
   </head>
   <body>
     <header>
-		<img src="images/icon.png" alt="Restaurants Reviewer"/>
 		<ul id="init">
 			<?php
 				if (isset($_SESSION['username'])) {

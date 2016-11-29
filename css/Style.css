@@ -1,16 +1,12 @@
 body {
-	background-color: #eee;
+	background-color: #660033;
+	background-image: url('../images/logo.jpg');
+    background-position: center;
+    background-size: cover;
 }
 
 header {
 	margin-bottom: 10px;
-	background-color: #000;
-}
-
-header img {
-    margin: 0;
-    width: 120px;
-    height: 100px;
 }
 
 ul#init {
@@ -25,16 +21,17 @@ ul#init li {
 
 ul#init li form {
     display: block;
-    text-align: center;
     text-decoration: none;
 }
 
 ul#init input {
-	background-color: #000;
+	border-radius: 20px 0;
+	background-color: orange;
+	margin: 3px;
 	color: white;
 	border: none;
 	height: 60px;
-	width: 70px;
+	width: 75px;
     text-align: center;
     display: inline-block;
     font-size: 17px;
@@ -59,23 +56,35 @@ footer #google_translate_element {
 
 #form_search {
 	width: 100%;
-    display: inline-block;
-	padding: 5em 0em;
-    text-align: center;    
-    transition: padding 0.5s;
-	
-	background-image: url('../images/logo.jpg');
-    background-position: center;
-    background-size: cover;
+    display: inline-block; 
+	text-align: center;
+	margin: 15px;
+}
+
+#search input{
+	border-radius: 20px 0;
+	background-color: orange;
+	margin: 3px;
+	color: white;
+	border: none;
+	height: 30px;
+	width: 60px;
+    text-align: center;
+    font-size: 14px;
 }
 
 #form_search h1 {
     color: white;
-    font-size: 30px;
+    font-size: 50px;
+	font-family: arial;
+	text-align: center;
 }
 
-#form_search:hover {
-    margin: 5em 0em;
+#form_search h2 {
+    color: white;
+    font-size: 17px;
+	font-family: arial;
+	text-align: center;
 }
 
 #mapid {
