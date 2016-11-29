@@ -10,9 +10,11 @@
           <div class="userType">
               <input type="radio" name="type" value="Owner">
               <input type="radio" name="type" value="Reviewer">
-              Owner    Reviewer
+			  <br>
+				<div id="user">Owner   Reviewer</div>
+			  </br>
           </div> <br>
-          <input type="submit" name="name" value="register" class="submit"><br><p>
+          <input type="submit" name="name" value="Register" class="submit"><br><p>
       </div>
 </div>
 </form>

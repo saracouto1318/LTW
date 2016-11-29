@@ -4,8 +4,7 @@ body {
 
 header {
 	margin-bottom: 10px;
-	background-color: #eed;
-	width:95%;
+	background-color: #000;
 }
 
 header img {
@@ -13,12 +12,6 @@ header img {
     width: 120px;
     height: 100px;
 }
-
-#mapid {
-	margin: 0;
-    height: 400px;
-}
-
 
 ul#init {
     display: inline-block;
@@ -32,15 +25,13 @@ ul#init li {
 
 ul#init li form {
     display: block;
-    color: black;
-	background-color: #000;
     text-align: center;
     text-decoration: none;
 }
 
 ul#init input {
-	background-color: #eed;
-	color: black;
+	background-color: #000;
+	color: white;
 	border: none;
 	height: 60px;
 	width: 70px;
@@ -49,6 +40,48 @@ ul#init input {
     font-size: 17px;
 }
 
+input[type="submit"]{
+	max-height: 30px;
+	border-radius: 5px;
+}
+
+input[type="radio"]{
+	margin-left: 0em;
+	margin-right: 0em;
+	transform: scale(0.5);
+}
+
+footer #google_translate_element {
+    margin: 14px 16px;
+    display: inline-block;
+    float: right;
+}
+
+#form_search {
+	width: 100%;
+    display: inline-block;
+	padding: 5em 0em;
+    text-align: center;    
+    transition: padding 0.5s;
+	
+	background-image: url('../images/logo.jpg');
+    background-position: center;
+    background-size: cover;
+}
+
+#form_search h1 {
+    color: white;
+    font-size: 30px;
+}
+
+#form_search:hover {
+    margin: 5em 0em;
+}
+
+#mapid {
+	margin: 0;
+    height: 400px;
+}
 
 .profile {
     float: right;
@@ -83,11 +116,6 @@ ul#init input {
     width: 300px;
     min-height: 300px;
     border-radius: 10px;
-}
-
-input[type=submit]{
-	max-height: 30px;
-	border-radius: 5px;
 }
 
 .show {
