@@ -61,6 +61,31 @@ footer #google_translate_element {
 	margin: 15px;
 }
 
+ul#tabs{
+	display: inline-block;
+	float: left;
+    list-style-type: none;
+}
+
+ul#tabs li{
+	float: left;
+	display: block;
+}
+
+ul#tabs input{
+	border-radius: 20px 0;
+	background-color: orange;
+	margin: 3px;
+	color: white;
+	border: none;
+	height: 60px;
+	width: 75px;
+    text-align: center;
+    display: inline-block;
+    font-size: 17px;
+
+}
+
 #search input{
 	border-radius: 20px 0;
 	background-color: orange;
@@ -85,6 +110,16 @@ footer #google_translate_element {
     font-size: 17px;
 	font-family: arial;
 	text-align: center;
+}
+
+#search_bar input{
+	width: 25em;
+    height: 20px;
+	padding-left: 24px;
+    background-image: url('../images/search.png');
+    background-size: 16px;
+    background-repeat: no-repeat;
+	background-position: 3px 3px;
 }
 
 #mapid {
