@@ -5,6 +5,6 @@
 		<input type="text" name="Search" value="Search..."/>
 	</div>
 	<div id="search">
-		<input class="style_button" type="button" value="Search"/>
+		<input class="style_button" type="button"/>
 	</div>
 </form>

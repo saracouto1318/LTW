@@ -86,18 +86,6 @@ ul#tabs input{
 
 }
 
-#search input{
-	border-radius: 20px 0;
-	background-color: orange;
-	margin: 3px;
-	color: white;
-	border: none;
-	height: 30px;
-	width: 60px;
-    text-align: center;
-    font-size: 14px;
-}
-
 #form_search h1 {
     color: white;
     font-size: 50px;
@@ -113,13 +101,22 @@ ul#tabs input{
 }
 
 #search_bar input{
-	width: 25em;
+	width: 15em;
     height: 20px;
-	padding-left: 24px;
-    background-image: url('../images/search.png');
+	padding-left: 10px;
+}
+
+#search input{
+	background-image: url('../images/search.png');
     background-size: 16px;
     background-repeat: no-repeat;
-	background-position: 3px 3px;
+	background-position: 20px 7px;
+	border-radius: 20px 0;
+	background-color: orange;
+	margin: 3px;
+	border: none;
+	height: 30px;
+	width: 60px;
 }
 
 #mapid {
