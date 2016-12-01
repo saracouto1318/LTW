@@ -3,6 +3,8 @@ body {
 	background-image: url('../images/logo.jpg');
     background-position: center;
     background-size: cover;
+	background-repeat: no-repeat;
+	color: white;
 }
 
 header {
@@ -49,7 +51,7 @@ input[type="radio"]{
 }
 
 footer #google_translate_element {
-    margin: 14px 16px;
+	margin-top: 300px;
     display: inline-block;
     float: right;
 }
@@ -61,18 +63,13 @@ footer #google_translate_element {
 	margin: 15px;
 }
 
-ul#tabs{
+#tab{
 	display: inline-block;
 	float: left;
     list-style-type: none;
 }
 
-ul#tabs li{
-	float: left;
-	display: block;
-}
-
-ul#tabs input{
+#tab input{
 	border-radius: 20px 0;
 	background-color: orange;
 	margin: 3px;
@@ -83,7 +80,8 @@ ul#tabs input{
     text-align: center;
     display: inline-block;
     font-size: 17px;
-
+	margin-left: 635px;
+	margin-top: 40px;
 }
 
 #form_search h1 {
@@ -103,7 +101,11 @@ ul#tabs input{
 #search_bar input{
 	width: 15em;
     height: 20px;
-	padding-left: 10px;
+}
+
+#search_bar select{
+	width: 7em;
+	height: 25px;
 }
 
 #search input{
@@ -113,7 +115,7 @@ ul#tabs input{
 	background-position: 20px 7px;
 	border-radius: 20px 0;
 	background-color: orange;
-	margin: 3px;
+	margin-top: 10px;
 	border: none;
 	height: 30px;
 	width: 60px;
