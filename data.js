@@ -1,9 +1,9 @@
-$(getAllUsers);
+// $(getAllRestaurants);
 
-function getAllRestaurants(){
-    $.getJSON("transferData.php",{
-        "function": "getAllRestaurants",
-        "choice": 5}, print);
+function getTop5Restaurants(){
+    $.getJSON("templates/restaurants.php",{
+        "function":"getTop5Restaurants"
+    },print);
 }
 
 function login(){
@@ -12,7 +12,10 @@ function login(){
 
 function print(data){
     for (var user in data) {
-        console.log(data[user]);
+            var line = $("<div class=\"restaurant\">");
+            line.append(data[user].name);
+            line.append("</div>");
+            $("#tab").append(line);
     }
 }
 

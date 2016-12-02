@@ -58,7 +58,7 @@ footer #google_translate_element {
 
 #form_search {
 	width: 100%;
-    display: inline-block; 
+    display: inline-block;
 	text-align: center;
 	margin: 15px;
 }
@@ -172,4 +172,8 @@ footer #google_translate_element {
 
 .userType{
 	display:inline;
+}
+
+.restaurant{
+	background-color: #000000;
 }
