@@ -42,10 +42,7 @@ window.onclick = function(event) {
     }
     for (var j = 0; j < dropdowns.length; j++) {
         dropdowns[j].classList.remove('show');
-
     }
-
-
 };
 
 
