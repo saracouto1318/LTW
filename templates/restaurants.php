@@ -7,10 +7,11 @@ function getAllRestaurants(){
     $result = $allFrom->fetchAll();
 }
 
-function getTop5Restaurants(){
-    global $dbh, $result;
-    $restaurantsOwned = $dbh->prepare("SELECT * FROM restaurant ORDER BY evaluation DESC LIMIT 5");
-    $restaurantsOwned->execute();
+function getTopRestaurants(){
+    global $dbh, $result, $choice;
+    $choice = $_GET["choice"];
+    $restaurantsOwned = $dbh->prepare("SELECT * FROM restaurant ORDER BY evaluation DESC LIMIT ?");
+    $restaurantsOwned->execute(array($choice));
     $result = $restaurantsOwned->fetchAll();
 }
 
@@ -24,8 +25,8 @@ switch ($function) {
     case "getAllRestaurants":
         getAllRestaurants();
         break;
-    case 'getTop5Restaurants':
-        getTop5Restaurants();
+    case 'getTopRestaurants':
+        getTopRestaurants();
         break;
     default:
         die("Invalid function");

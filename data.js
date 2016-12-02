@@ -1,8 +1,9 @@
-// $(getAllRestaurants);
+// $(getTopRestaurants(5));
 
-function getTop5Restaurants(){
+function getTopRestaurants(number){
     $.getJSON("templates/restaurants.php",{
-        "function":"getTop5Restaurants"
+        "choice":number,
+        "function":"getTopRestaurants"
     },print);
 }
 
