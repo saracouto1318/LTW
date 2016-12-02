@@ -1,13 +1,13 @@
 <form action="action_login.php">
-  <?=$_SESSION['username']?> <input onClick="toggleSignInMenu()" type="button" value="Login">
+  <?=$_SESSION['username']?> <input onClick="toggleSignInMenu()" id="loginMenu" class="dropdownAction login" type="button" value="Login">
 
 <div style="position: relative; width: 0; height: 0">
   <div id="signInMenu" class="dropdown">
       <br>Email <br>
-      <input type="text" name="name" class="sign" placeholder="example@gmail.com">
+      <input type="text" name="name" class="sign login" placeholder="example@gmail.com">
       <br><br>Password <br>
-      <input type="password" class="sign" name="name"> <br><br>
-      <input type="submit" name="name" value="Login" class="submit"><p>
+      <input type="password" class="sign login" name="name"> <br><br>
+      <input type="submit" name="name" value="Login" class="submit login"><p>
   </div>
   </div>
 </form>

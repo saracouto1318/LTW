@@ -15,6 +15,16 @@ function getTopRestaurants(){
     $result = $restaurantsOwned->fetchAll();
 }
 
+function getOwnedRestaurants(){
+    global $dbh, $result, $choice;
+    $choice = $_GET["choice"];
+    $restaurantsOwned = $dbh->prepare("SELECT * FROM restaurant JOIN user on idUser WHERE idUser = ?");
+    $restaurantsOwned->execute(array($choice));
+    $result = $restaurantsOwned->fetchAll();
+}
+
+
+
 // Database connection
 $dbh = new PDO('sqlite:../data.db');
 $dbh->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);

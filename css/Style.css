@@ -45,8 +45,8 @@ input[type="submit"]{
 }
 
 input[type="radio"]{
-	margin-left: 0em;
-	margin-right: 0em;
+	/*margin-left: 0cm;
+	margin-right: 0em;*/
 	transform: scale(0.5);
 }
 
