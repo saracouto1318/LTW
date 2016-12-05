@@ -2,7 +2,7 @@ html, body {
 	margin: 0;
 	padding: 0;
 	width: 100%;
-	height: 100%;
+	height: 100%;	
 }
 
 #init {
@@ -11,6 +11,7 @@ html, body {
     display: inline-block;
 	float: right;
     list-style-type: none;
+	font-family: arial;
 }
 
 #init li {
@@ -69,8 +70,14 @@ input[type="submit"]{
 	height: 0;
 }
 
-body {
-	background-color: #660033;
+header {
+	list-style-type: none;
+}
+
+#wrapperInitial {
+	min-height:100%;
+	position: relative;
+	width: 100%;
 	background-image: url('../images/logo.jpg');
     background-position: center;
     background-size: cover;
@@ -78,14 +85,14 @@ body {
 	color: white;
 }
 
-header {
-	list-style-type: none;
-}
-
-#wrapper {
+#wrapperRestaurantPage{
+	background-color: #52003B;
 	min-height:100%;
 	position: relative;
 	width: 100%;
+	position: relative;
+    z-index: -1;
+	color: white;
 }
 
 #content {
@@ -99,7 +106,7 @@ footer {
 	bottom: 0;
 	left: 0;
 	color: white;
-	background-color: #660033;
+	background-color: rgba(0,0,0,0.5);
 }
 
 footer p {
@@ -161,6 +168,36 @@ footer p {
 #search_bar select{
 	width: 7em;
 	height: 25px;
+}
+
+#restaurantBackground{
+	display: flex;
+	background-image: url('../images/logo.jpg');
+    background-position: center;
+    background-size: cover;
+	background-repeat: no-repeat;
+	width: 70%;
+	height: 250px;
+	margin: auto;
+}
+
+#restaurantNameScore{
+	display: inline-block;
+	margin-top: auto;
+	width: 100%;
+	height: 40%;
+	background-color: rgba(0,0,0,0.5);
+	text-align: center;
+}
+
+.restaurantName{
+	margin: 40px 0px 0px 10px;
+	float: left;
+}
+
+.avg{
+	margin: 40px 10px;
+	float: right;
 }
 
 #mapid {

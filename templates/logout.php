@@ -1,4 +1,4 @@
 <form action="action_logout.php">
-	<?=$_SESSION['username']?> 
+	<!-- <?=$_SESSION['username']?> -->
 	<input type="submit" value="Logout">
 </form>

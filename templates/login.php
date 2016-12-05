@@ -1,5 +1,5 @@
 <form action="action_login.php">
-	<?=$_SESSION['username']?> 
+	<!--<?=$_SESSION['username']?> -->
 	<input onClick="toggleSignInMenu()" id="loginMenu" class="dropdownAction login" type="button" value="Login" >
 	<div class="relativeMenu">
 		<div id="signInMenu" class="dropdown">
