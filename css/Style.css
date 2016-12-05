@@ -1,3 +1,74 @@
+html, body {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+}
+
+#init {
+	margin: 0;
+	padding: 0;
+    display: inline-block;
+	float: right;
+    list-style-type: none;
+}
+
+#init li {
+    float: right;
+}
+
+#init li form {
+    display: block;
+    text-decoration: none;
+}
+
+#init input {
+	border-radius: 20px 0;
+	background-color: orange;
+	margin: 10px;
+	color: white;
+	border: none;
+	height: 60px;
+	width: 75px;
+    text-align: center;
+    display: inline-block;
+    font-size: 17px;
+}
+
+#init li #user input[type="text"]{
+	border-radius: 5px 0;
+	background-color: #c0c0c0;
+	color: white;
+	border: none;
+	height: 11px;
+	width: 75px;
+    text-align: center;
+    display: inline-block;
+    font-size: 17px;
+	
+}
+
+input[type="submit"]{
+	max-height: 30px;
+	border-radius: 5px;
+}
+
+#init input[type="radio"]{
+	border-radius: 20px 0;
+	background-color: orange;
+	color: white;
+	border: none;
+    text-align: center;
+    display: inline;
+	transform: scale(0.5);
+}
+
+.relativeMenu {
+	position: relative;
+	width: 0;
+	height: 0;
+}
+
 body {
 	background-color: #660033;
 	background-image: url('../images/logo.jpg');
@@ -8,80 +79,64 @@ body {
 }
 
 header {
-	margin-bottom: 10px;
+	list-style-type: none;
 }
 
-ul#init {
-    display: inline-block;
-	float: right;
-    list-style-type: none;
-}
-
-ul#init li {
-    float: right;
-}
-
-ul#init li form {
-    display: block;
-    text-decoration: none;
-}
-
-ul#init input {
-	border-radius: 20px 0;
-	background-color: orange;
-	margin: 3px;
-	color: white;
-	border: none;
-	height: 60px;
-	width: 75px;
-    text-align: center;
-    display: inline-block;
-    font-size: 17px;
-}
-
-input[type="submit"]{
-	max-height: 30px;
-	border-radius: 5px;
-}
-
-input[type="radio"]{
-	/*margin-left: 0cm;
-	margin-right: 0em;*/
-	transform: scale(0.5);
-}
-
-footer #google_translate_element {
-	margin-top: 300px;
-    display: inline-block;
-    float: right;
-}
-
-#form_search {
+#wrapper {
+	min-height:100%;
+	position: relative;
 	width: 100%;
-    display: inline-block;
-	text-align: center;
-	margin: 15px;
 }
+
+#content {
+	padding-bottom: 25px;
+}
+
+footer {	
+	width: 100%;	
+	height: 50px;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	color: white;
+	background-color: #660033;
+}
+
+footer p {
+	float: left;
+}
+
+#google_translate_element {
+	width: 20em;
+	margin: 12px 16px 0px 0px;
+	display: inline-block;
+	float: right;
+}
+
 
 #tab{
-	display: inline-block;
-	float: left;
+	margin: auto;
     list-style-type: none;
 }
 
 #tab input{
 	border-radius: 20px 0;
 	background-color: orange;
-	margin: 3px;
+	margin-left: 20px;
+	margin-top: 10px;
 	color: white;
 	border: none;
 	height: 60px;
 	width: 75px;
-    text-align: center;
     display: inline-block;
     font-size: 17px;
-	margin-left: 635px;
-	margin-top: 40px;
+}
+
+#form_search {
+	width: 100%;
+    display: inline-block;
+	text-align: center;
+	margin: auto;
 }
 
 #form_search h1 {
@@ -108,22 +163,24 @@ footer #google_translate_element {
 	height: 25px;
 }
 
-#search input{
+#mapid {
+	margin: 0;
+    height: 400px;
+}
+
+.style_button {
 	background-image: url('../images/search.png');
     background-size: 16px;
     background-repeat: no-repeat;
 	background-position: 20px 7px;
 	border-radius: 20px 0;
 	background-color: orange;
-	margin-top: 10px;
+	display: inline-block;
+	text-align: center;
 	border: none;
 	height: 30px;
 	width: 60px;
-}
-
-#mapid {
-	margin: 0;
-    height: 400px;
+	margin: 10px;
 }
 
 .profile {
