@@ -29,7 +29,7 @@
 					echo '</li>';
 				}
 
-			?>
-	  </ul>
+				?>
+			</ul>
 
-    </header>
+		</header>

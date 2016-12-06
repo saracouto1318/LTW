@@ -14,14 +14,15 @@
 			<script src="data.js"></script>
 		</head>
 		<body>
-			<div id="wrapperInitial">	
-<?php
+			<div id="wrapperRestaurantPage">	
+<?php	
 	include ('templates/header.php');
 ?>	
 	<div id="content">
 <?php
 	include ('templates/tabs.php');
 	include ('templates/search.php');
+	include ('templates/restaurant_info.php');
 ?>	
 	</div>
 <?php

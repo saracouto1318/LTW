@@ -155,7 +155,7 @@ INSERT INTO restaurant(name, contact, email, priceAVG, evaluation, idOwner, idLo
 INSERT INTO restaurant(name, contact, email, priceAVG, evaluation, idOwner, idLocation)
 	VALUES ('Master', 252354110, 'masterRestaurant@gmail.com', 20, 4, 6, 1);
 INSERT INTO restaurant(name, contact, email, priceAVG, evaluation, idOwner, idLocation)
-	VALUES ('Restaurante Ovarense', 910964453, 'ovarenseRestaurante@gmail.com', 10, 11, 10, 2);
+	VALUES ('Restaurante Ovarense', 910964453, 'ovarenseRestaurante@gmail.com', 10, 9, 10, 2);
 
 INSERT INTO location(road, city, country, code, altitude, longitude) VALUES ('Rua 1º de Maio', 'Trofa', 'Portugal', 4785, 23, 57);
 INSERT INTO location(road, city, country, code, altitude, longitude) VALUES ('Rua da Morteira', 'Ovar', 'Portugal', 4432, 70, 50);
