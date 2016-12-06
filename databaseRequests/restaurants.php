@@ -2,7 +2,7 @@
 function getAllRestaurants(){
     global $dbh, $result, $choice;
 
-    $allFrom = $dbh->prepare("SELECT * FROM restaurant");
+    $allFrom = $dbh->prepare("SELECT category FROM category");
     $allFrom->execute();
     $result = $allFrom->fetchAll();
 }
@@ -15,13 +15,13 @@ function getTopRestaurants(){
     $result = $restaurantsOwned->fetchAll();
 }
 
-function getOwnedRestaurants(){
-    global $dbh, $result, $choice;
-    $choice = $_GET["choice"];
-    $restaurantsOwned = $dbh->prepare("SELECT * FROM restaurant JOIN user on idUser WHERE idUser = ?");
-    $restaurantsOwned->execute(array($choice));
-    $result = $restaurantsOwned->fetchAll();
-}
+// function getOwnedRestaurants(){
+//     global $dbh, $result, $choice;
+//     $choice = $_GET["choice"];
+//     $restaurantsOwned = $dbh->prepare("SELECT * FROM restaurant JOIN user on idUser WHERE idUser = ?");
+//     $restaurantsOwned->execute(array($choice));
+//     $result = $restaurantsOwned->fetchAll();
+// }
 
 
 

@@ -8,7 +8,7 @@
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
     <script src="Map.js"></script>
-    <script src="data.js"></script>
+    <!-- <script src="data.js"></script> -->
   </head>
   <body>
     <header>

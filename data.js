@@ -1,18 +1,42 @@
-// $(getTopRestaurants(5));
+//$(getTopRestaurants(5));
 
 function getTopRestaurants(number) {
-    $.getJSON("templates/restaurants.php", {
+    $.getJSON("databaseRequests/restaurants.php", {
         "choice": number,
         "function": "getTopRestaurants"
     }, print);
 }
 
-function login() {
+function getCategories() {
+    $.getJSON("databaseRequests/categories.php", {
+        "function": "getAllCategories"
+    }, category);
 
+}
+
+function handleChecks(cb){
+    console.log(cb);
+    if(cb.indeterminate === true){
+        cb.indeterminate = false;
+        cb.checked = false;
+    } else if(cb.checked === true){
+        cb.indeterminate = true;
+    } else{
+        cb.checked = true;
+        cb.indeterminate = false;
+    }
+}
+
+
+function category(data) {
+    for (var user in data) {
+        console.log(data[user]);
+    }
 }
 
 function print(data) {
     for (var user in data) {
+        console.log(data[user]);
         var line = $("<div class=\"restaurant\">");
         line.append(data[user].name);
         line.append("</div>");
@@ -21,7 +45,6 @@ function print(data) {
 }
 
 window.onclick = function(event) {
-
     var dropdowns = document.getElementsByClassName("dropdown");
     var dropdownAction = $(".dropdownAction");
     var eventAllClasses = event.target.getAttribute("class");

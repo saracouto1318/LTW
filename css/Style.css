@@ -177,3 +177,9 @@ footer #google_translate_element {
 .restaurant{
 	background-color: #000000;
 }
+
+.shadow{
+	position: relative;
+	width: 0;
+	height: 0
+}

@@ -4,7 +4,7 @@
 	<div id="search_bar">
 		<select name="category">
 			<option value="italian">Italian food</option>
-			<option value="japonese">Japonese food</option>
+			<option value="japanese">Japonese food</option>
 			<option value="pizza">Pizza</option>
 			<option value="hamburguers">Hamburguer</option>
 
@@ -12,6 +12,6 @@
 		<input type="text" name="Search" value="" placeholder="Search..."/>
 	</div>
 	<div id="search">
-		<input class="button" type="button"/>
+		<input class="button" onclick="getCategories()" type="button"/>
 	</div>
 </form>

@@ -1,8 +1,8 @@
 <form action="action_login.php">
   <?=$_SESSION['username']?> <input onClick="toggleSignInMenu()" id="loginMenu" class="dropdownAction login" type="button" value="Login">
 
-<div style="position: relative; width: 0; height: 0">
-  <div id="signInMenu" class="dropdown">
+<div class="shadow">
+  <div id="signInMenu" class="dropdown login">
       <br>Email <br>
       <input type="text" name="name" class="sign login" placeholder="example@gmail.com">
       <br><br>Password <br>
