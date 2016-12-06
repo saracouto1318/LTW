@@ -20,8 +20,8 @@
 ?>
 	<div id="content">
 <?php
-	include ('templates/search.php');
 	include ('templates/tabs.php');
+	include ('templates/search.php');
 ?>
 	</div>
 <?php
