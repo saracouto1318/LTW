@@ -1,4 +1,4 @@
-//$(getTopRestaurants(5));
+$(getCategories());
 
 function getTopRestaurants(number) {
     $.getJSON("databaseRequests/restaurants.php", {
@@ -15,23 +15,22 @@ function getCategories() {
 }
 
 function handleChecks(cb){
-    console.log(cb);
-    if(cb.indeterminate === true){
-        cb.indeterminate = false;
-        cb.checked = false;
-    } else if(cb.checked === true){
-        cb.indeterminate = true;
-    } else{
-        cb.checked = true;
-        cb.indeterminate = false;
-    }
+    if (cb.readOnly)
+        cb.checked=cb.readOnly=false;
+    else if (!cb.checked)
+        cb.readOnly=cb.indeterminate=true;
 }
 
 
 function category(data) {
-    for (var user in data) {
-        console.log(data[user]);
+    var search = $("#searchBar");
+    var children = search.children("select");
+
+    for (var category in data) {
+        var option = "<option value=\"" + data[category].category + "\">" + data[category].category + "</option>";
+        children.append(option);
     }
+
 }
 
 function print(data) {

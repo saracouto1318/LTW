@@ -61,7 +61,7 @@ input[type="submit"]{
 	border: none;
     text-align: center;
     display: inline;
-	transform: scale(0.5);
+	transform: scale(1.0);
 }
 
 .relativeMenu {
@@ -139,33 +139,33 @@ footer p {
     font-size: 17px;
 }
 
-#form_search {
+#formSearch {
 	width: 100%;
     display: inline-block;
 	text-align: center;
 	margin: auto;
 }
 
-#form_search h1 {
+#formSearch h1 {
     color: white;
     font-size: 50px;
 	font-family: arial;
 	text-align: center;
 }
 
-#form_search h2 {
+#formSearch h2 {
     color: white;
     font-size: 17px;
 	font-family: arial;
 	text-align: center;
 }
 
-#search_bar input{
+#searchBar input{
 	width: 15em;
     height: 20px;
 }
 
-#search_bar select{
+#searchBar select{
 	width: 7em;
 	height: 25px;
 }
@@ -241,7 +241,7 @@ footer p {
 
 .dropdown {
     text-align: center;
-    float: relative;
+    float: inherit;
 	z-index: 999;
     top: 10px;
     position:absolute;
@@ -265,6 +265,7 @@ footer p {
 }
 
 .userType{
+	transform: scale(2);
 	display:inline;
 }
 
