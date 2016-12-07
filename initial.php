@@ -1,7 +1,8 @@
+<!DOCTYPE html>
+
 <?php
 	include_once('config/init.php');
 ?>
-	<!DOCTYPE html>
 	<html>
 		<head>
 			<title>Restaurants Reviewer</title>
