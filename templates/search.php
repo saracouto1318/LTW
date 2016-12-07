@@ -6,5 +6,5 @@
 		<input type="text" name="Search" value="" placeholder="Search..."/>
 	</div>
 
-	<input class="style_button" type="submit">
+	<input class="style_button" type="button" value="">
 </form>
