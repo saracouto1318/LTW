@@ -1,5 +1,24 @@
 $(getCategories());
 
+function createSliders(){
+    console.log($(".doubleSlider"));
+    var sliders = $(".doubleSlider");
+
+    $("#priceRange").slider({
+        range:true,
+        min:0,
+        max:500,
+        values:[0, 500],
+        slide: function( event, ui ) {
+            $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+        }
+    });
+    $( "#amount" ).val( "$" + $( "#priceRange" ).slider( "values", 0 ) +
+        " - $" + $( "#priceRange" ).slider( "values", 1 ) );
+
+    $("span").attr("id","alo");
+}
+
 function getTopRestaurants(number) {
     $.getJSON("databaseRequests/restaurants.php", {
         "choice": number,
@@ -23,12 +42,13 @@ function handleChecks(cb){
 
 
 function category(data) {
-    var search = $("#searchBar");
-    var children = search.children("select");
+    var categories = $("#categories");
+    // var children = search.children("select");
 
     for (var category in data) {
-        var option = "<option value=\"" + data[category].category + "\">" + data[category].category + "</option>";
-        children.append(option);
+        var option = "<input type=\"checkbox\" name=\"" + data[category].category + "\" onclick=\"handleChecks(this)\">" + data[category].category + "<br>";
+        //var option = "<option value=\"" + data[category].category + "\">" + data[category].category + "</option>";
+        categories.append(option);
     }
 
 }

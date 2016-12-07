@@ -338,3 +338,28 @@ footer p {
 .restaurant{
 	background-color: #000000;
 }
+
+.parameters{
+	background-color: #c0c0c0;
+	float: left;
+	min-width: 300px;
+	min-height: 500px;
+	margin-left: 25px;
+}
+
+#categories{
+	display:table;
+}
+
+#priceHandle{
+	background-color: #FF00FF;
+}
+
+#alo{
+	background-color: #FF00FF;
+}
+/*.ui-slider-handle {
+	text-align: center;
+	border-radius: 48px;
+	background-color: #000000;
+}*/
