@@ -25,7 +25,6 @@
 <?php
 	include ('templates/tabs.php');
 	include ('templates/search.php');
-	include	('templates/restaurants.php');
 ?>
 	</div>
 <?php

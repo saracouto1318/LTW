@@ -235,6 +235,11 @@ footer p {
 	font-weight: bold;
 }
 
+#restaurantsResult{
+	height: 700px;
+	width: 100%;
+}
+
 #restaurantsIndividuals{
 	width: 70%;
 	height: auto;
@@ -263,8 +268,6 @@ footer p {
     background: -webkit-radial-gradient(center, 40% 40px, rgba(255,140,0, 1), rgba(255, 255, 255, 0));
 
 }
-
-
 
 #mapid {
 	margin: 0;
@@ -341,25 +344,42 @@ footer p {
 
 .parameters{
 	background-color: #c0c0c0;
+	border-radius: 10px;
 	float: left;
-	min-width: 300px;
-	min-height: 500px;
-	margin-left: 25px;
+	height: auto;
+	width: auto;
+	min-width: 175px;
+	min-height: 120px;
+	margin: auto;
 }
 
 #categories{
-	display:table;
+	padding: 25px 0px 25px 25px;
+	display: table;
+	margin-bottom: 10px;
+}
+
+#amount{
+	border-radius: 10px;
+	border: none;
+	height: 20px;
+	width: 100px;
+	margin: 0px 40px 10px 40px;
+	text-align: center;
 }
 
 #priceHandle{
-	background-color: #FF00FF;
+	background-color: orange;
+	border-radius: 20px 20px 20px 20px;
+	
 }
 
 #alo{
-	background-color: #FF00FF;
+	background-color: orange;
+	border-radius: 20px 20px 20px 20px;
 }
-/*.ui-slider-handle {
+.ui-slider-handle {
 	text-align: center;
 	border-radius: 48px;
-	background-color: #000000;
-}*/
+	background-color: #000;
+}
