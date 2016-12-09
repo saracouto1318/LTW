@@ -7,10 +7,11 @@ function createSliders() {
     $("#priceRange").slider({
         range: true,
         min: 0,
-        max: 500,
-        values: [0, 500],
+        max: 50,
+        values: [0, 50],
         slide: function(event, ui) {
             $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
+            getRestaurants();
         }
     });
     $("#amount").val("€" + $("#priceRange").slider("values", 0) +
@@ -47,21 +48,17 @@ function showCategories() {
 }
 
 function getRestaurants() {
-    var query = "SELECT * FROM restaurant";
+    var query = "SELECT DISTINCT name, evaluation, priceAVG FROM restaurant JOIN restaurantCategory USING(idRestaurant) JOIN category USING (idCategory)";
     cat = getCategories();
     price = getPriceRange();
     var started = false;
-    // if(cat){
-    //     query += " JOIN restaurantCategory USING (idRestaurant) JOIN category USING (idCategory)";
-    //     query += " WHERE " + cat;
-    //     started = true;
-    // }
+    if(cat){
+        query += " EXCEPT SELECT name, evaluation, priceAVG FROM restaurant JOIN restaurantCategory USING(idRestaurant) JOIN category USING (idCategory) WHERE category IN (";
+        query += cat + ")";
+        started = true;
+    }
     if(price){
-        if(started){
-            query += " AND ";
-        } else{
-            query += " WHERE ";
-        }
+        query += " WHERE ";
         query += price;
         started = true;
     }
@@ -77,23 +74,15 @@ function getRestaurants() {
 function getCategories(){
     var categories = $("#categories").children("input");
     var chosen = false;
-    var string = "category IN (SELECT category FROM restaurant JOIN restaurantCategory USING (idRestaurant) JOIN category USING (idCategory))";
+    var string = "";
     for (var i = 0; i < categories.length; i++) {
         var cat = categories[i];
-        if(cat.checked){
+        if(!cat.checked){
             if(chosen){
-                string += " AND ";
+                string += ", ";
             }
             chosen = true;
-            string += "category = \"" + cat.name + "\"";
-        } else if(cat.indeterminate){
-            if(chosen){
-                string += " AND NOT ";
-            }else {
-                chosen = true;
-                string += "NOT ";
-            }
-            string += "category = \"" + cat.name + "\"";
+            string += "\"" + cat.name + "\"";
         }
     }
     return string;
@@ -130,7 +119,7 @@ function displayRestaurants(data){
     parent.empty();
     for (var i = 0; i < data.length; i++) {
         r = data[i];
-        var show = "<li><div class=\"restaurantKey\"> <h2>" + r.name + "</h2> Price Average: " +r.priceAVG +  "</div></li>";
+        var show = "<li><div class=\"restaurantKey\"> <h2>" + r.name + "</h2> Price Average: " +r.priceAVG +  " Evaluation: " + r.evaluation + "</div></li>";
         parent.append(show);
         if(i !== data.length-1){
             var border = "<div class=\"border\"></div>";
@@ -141,22 +130,12 @@ function displayRestaurants(data){
 
 }
 
-function handleChecks(cb) {
-    if (cb.readOnly)
-        cb.checked = cb.readOnly = false;
-    else if (!cb.checked)
-        cb.readOnly = cb.indeterminate = true;
-
-    getRestaurants();
-}
-
-
 function category(data) {
     var categories = $("#categories");
     // var children = search.children("select");
 
     for (var category in data) {
-        var option = "<input type=\"checkbox\" name=\"" + data[category].category + "\" onclick=\"handleChecks(this)\">" + data[category].category + "<br>";
+        var option = "<input type=\"checkbox\" name=\"" + data[category].category + "\" onclick=\"getRestaurants()\" checked=\"true\">" + data[category].category + "<br>";
         //var option = "<option value=\"" + data[category].category + "\">" + data[category].category + "</option>";
         categories.append(option);
     }

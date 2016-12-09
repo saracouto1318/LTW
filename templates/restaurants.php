@@ -14,8 +14,6 @@
 		</select>
 	</div>
 	<ul id="restaurantsIndividuals">
-		<div class="border"></div>
-		<li>Restaurant2</li>
 	</ul>
 
 	<div class="parameters">
