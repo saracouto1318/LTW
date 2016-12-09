@@ -14,8 +14,8 @@ function createSliders() {
             getRestaurants();
         }
     });
-    $("#amount").val("€" + $("#priceRange").slider("values", 0) +
-        " - €" + $("#priceRange").slider("values", 1));
+    $("#amount").val("$" + $("#priceRange").slider("values", 0) +
+        " - $" + $("#priceRange").slider("values", 1));
 
     $("span").attr("id", "alo");
 }
@@ -49,8 +49,9 @@ function showCategories() {
 
 function getRestaurants() {
     var query = " SELECT * FROM (SELECT DISTINCT name, evaluation, priceAVG FROM restaurant JOIN restaurantCategory USING(idRestaurant) JOIN category USING (idCategory)";
-    cat = getCategories();
-    price = getPriceRange();
+    var cat = getCategories();
+    var price = getPriceRange();
+    var name = getName();
     var started = false;
     if(cat){
         query += " EXCEPT SELECT name, evaluation, priceAVG FROM restaurant JOIN restaurantCategory USING(idRestaurant) JOIN category USING (idCategory) WHERE category IN (";
@@ -63,6 +64,15 @@ function getRestaurants() {
         query += price;
         started = true;
     }
+    if(name){
+        if(started){
+            query += " AND ";
+        } else{
+            query += " WHERE ";
+        }
+        query += name;
+    }
+
     query += getSorting();
     console.log(query);
 
@@ -70,6 +80,15 @@ function getRestaurants() {
     parameters.function = "getRestaurants";
     parameters.choice = query;
     $.getJSON("databaseRequests/restaurants.php", parameters, displayRestaurants);
+}
+
+function getName(){
+    var name = $("#restaurantName")[0].value;
+    var string = "";
+    if(name){
+        string += " name LIKE(\"%" + name + "%\") ";
+    }
+    return string;
 }
 
 function getCategories(){

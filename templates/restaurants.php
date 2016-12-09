@@ -17,6 +17,9 @@
 	</ul>
 
 	<div class="parameters">
+		Name contains<br>
+		<input id="restaurantName" type="text" name="name" placeholder="Restaurant name" oninput="getRestaurants()">
+		<br>
 		<div id="categories"></div>
 		<input type="text" readonly="true" id="amount">
 		<div id="priceRange" class="doubleSlider">
@@ -25,6 +28,7 @@
 		<div id="evalRange" class="doubleSlider">
 			  <div id="evalHandle" class="ui-slider-handle"></div>
 		</div>
+
 	</div>
 	<script>
 		createSliders();

@@ -349,7 +349,7 @@ footer p {
 	border-radius: 10px;
 	float: left;
 	height: auto;
-	width: auto;
+	max-width: 200px;
 	min-width: 175px;
 	min-height: 120px;
 	margin: auto;
