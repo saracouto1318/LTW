@@ -48,7 +48,7 @@ function showCategories() {
 }
 
 function getRestaurants() {
-    var query = "SELECT DISTINCT name, evaluation, priceAVG FROM restaurant JOIN restaurantCategory USING(idRestaurant) JOIN category USING (idCategory)";
+    var query = " SELECT * FROM (SELECT DISTINCT name, evaluation, priceAVG FROM restaurant JOIN restaurantCategory USING(idRestaurant) JOIN category USING (idCategory)";
     cat = getCategories();
     price = getPriceRange();
     var started = false;
@@ -57,6 +57,7 @@ function getRestaurants() {
         query += cat + ")";
         started = true;
     }
+    query += ")";
     if(price){
         query += " WHERE ";
         query += price;
@@ -79,7 +80,7 @@ function getCategories(){
         var cat = categories[i];
         if(!cat.checked){
             if(chosen){
-                string += ", ";
+                string += ",";
             }
             chosen = true;
             string += "\"" + cat.name + "\"";
