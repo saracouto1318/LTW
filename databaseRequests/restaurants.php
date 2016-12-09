@@ -15,6 +15,13 @@ function getTopRestaurants(){
     $result = $restaurantsOwned->fetchAll();
 }
 
+function getRestaurants(){
+    global $dbh, $result, $choice;
+    $choice = $_GET["choice"];
+    $restaurantsOwned = $dbh->query($choice);
+    $result = $restaurantsOwned->fetchAll();
+}
+
 // function getOwnedRestaurants(){
 //     global $dbh, $result, $choice;
 //     $choice = $_GET["choice"];
@@ -37,6 +44,9 @@ switch ($function) {
         break;
     case 'getTopRestaurants':
         getTopRestaurants();
+        break;
+    case 'getRestaurants':
+        getRestaurants();
         break;
     default:
         die("Invalid function");

@@ -1,22 +1,35 @@
-$(getCategories());
+$(showCategories());
+$(getRestaurants());
 
-function createSliders(){
-    console.log($(".doubleSlider"));
+function createSliders() {
     var sliders = $(".doubleSlider");
 
     $("#priceRange").slider({
-        range:true,
-        min:0,
-        max:500,
-        values:[0, 500],
-        slide: function( event, ui ) {
-            $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+        range: true,
+        min: 0,
+        max: 500,
+        values: [0, 500],
+        slide: function(event, ui) {
+            $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
         }
     });
-    $( "#amount" ).val( "$" + $( "#priceRange" ).slider( "values", 0 ) +
-        " - $" + $( "#priceRange" ).slider( "values", 1 ) );
+    $("#amount").val("€" + $("#priceRange").slider("values", 0) +
+        " - €" + $("#priceRange").slider("values", 1));
 
-    $("span").attr("id","alo");
+    $("span").attr("id", "alo");
+}
+
+function getUsers() {
+    $.getJSON("databaseRequests/restaurants.php", {
+        "choice": "SELECT * FROM user WHERE idUser < 6",
+        "function": "getUsers"
+    }, lol);
+}
+
+function lol(data) {
+    for (var variable in data) {
+        console.log(data[variable]);
+    }
 }
 
 function getTopRestaurants(number) {
@@ -26,18 +39,115 @@ function getTopRestaurants(number) {
     }, print);
 }
 
-function getCategories() {
+function showCategories() {
     $.getJSON("databaseRequests/categories.php", {
         "function": "getAllCategories"
     }, category);
 
 }
 
-function handleChecks(cb){
+function getRestaurants() {
+    var query = "SELECT * FROM restaurant";
+    cat = getCategories();
+    price = getPriceRange();
+    var started = false;
+    // if(cat){
+    //     query += " JOIN restaurantCategory USING (idRestaurant) JOIN category USING (idCategory)";
+    //     query += " WHERE " + cat;
+    //     started = true;
+    // }
+    if(price){
+        if(started){
+            query += " AND ";
+        } else{
+            query += " WHERE ";
+        }
+        query += price;
+        started = true;
+    }
+    query += getSorting();
+    console.log(query);
+
+    var parameters = {};
+    parameters.function = "getRestaurants";
+    parameters.choice = query;
+    $.getJSON("databaseRequests/restaurants.php", parameters, displayRestaurants);
+}
+
+function getCategories(){
+    var categories = $("#categories").children("input");
+    var chosen = false;
+    var string = "category IN (SELECT category FROM restaurant JOIN restaurantCategory USING (idRestaurant) JOIN category USING (idCategory))";
+    for (var i = 0; i < categories.length; i++) {
+        var cat = categories[i];
+        if(cat.checked){
+            if(chosen){
+                string += " AND ";
+            }
+            chosen = true;
+            string += "category = \"" + cat.name + "\"";
+        } else if(cat.indeterminate){
+            if(chosen){
+                string += " AND NOT ";
+            }else {
+                chosen = true;
+                string += "NOT ";
+            }
+            string += "category = \"" + cat.name + "\"";
+        }
+    }
+    return string;
+}
+
+function getPriceRange(){
+    var slider = $("#priceRange");
+    var min = slider.slider("option","min");
+    var max = slider.slider("option","max");
+    var values = slider.slider("values");
+    var used = false;
+    var string = "";
+    if(min !== values[0]){
+        string += " priceAVG > " + values[0];
+        used = true;
+    }
+    if(max !== values[1]){
+        if(used){
+            string += " AND priceAVG < " + values[1];
+        } else{
+            string += " priceAVG < " + values[1];
+        }
+    }
+    return string;
+}
+
+function getSorting() {
+    var sort = $("#order")[0].value;
+    return " ORDER BY " + sort;
+}
+
+function displayRestaurants(data){
+    var parent = $("#restaurantsIndividuals");
+    parent.empty();
+    for (var i = 0; i < data.length; i++) {
+        r = data[i];
+        var show = "<li><div class=\"restaurantKey\"> <h2>" + r.name + "</h2> Price Average: " +r.priceAVG +  "</div></li>";
+        parent.append(show);
+        if(i !== data.length-1){
+            var border = "<div class=\"border\"></div>";
+            parent.append(border);
+        }
+    }
+
+
+}
+
+function handleChecks(cb) {
     if (cb.readOnly)
-        cb.checked=cb.readOnly=false;
+        cb.checked = cb.readOnly = false;
     else if (!cb.checked)
-        cb.readOnly=cb.indeterminate=true;
+        cb.readOnly = cb.indeterminate = true;
+
+    getRestaurants();
 }
 
 

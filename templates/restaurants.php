@@ -2,13 +2,22 @@
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-<div id="restaurantsResult">	
+<div id="restaurantsResult">
+	<div class="overlay">
+		<select id="order" name="order" onchange="getRestaurants()">
+			<option value="name ASC">Alphabetical A->Z</option>
+			<option value="name DESC">Alphabetical Z->A</option>
+			<option value="priceAVG ASC">Cheapest first</option>
+			<option value="priceAVG DESC">Most expensive first</option>
+			<option value="evaluation ASC">Worst rating</option>
+			<option value="evaluation DESC">Best rating</option>
+		</select>
+	</div>
 	<ul id="restaurantsIndividuals">
-		<li>Restaurant1</li>
-		<div id="border"></div>
+		<div class="border"></div>
 		<li>Restaurant2</li>
 	</ul>
-	
+
 	<div class="parameters">
 		<div id="categories"></div>
 		<input type="text" readonly="true" id="amount">
@@ -23,3 +32,5 @@
 		createSliders();
 	</script>
 </div>
+
+<script src="../data.js"></script>
