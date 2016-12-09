@@ -91,6 +91,8 @@ function getName(){
     return string;
 }
 
+
+
 function getCategories(){
     var categories = $("#categories").children("input");
     var chosen = false;
@@ -196,7 +198,9 @@ window.onclick = function(event) {
     }
 };
 
-
+function login() {
+    
+}
 
 function toggleSignInMenu() {
     document.getElementById("signInMenu").classList.toggle("show");
