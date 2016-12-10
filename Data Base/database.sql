@@ -22,7 +22,7 @@ DROP TABLE IF EXISTS restaurantReview;
 CREATE TABLE user (
 	iduser INTEGER PRIMARY KEY AUTOINCREMENT,
 	userName CHAR(10) NOT NULL,
-	email CHAR(20) NOT NULL,
+	email CHAR(20) UNIQUE,
 	password CHAR(10) NOT NULL
 );
 

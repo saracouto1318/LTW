@@ -91,8 +91,6 @@ function getName(){
     return string;
 }
 
-
-
 function getCategories(){
     var categories = $("#categories").children("input");
     var chosen = false;
@@ -198,8 +196,22 @@ window.onclick = function(event) {
     }
 };
 
-function login() {
-    
+function submitLogin(e) {
+    e.preventDefault();
+    var form = $("#submitLogin").serialize();
+    console.log(form);
+    return $.post("action_login.php", form)
+            .done(function(ble, bla, resp){
+                try{
+                    var reply = $.parseJSON(resp.responseText);
+                    if(reply.type === "fail"){
+                        var response = $("#loginWarning")[0];
+                        response.innerHTML = reply.message;
+                    }
+                } catch (e){
+                    location.reload();
+                }
+            });
 }
 
 function toggleSignInMenu() {

@@ -1,30 +1,30 @@
 <?php
     include_once('config/init.php');
-    if(isset($_POST["submit"])){
-        $_POST["name"] = addslashes($_POST["name"]);
-        $userName = strtolower($_POST["name"]);
-    }
+    $email = $_POST["email"];
     // Database connection
     $dbh = new PDO('sqlite:data.db');
     $dbh->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
     $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $users = $dbh->prepare("SELECT * FROM user WHERE userName = ?");
-    $users->execute(array($userName));
+    $users = $dbh->prepare("SELECT * FROM user WHERE email = ?");
+    $users->execute(array($email));
     $result = $users->fetch();
 
     if(!$result){
-        echo $userName;
-        $error = " not recognized userName";
-        die ($error);
+        $message = "Unrecognized email";
+        $data = array('type' => 'fail', 'message' => $message, "email" => $email);
+        header($_SERVER["SERVER_PROTOCOL"]."400 Bad Request");
+        echo json_encode($data);
+        die();
     }
 
     $password = $_POST["password"];
     if(!password_verify($password, $result["password"])){
-        echo ($password);
-        die(" invalid password");
+        $message = "Incorrect password";
+        $data = array('type' => 'fail', 'message' => $message);
+        header($_SERVER["SERVER_PROTOCOL"]."400 Bad Request");
+        echo json_encode($data);
+        die();
     }
-
-    $_SESSION["username"] = $userName;
-
+    $_SESSION["username"] = $email;
     header('Location: ' . $_SERVER['HTTP_REFERER']);
 ?>
