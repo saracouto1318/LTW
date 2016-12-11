@@ -226,6 +226,22 @@ function toggleSignUpMenu() {
     document.getElementById("signUpMenu").classList.toggle("show");
 }
 
+function toggleOverview() {
+    document.getElementById("Overview").classList.toggle("show");
+}
+
+function toggleMenu() {
+    document.getElementById("Menu").classList.toggle("show");
+}
+
+function togglePhotos() {
+    document.getElementById("Photos").classList.toggle("show");
+}
+
+function toggleReviews() {
+    document.getElementById("Reviews").classList.toggle("show");
+}
+
 function myFunction() {
     document.getElementById("myDropdown").classList.toggle("show");
 }

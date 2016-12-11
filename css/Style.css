@@ -216,23 +216,36 @@ footer p {
 	float: right;
 }
 
-#restaurant{
-	list-style-type: none;
-	border-radius: 20px 0;
+#restaurantInfo input{
+	display: table;
+	border-radius: 20px;
+	border-color: orange;
+	border-width: 3px;
 	background-color: white;
 	color: black;
 	text-align: center;
-	height: 230px;
+	height: 60px;
 	width: 20%;
 	padding: 0;
 	margin-top: 40px;
+	font-weight: bold;
 }
 
-#restaurant li{
-	padding: 20px 0px 20px 0px;
-	padding: 20px 0px 20px 0px;
-	font-size: 15px;
-	font-weight: bold;
+.box {
+    text-align: center;
+    float: inherit;
+	z-index: 999;
+    position:absolute;
+    overflow: auto;
+	margin: auto;
+	display: inline;
+	border-radius: 20px;
+	background-color: white;
+	color: black;
+	height: 400px;
+	width: 65%;
+	margin: 40px 0px 0px 0px;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 }
 
 #restaurantsResult{
