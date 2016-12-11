@@ -2,7 +2,7 @@
 function getAllRestaurants(){
     global $dbh, $result, $choice;
 
-    $allFrom = $dbh->prepare("SELECT category FROM category");
+    $allFrom = $dbh->prepare("SELECT * FROM restaurants JOIN location USING(idLocation)");
     $allFrom->execute();
     $result = $allFrom->fetchAll();
 }

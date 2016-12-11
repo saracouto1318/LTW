@@ -1,3 +1,5 @@
 <div id="tab">
-	<input class="button" type="button" value="Top 5" onclick="getTopRestaurants(5)"/>
+	<input type="button" class="button" value="Home" onclick="switchTab(this.value)"/>
+	<input type="button" class="button" value="Top 5" onclick="switchTab(this.value)"/>
+	<input type="button" class="button" value="Map" onclick="switchTab(this.value)"/>
 </div>

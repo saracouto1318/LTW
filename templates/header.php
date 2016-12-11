@@ -5,6 +5,9 @@
 					echo '<li>';
 						include ('templates/logout.php');
 					echo '</li>';
+                    echo '<li>';
+						include ('templates/profile.php');
+					echo '</li>';
 				}
 
 				else {

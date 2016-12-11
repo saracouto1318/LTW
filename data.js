@@ -152,7 +152,6 @@ function displayRestaurants(data){
 
 function category(data) {
     var categories = $("#categories");
-    // var children = search.children("select");
 
     for (var category in data) {
         var option = "<input type=\"checkbox\" name=\"" + data[category].category + "\" onclick=\"getRestaurants()\" checked=\"true\">" + data[category].category + "<br>";
@@ -195,6 +194,11 @@ window.onclick = function(event) {
         dropdowns[j].classList.remove('show');
     }
 };
+
+function switchTab(page){
+    $.getJSON("index.php", {"page":page});
+
+}
 
 function submitLogin(e) {
     e.preventDefault();

@@ -385,3 +385,8 @@ footer p {
 	border-radius: 48px;
 	background-color: #000;
 }
+
+.picture{
+	border-radius: 50%;
+	margin-top: 10px;
+}

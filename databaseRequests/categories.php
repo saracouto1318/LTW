@@ -10,7 +10,7 @@ function getAllCategories(){
 function getTopCategories(){
     global $dbh, $result, $choice;
     $choice = $_GET["choice"];
-    $restaurantsOwned = $dbh->prepare("SELECT COUNT(*),* FROM categories ORDER BY evaluation DESC LIMIT ?");
+    $restaurantsOwned = $dbh->prepare("SELECT COUNT(*) FROM categories JOIN restaurantCategory USING(idCategory) GROUP BY category DESC LIMIT ?");
     $restaurantsOwned->execute(array($choice));
     $result = $restaurantsOwned->fetchAll();
 }
