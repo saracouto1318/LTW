@@ -1,5 +1,3 @@
-$(showCategories());
-$(getRestaurants());
 
 function createSliders() {
     var sliders = $(".doubleSlider");
@@ -210,11 +208,6 @@ window.onclick = function(event) {
         dropdowns[j].classList.remove('show');
     }
 };
-
-function switchTab(page){
-    $.getJSON("index.php", {"page":page});
-
-}
 
 function submitLogin(e) {
     e.preventDefault();

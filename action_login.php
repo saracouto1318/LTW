@@ -26,5 +26,5 @@
         die();
     }
     $_SESSION["username"] = $email;
-    header('Location: ' . "initial.php");
+    header("Location: " . [HTTP_REFERER]);
 ?>

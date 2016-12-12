@@ -1,5 +1,5 @@
 <form action="action_register.php" method="post">
-	<!--<?=$_SESSION["name"]?> -->
+	<!--<?=$_SESSION["username"]?> -->
 	<input type="button" id="registerMenu" onClick="toggleSignUpMenu()" class="dropdownAction register" value="Register">
 
  <div class="relativeMenu register">

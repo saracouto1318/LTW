@@ -25,7 +25,7 @@ function getImage(mymap){
 }
 
 function loadMap(){
-    mymap = new L.map("mapid").setView([41.17, -8.59], 15);
+    mymap = new L.map("mapid").setView([41.16, -8.59], 12);
     getImage(mymap);
 
 
