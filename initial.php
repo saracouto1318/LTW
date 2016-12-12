@@ -25,7 +25,12 @@
 	include ('templates/tabs.php');
 	include ('templates/search.php');
 
-	$page = $_GET["page"];
+
+	if(isset($_GET["page"])){
+		$page = $_GET["page"];
+	} else{
+		$page = "Home";
+	}
 	switch ($page) {
 		case "Map":
 			include("templates/map.php");
@@ -36,8 +41,11 @@
 		case "Profile":
 			include("templates/profile.php");
 			break;
-		default:
+		case "Home":
 			include("templates/restaurants.php");
+			break;
+		default:
+			die("Requested page does not exist");
 			break;
 	}
 ?>

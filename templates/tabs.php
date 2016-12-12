@@ -1,5 +1,5 @@
-<div id="tab">
-	<input type="button" class="button" value="Home" onclick="switchTab(this.value)"/>
-	<input type="button" class="button" value="Top 5" onclick="switchTab(this.value)"/>
-	<input type="button" class="button" value="Map" onclick="switchTab(this.value)"/>
-</div>
+<form id="tab" action="initial.php" method="get">
+	<input type="submit" name="page" class="button" value="Home" />
+	<input type="submit" name="page" class="button" value="Top 5" />
+	<input type="submit" name="page" class="button" value="Map" />
+</form>

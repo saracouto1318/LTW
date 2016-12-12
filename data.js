@@ -27,9 +27,16 @@ function getUsers() {
     }, lol);
 }
 
-function lol(data) {
-    for (var variable in data) {
-        console.log(data[variable]);
+function getTop5() {
+    $.getJSON("databaseRequests/restaurants.php", {"function":"getTop5"}, loadTop5);
+}
+
+function loadTop5(data) {
+    var evaluation = data.evaluation;
+    var cat = data.categories;
+    for (var i = 0; i < eval.length; i++) {
+        var html = "<div class=\"rank\" >" + eval[i] + "/>";
+        $("topCategories").append(html);
     }
 }
 
@@ -41,7 +48,7 @@ function getTopRestaurants(number) {
 }
 
 function showCategories() {
-    $.getJSON("databaseRequests/categories.php", {
+    $.getJSON("databaseRequests/restaurants.php", {
         "function": "getAllCategories"
     }, category);
 
