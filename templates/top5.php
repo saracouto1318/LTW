@@ -1,6 +1,4 @@
-<script type="text/javascript">
-    getTop5();
-</script>
+
 <div class="">
     <div id="topCategories" class="top5"></div>
 
@@ -13,3 +11,6 @@
     <div id="topUsers" class="top5"></div>
 
 </div>
+<script type="text/javascript">
+    getTop5();
+</script>

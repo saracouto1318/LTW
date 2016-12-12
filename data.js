@@ -34,10 +34,19 @@ function getTop5() {
 function loadTop5(data) {
     var evaluation = data.evaluation;
     var cat = data.categories;
-    for (var i = 0; i < eval.length; i++) {
-        var html = "<div class=\"rank\" >" + eval[i] + "/>";
-        $("topCategories").append(html);
+    var html = "<table> <thead><tr><th>Categories</th><th>Count</th></tr></thead>", i;
+    for (i = 0; i < cat.length; i++) {
+        html += ("<tr><th>" + cat[i].category + "</th><th>" + cat[i]["COUNT(*)"] + "</th></tr>");
     }
+    html +=("</table>");
+    $("#topCategories").append(html);
+
+    html = "<table> <tr><th>Restaurant</th><th>Rating</th></tr><tr></tr>";
+    for (i = 0; i < evaluation.length; i++) {
+        html += ("<tr><th>" + evaluation[i].name + "</th><th>" + evaluation[i].evaluation + "</th></tr>");
+    }
+    html +=("</table>");
+    $("#topEvaluations").append(html);
 }
 
 function getTopRestaurants(number) {

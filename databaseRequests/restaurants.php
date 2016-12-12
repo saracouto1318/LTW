@@ -5,7 +5,7 @@
  */
 function getAllRestaurants($dbh){
 
-    $allFrom = $dbh->prepare("SELECT * FROM restaurants JOIN location USING(idLocation)");
+    $allFrom = $dbh->prepare("SELECT * FROM restaurant JOIN location USING(idLocation)");
     $allFrom->execute();
     return $allFrom->fetchAll();
 }

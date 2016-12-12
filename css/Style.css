@@ -285,9 +285,17 @@ footer p {
 }
 
 #mapid {
-	margin: 0;
-    height: 400px;
+	margin: 1%;
+    height: 700px;
 }
+
+.leaflet-map-pane {
+	 z-index: 2 !important;
+  }
+
+  .leaflet-google-layer {
+	  z-index: 1 !important;
+  }
 
 .style_button {
 	background-image: url('../images/search.png');
@@ -402,4 +410,26 @@ footer p {
 .picture{
 	border-radius: 50%;
 	margin-top: 10px;
+}
+
+.top5{
+	float: left;
+	min-width: 20%;
+	min-height: 25%;
+	background-color: #b1b1b1;
+	border-radius: 25px;
+	margin-left: 4%;
+}
+
+table{
+	margin: 0 auto;
+}
+
+tr:first-child{
+	font-weight: bold;
+}
+
+.rank{
+	text-align:center;
+	text-shadow: 100px;
 }

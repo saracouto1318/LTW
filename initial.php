@@ -14,6 +14,7 @@
 			<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 			<script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
 			<script src="data.js"></script>
+			<script src="Map.js"></script>
 		</head>
 		<body>
 			<div id="wrapperInitial">
@@ -45,7 +46,7 @@
 			include("templates/restaurants.php");
 			break;
 		default:
-			die("Requested page does not exist");
+			include("templates/restaurants.php");
 			break;
 	}
 ?>

@@ -1,27 +1,33 @@
 
+var mymap;
 
-function Map(id){
-    this.map = L.map(id);
-    this.getImage();
-}
+var LeafIcon = L.Icon.extend({
+    options: {
+        shadowUrl: 'images/leaf-shadow.png',
+        iconSize:     [28, 75],
+        shadowSize:   [50, 64],
+        iconAnchor:   [22, 94],
+        shadowAnchor: [4, 62],
+        popupAnchor:  [-3, -76]
+    }
+});
 
-Map.prototype.setView = function(coordinates, distance){
-    this.map.setView(coordinates, distance);
-};
+var greenIcon = new LeafIcon({iconUrl: 'images/leaf-green.png'}),
+    redIcon = new LeafIcon({iconUrl: 'images/leaf-red.png'}),
+    orangeIcon = new LeafIcon({iconUrl: 'images/leaf-orange.png'});
 
-Map.prototype.getImage = function(){
+function getImage(mymap){
     L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
         subdomains: 'abc',
         maxZoom: 19
-    }).addTo(this.map);
-};
+    }).addTo(mymap);
+}
 
 function loadMap(){
-    var mymap = new Map("mapid").setView([41.17, -8.59], 15);
+    mymap = new L.map("mapid").setView([41.17, -8.59], 15);
+    getImage(mymap);
 
-    var marker = L.marker([41.17, -8.59]).addTo(mymap);
-    marker.bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup();
 
     function onMapClick(e) {
         alert("You clicked the map at " + e.latlng);
@@ -30,4 +36,22 @@ function loadMap(){
     mymap.on('click', onMapClick);
 }
 
-$().ready(loadMap);
+function getAllRestaurants(){
+    $.getJSON("databaseRequests/restaurants.php", {"function":"getAllRestaurants"}, uploadToMap);
+}
+
+function uploadToMap(data){
+    for (var restaurant in data) {
+        var rest = data[restaurant];
+        var leafType;
+        if(rest.evaluation < 2.5){
+            leafType = redIcon;
+        } else if(rest.evaluation < 4.0){
+            leafType = orangeIcon;
+        } else{
+            leafType = greenIcon;
+        }
+        var marker = L.marker([rest.latitude, rest.longitude], {icon: leafType}).addTo(mymap);
+        marker.bindPopup("<b>" + rest.name + "</b><br>Price average: " + rest.priceAVG);
+    }
+}

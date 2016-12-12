@@ -16,6 +16,7 @@ DROP TABLE IF EXISTS review;
 DROP TABLE IF EXISTS reply;
 DROP TABLE IF EXISTS restaurantCategory;
 DROP TABLE IF EXISTS restaurantReview;
+DROP TABLE IF EXISTS restaurantMenu;
 
 /* **************************************************************************** */
 /*								Tables creation                                 */
@@ -79,8 +80,8 @@ CREATE TABLE location (
 );
 
 CREATE TABLE category (
-	idCategory INTEGER PRIMARY KEY,
-	description CHAR(20)
+	idCategory INTEGER PRIMARY KEY AUTOINCREMENT,
+	category CHAR(20)
 );
 
 CREATE TABLE review (
@@ -230,15 +231,15 @@ INSERT INTO location(road, city, country, code, latitude, longitude) VALUES ('Ru
 INSERT INTO location(road, city, country, code, latitude, longitude) VALUES ('Rua Sem Nome', 'Lisboa', 'Portugal', '2670-675', 38.884943, -9.179544);
 INSERT INTO location(road, city, country, code, latitude, longitude) VALUES ('Travessa 1º de Dezembro', 'Braga', 'Portugal', '4700-860', 41.410203, -8.515568);
 
-INSERT INTO category(idCategory, description) VALUES (1, 'Italian');
-INSERT INTO category(idCategory, description) VALUES (2, 'Japanese');
-INSERT INTO category(idCategory, description) VALUES (3, 'Hamburguer');
-INSERT INTO category(idCategory, description) VALUES (4, 'French');
-INSERT INTO category(idCategory, description) VALUES (5, 'Thai');
-INSERT INTO category(idCategory, description) VALUES (6, 'Gourmet');
-INSERT INTO category(idCategory, description) VALUES (7, 'Portuguese');
-INSERT INTO category(idCategory, description) VALUES (8, 'Pizza');
-INSERT INTO category(idCategory, description) VALUES (9, 'Spanish');
+-- INSERT INTO category(idCategory, category) VALUES (1, 'Italian');
+-- INSERT INTO category(idCategory, category) VALUES (2, 'Japanese');
+-- INSERT INTO category(idCategory, category) VALUES (3, 'Hamburguer');
+-- INSERT INTO category(idCategory, category) VALUES (4, 'French');
+-- INSERT INTO category(idCategory, category) VALUES (5, 'Thai');
+-- INSERT INTO category(idCategory, category) VALUES (6, 'Gourmet');
+-- INSERT INTO category(idCategory, category) VALUES (7, 'Portuguese');
+-- INSERT INTO category(idCategory, category) VALUES (8, 'Pizza');
+-- INSERT INTO category(idCategory, category) VALUES (9, 'Spanish');
 
 INSERT INTO review(idReview, score, comment, idReviewer)
 	VALUES (1, 4, 'Um ótimo restaurante, com um bom ambiente e com uma relação qualidade/preço excelente', 2);
@@ -286,39 +287,39 @@ INSERT INTO reply(idReply, comment, idOwner, idReview) VALUES (8, 'Agradeço a s
 INSERT INTO reply(idReply, comment, idOwner, idReview) VALUES (9, 'Agradeço a sua avaliação', 20, 15);
 INSERT INTO reply(idReply, comment, idOwner, idReview) VALUES (10, 'Thanks for your evaluation', 20, 13);
 
-INSERT INTO restaurantCategory(idRestaurant, idCategory) VALUES (1,1);
-INSERT INTO restaurantCategory(idRestaurant, idCategory) VALUES (1,3);
-INSERT INTO restaurantCategory(idRestaurant, idCategory) VALUES (1,7);
-INSERT INTO restaurantCategory(idRestaurant, idCategory) VALUES (2,1);
-INSERT INTO restaurantCategory(idRestaurant, idCategory) VALUES (2,2);
-INSERT INTO restaurantCategory(idRestaurant, idCategory) VALUES (2,4);
-INSERT INTO restaurantCategory(idRestaurant, idCategory) VALUES (2,6);
-INSERT INTO restaurantCategory(idRestaurant, idCategory) VALUES (3,3);
-INSERT INTO restaurantCategory(idRestaurant, idCategory) VALUES (3,7);
-INSERT INTO restaurantCategory(idRestaurant, idCategory) VALUES (3,8);
-INSERT INTO restaurantCategory(idRestaurant, idCategory) VALUES (4,9);
-INSERT INTO restaurantCategory(idRestaurant, idCategory) VALUES (4,1);
-INSERT INTO restaurantCategory(idRestaurant, idCategory) VALUES (4,5);
-INSERT INTO restaurantCategory(idRestaurant, idCategory) VALUES (5,6);
-INSERT INTO restaurantCategory(idRestaurant, idCategory) VALUES (6,1);
-INSERT INTO restaurantCategory(idRestaurant, idCategory) VALUES (6,2);
-INSERT INTO restaurantCategory(idRestaurant, idCategory) VALUES (6,3);
-INSERT INTO restaurantCategory(idRestaurant, idCategory) VALUES (6,4);
-INSERT INTO restaurantCategory(idRestaurant, idCategory) VALUES (6,5);
-INSERT INTO restaurantCategory(idRestaurant, idCategory) VALUES (6,6);
-INSERT INTO restaurantCategory(idRestaurant, idCategory) VALUES (6,7);
-INSERT INTO restaurantCategory(idRestaurant, idCategory) VALUES (6,8);
-INSERT INTO restaurantCategory(idRestaurant, idCategory) VALUES (7,7);
-INSERT INTO restaurantCategory(idRestaurant, idCategory) VALUES (7,4);
-INSERT INTO restaurantCategory(idRestaurant, idCategory) VALUES (8,4);
-INSERT INTO restaurantCategory(idRestaurant, idCategory) VALUES (8,3);
-INSERT INTO restaurantCategory(idRestaurant, idCategory) VALUES (8,8);
-INSERT INTO restaurantCategory(idRestaurant, idCategory) VALUES (9,8);
-INSERT INTO restaurantCategory(idRestaurant, idCategory) VALUES (9,3);
-INSERT INTO restaurantCategory(idRestaurant, idCategory) VALUES (10,2);
-INSERT INTO restaurantCategory(idRestaurant, idCategory) VALUES (10,3);
-INSERT INTO restaurantCategory(idRestaurant, idCategory) VALUES (10,7);
-INSERT INTO restaurantCategory(idRestaurant, idCategory) VALUES (10,8);
+INSERT INTO restaurantCategory(idRestaurant, idcategory) VALUES (1,1);
+INSERT INTO restaurantCategory(idRestaurant, idcategory) VALUES (1,3);
+INSERT INTO restaurantCategory(idRestaurant, idcategory) VALUES (1,7);
+INSERT INTO restaurantCategory(idRestaurant, idcategory) VALUES (2,1);
+INSERT INTO restaurantCategory(idRestaurant, idcategory) VALUES (2,2);
+INSERT INTO restaurantCategory(idRestaurant, idcategory) VALUES (2,4);
+INSERT INTO restaurantCategory(idRestaurant, idcategory) VALUES (2,6);
+INSERT INTO restaurantCategory(idRestaurant, idcategory) VALUES (3,3);
+INSERT INTO restaurantCategory(idRestaurant, idcategory) VALUES (3,7);
+INSERT INTO restaurantCategory(idRestaurant, idcategory) VALUES (3,8);
+INSERT INTO restaurantCategory(idRestaurant, idcategory) VALUES (4,9);
+INSERT INTO restaurantCategory(idRestaurant, idcategory) VALUES (4,1);
+INSERT INTO restaurantCategory(idRestaurant, idcategory) VALUES (4,5);
+INSERT INTO restaurantCategory(idRestaurant, idcategory) VALUES (5,6);
+INSERT INTO restaurantCategory(idRestaurant, idcategory) VALUES (6,1);
+INSERT INTO restaurantCategory(idRestaurant, idcategory) VALUES (6,2);
+INSERT INTO restaurantCategory(idRestaurant, idcategory) VALUES (6,3);
+INSERT INTO restaurantCategory(idRestaurant, idcategory) VALUES (6,4);
+INSERT INTO restaurantCategory(idRestaurant, idcategory) VALUES (6,5);
+INSERT INTO restaurantCategory(idRestaurant, idcategory) VALUES (6,6);
+INSERT INTO restaurantCategory(idRestaurant, idcategory) VALUES (6,7);
+INSERT INTO restaurantCategory(idRestaurant, idcategory) VALUES (6,8);
+INSERT INTO restaurantCategory(idRestaurant, idcategory) VALUES (7,7);
+INSERT INTO restaurantCategory(idRestaurant, idcategory) VALUES (7,4);
+INSERT INTO restaurantCategory(idRestaurant, idcategory) VALUES (8,4);
+INSERT INTO restaurantCategory(idRestaurant, idcategory) VALUES (8,3);
+INSERT INTO restaurantCategory(idRestaurant, idcategory) VALUES (8,8);
+INSERT INTO restaurantCategory(idRestaurant, idcategory) VALUES (9,8);
+INSERT INTO restaurantCategory(idRestaurant, idcategory) VALUES (9,3);
+INSERT INTO restaurantCategory(idRestaurant, idcategory) VALUES (10,2);
+INSERT INTO restaurantCategory(idRestaurant, idcategory) VALUES (10,3);
+INSERT INTO restaurantCategory(idRestaurant, idcategory) VALUES (10,7);
+INSERT INTO restaurantCategory(idRestaurant, idcategory) VALUES (10,8);
 
 INSERT INTO restaurantReview(idRestaurant, idReview) VALUES (1,5);
 INSERT INTO restaurantReview(idRestaurant, idReview) VALUES (1,2);
@@ -337,6 +338,16 @@ INSERT INTO restaurantReview(idRestaurant, idReview) VALUES (9,6);
 INSERT INTO restaurantReview(idRestaurant, idReview) VALUES (10,10);
 INSERT INTO restaurantReview(idRestaurant, idReview) VALUES (10,13);
 INSERT INTO restaurantReview(idRestaurant, idReview) VALUES (10,15);
+
+INSERT INTO category(category) VALUES ('Italian');
+INSERT INTO category(category) VALUES ('Japanese');
+INSERT INTO category(category) VALUES ('Hamburguer');
+INSERT INTO category(category) VALUES ('French');
+INSERT INTO category(category) VALUES ('Thai');
+INSERT INTO category(category) VALUES ('Gourmet');
+INSERT INTO category(category) VALUES ('Portuguese');
+INSERT INTO category(category) VALUES ('Pizza');
+INSERT INTO category(category) VALUES ('Spanish');
 
 INSERT INTO menu(idFood, detail) VALUES (1, 'Carne assada com arroz');
 INSERT INTO menu(idFood, detail) VALUES (2, 'Francesinha');
