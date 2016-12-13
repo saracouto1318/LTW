@@ -50,7 +50,7 @@
 					?>
 				</div>
 			</div>
-	</div>
+		</div>
 	
 		<div id="Menu" class="box menu">
 			<div id="menuDiv">
