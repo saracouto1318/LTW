@@ -17,10 +17,65 @@
 		</div>
 
 
-		<div id="Overview" class="box overview"></div>
-		<div id="Menu" class="box overview"></div>
-		<div id="Photos" class="box overview"></div>
-		<div id="Reviews" class="box overview"></div>
+		<div id="Overview" class="box overview">
+			<div id="column1">
+				<div id="contact">
+					<p id="phone">Phone Number</p>
+						<?php
+							//Contact
+						?>
+				</div>
+				<div id="categoriesCol">
+					<p id="categoriesName">Categories</p>
+						<ul id="catRest">   
+						<?php
+							//Categories
+						?>
+						</ul>
+				</div>
+			</div>
+			<div id="column2">
+				<div id="avgCost">
+					<p id="AvgTitle">Average Cost</p>
+					<p id="Avg_Cost">
+						<?php
+							//AVG COST
+						?>
+					</p>
+				</div>
+				<div id="hours">
+				<p id="HoursTitle">Opening Hours</p>
+					<?php
+						//hours
+					?>
+				</div>
+			</div>
+		</div>
+	
+		<div id="Menu" class="box menu">
+			<div id="menuDiv">
+				<p id="menuTitle">Menu</p>
+					<?php
+						//Menu
+					?>
+			</div>
+		</div>
+		<div id="Photos" class="box phoyos">
+			<div id="photosDIV">
+				<p id="photosTitle">Photos</p>
+					<?php
+						//Menu
+					?>
+			</div>
+		</div>
+		<div id="Reviews" class="box reviews">
+			<div id="reviewsDiv">
+				<p id="reviewsTitle">Reviews</p>
+					<?php
+						//Menu
+					?>
+			</div>
+		</div>
 	</div>
 
 </div>

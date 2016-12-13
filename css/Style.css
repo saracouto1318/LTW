@@ -194,7 +194,7 @@ footer p {
 
 #restaurantDiv{
 	width: 70%;
-	height: 750px;
+	height: 900px;
 	margin: auto;
 }
 
@@ -231,7 +231,59 @@ footer p {
 	float: right;
 }
 
+#column1, #column2 {
+	display: inline-block;
+	vertical-align: top;
+	width: 45%;
+	margin: 10px 2%;
+	font-weight: bold;
+}
+
+#menuDiv {
+	margin-top: 10px;
+	font-weight: bold;
+}
+
+#photosDIV {
+	margin-top: 10px;
+	font-weight: bold;
+}
+
+#reviewsDiv {
+	margin-top: 10px;
+	font-weight: bold;
+}
+
 #restaurantInfo input{
+	display: table;
+	border-radius: 20px;
+	border-width: 3px;
+	background-color: white;
+	color: black;
+	text-align: center;
+	height: 60px;
+	width: 80%;
+	padding: 0;
+	margin-top: 40px;
+	font-weight: bold;
+}
+
+#restaurantInfo input:active{
+	display: table;
+	border-radius: 20px;
+	border-color: orange;
+	border-width: 3px;
+	background-color: white;
+	color: black;
+	text-align: center;
+	height: 60px;
+	width: 80%;
+	padding: 0;
+	margin-top: 40px;
+	font-weight: bold;
+}
+
+#restaurantInfo input:focus{
 	display: table;
 	border-radius: 20px;
 	border-color: orange;
@@ -249,6 +301,7 @@ footer p {
 .infoOptions{
 	float: left;
 	min-width: 25%;
+	margin-top: 50px;
 }
 
 .box {
@@ -257,14 +310,13 @@ footer p {
 	z-index: 999;
     position:absolute;
     overflow: auto;
-	/*margin: auto;*/
 	display: none;
 	border-radius: 20px;
 	background-color: white;
 	color: black;
-	height: 380px;
+	height: 480px;
 	width: 52%;
-	margin: 30px 20px 80px 250px;
+	margin: 30px 20px 30px 5px;
 	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 }
 
