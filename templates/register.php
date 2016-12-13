@@ -1,4 +1,4 @@
-<form action="action_register.php" method="post">
+<form class="session" action="action_register.php" method="post">
 	<!--<?=$_SESSION["username"]?> -->
 	<input type="button" id="registerMenu" onClick="toggleSignUpMenu()" class="dropdownAction register" value="Register">
 
@@ -13,11 +13,20 @@
 
  		<p><label for="password" class="sign register">Password</label></p>
  		<input type="password" class="sign register" name="password" required>
+		<!-- <p>		</p> -->
+		<div class="radioLabel">
+			<label for="Owner" class="sign register">Owner</label>
+			<input id="Owner" type="radio" name="type" class="userType register" value="Owner" required>
+		</div>
+		<p>		</p>
+		<div class="radioLabel register">
+			<label for="Reviewer" class="sign register">Reviewer</label>
+			<input id="Reviewer" type="radio" name="type" class="userType register" value="Reviewer" required>
+		</div>
 
-		<input type="radio" name="type" class="userType register" value="Owner" required>
-		<input type="radio" name="type" class="userType register" value="Reviewer" required>
-		<p><label for="type" class="sign register">Owner Reviewer</label></p>
+		<!-- <p><label for="type" class="sign register">Owner Reviewer</label></p> -->
 		<p><label id="registerWarning" class="sign register"></label></p>
+		<p>		</p>
 		<input type="submit" name="submit" value="Register" class="submit register">
 	</div>
 </div>

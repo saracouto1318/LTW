@@ -7,20 +7,31 @@ html, body {
 }
 
 #init {
-	margin: 0;
+	margin: 200px 500px;
 	padding: 0;
-    display: inline-block;
-	float: right;
-    list-style-type: none;
+    display: inline;
+}
+
+.headerTabLeft{
+	margin-right:80%;
+	margin-left: 25px;
+}
+
+.headerTabRight{
+	margin-right:1%;
+}
+
+.session{
+	padding: 10%;
+}
+
+.headerTabMiddle{
+	margin-left: 55%;
+	margin-right:50%;
 }
 
 #init li {
     float: right;
-}
-
-#init li form {
-    display: block;
-    text-decoration: none;
 }
 
 #init input {
@@ -30,7 +41,7 @@ html, body {
 	color: white;
 	border: none;
 	height: 60px;
-	width: 75px;
+	width: 100%;
     text-align: center;
     display: inline-block;
     font-size: 17px;
@@ -46,22 +57,31 @@ html, body {
     text-align: center;
     display: inline-block;
     font-size: 17px;
-
 }
 
 input[type="submit"]{
 	max-height: 30px;
 	border-radius: 5px;
+	max-width: 50%;
 }
 
 #init input[type="radio"]{
-	border-radius: 20px 0;
+	/*border-radius: 20px 0;*/
 	background-color: orange;
 	color: white;
 	border: none;
-    text-align: center;
+	/*float: right;*/
+    text-align:left;
     display: inline;
 	transform: scale(0.5);
+}
+
+.radioLabel label{
+	float: left;
+}
+
+.radioLabel{
+	white-space: nowrap;
 }
 
 .relativeMenu {
@@ -102,6 +122,7 @@ header {
 }
 
 #content {
+	padding-top: 5%;
 	padding-bottom: 25px;
 }
 
@@ -130,6 +151,7 @@ footer p {
 #tab{
 	margin: auto;
     list-style-type: none;
+	height: 75px;
 }
 
 #tab input{
@@ -141,26 +163,25 @@ footer p {
 	border: none;
 	height: 60px;
 	width: 75px;
-    display: inline-block;
     font-size: 17px;
 }
 
 #formSearch {
 	width: 100%;
-    display: inline-block;
+    display:inline-block;
 	text-align: center;
 	margin: auto;
 }
 
 #formSearch h1 {
     color: white;
-    font-size: 50px;
+    font-size: 25px;
 	text-align: center;
 }
 
 #formSearch h2 {
     color: white;
-    font-size: 17px;
+    font-size: 15px;
 	text-align: center;
 }
 
@@ -169,12 +190,6 @@ footer p {
     height: 25px;
 	border-radius: 5px;
 	border: none;
-}
-
-#searchBar select{
-	width: auto;
-	height: 25px;
-	border-radius: 5px;
 }
 
 #restaurantDiv{
@@ -294,15 +309,7 @@ footer p {
     height: 650px;
 }
 
-.leaflet-map-pane {
-	 z-index: 2 !important;
-  }
-
-  .leaflet-google-layer {
-	  z-index: 1 !important;
-  }
-
-.style_button {
+#searchBar .style_button {
 	background-image: url('../images/search.png');
     background-size: 16px;
     background-repeat: no-repeat;
@@ -344,7 +351,7 @@ footer p {
     position:absolute;
     display: none;
     background-color: #c0c0c0;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
     overflow: auto;
     right: -85px;
     width: 300px;
@@ -356,14 +363,17 @@ footer p {
     display: inline-table;
 }
 
-.sign{
+.sign {
 	max-height: 20px;
-	min-width: 200px;
+	max-width: 200px;
 }
 
 .userType{
-	transform: scale(2);
-	display:inline;
+	/*transform: scale(1);*/
+	/*display:inline;*/
+	/*width: 10%;*/
+	float: left;
+	position:sticky;
 }
 
 .restaurant{

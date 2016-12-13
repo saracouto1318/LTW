@@ -23,8 +23,6 @@
 ?>
 	<div id="content">
 <?php
-	include ('templates/tabs.php');
-	include ('templates/search.php');
 
 
 	if(isset($_GET["page"])){

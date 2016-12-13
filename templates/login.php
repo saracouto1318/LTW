@@ -1,4 +1,4 @@
-<form onsubmit="return submitLogin(event)" id="submitLogin" method="post">
+<form class="session" onsubmit="return submitLogin(event)" id="submitLogin" method="post">
 	<!--<?=$_SESSION["name"]?> -->
 	<input onClick="toggleSignInMenu()" id="loginMenu" class="dropdownAction login" type="button" value="Login" >
 	<div class="relativeMenu login">
