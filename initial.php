@@ -45,6 +45,9 @@
 		case "Home":
 			include("templates/restaurants.php");
 			break;
+		case "Info":
+			include("templates/restaurantInfo.php");
+			break;
 		default:
 			die("Invalid location");
 			break;

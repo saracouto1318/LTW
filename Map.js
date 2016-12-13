@@ -20,7 +20,9 @@ function getImage(mymap){
     L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
         subdomains: 'abc',
-        maxZoom: 19
+        maxZoom: 19,
+        minZoom: 2,
+        noWrap: true
     }).addTo(mymap);
 }
 

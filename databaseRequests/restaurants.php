@@ -21,8 +21,18 @@ function getRestaurants($dbh, $choice){
     return $restaurantsOwned->fetchAll();
 }
 
+function getRestaurantInfo($dbh, $choice){
+    $info = $dbh->prepare("SELECT * FROM restaurant
+        JOIN restaurantCategory USING(idRestaurant)
+        JOIN category USING(idCategory)
+        JOIN location USING(idLocation)
+        WHERE name = ?");
+    $info->execute(array($choice));
+    return $info->fetchAll();
+}
+
 /**
- *  =================== Catgories ============================
+ *  =================== Categories ============================
  */
 function getAllCategories($dbh){
 
@@ -84,6 +94,9 @@ switch ($function) {
         break;
     case "getRestaurants":
         $result = getRestaurants($dbh, $choice);
+        break;
+    case "getRestaurantInfo":
+        $result = getRestaurantInfo($dbh, $choice);
         break;
     case "getAllCategories":
         $result = getAllCategories($dbh);

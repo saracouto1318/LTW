@@ -6,7 +6,7 @@
 						include ('templates/logout.php');
 					echo '</li>';
                     echo '<li>';
-						include ('templates/profile.php');
+						include ('templates/profileLink.php');
 					echo '</li>';
 				}
 
@@ -21,5 +21,4 @@
 
 				?>
 			</ul>
-
 	</header>

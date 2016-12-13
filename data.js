@@ -18,13 +18,6 @@ function createSliders() {
     $("span").attr("id", "alo");
 }
 
-function getUsers() {
-    $.getJSON("databaseRequests/restaurants.php", {
-        "choice": "SELECT * FROM user WHERE idUser < 6",
-        "function": "getUsers"
-    }, lol);
-}
-
 function getTop5() {
     $.getJSON("databaseRequests/restaurants.php", {"function":"getTop5"}, loadTop5);
 }
@@ -59,6 +52,19 @@ function showCategories() {
         "function": "getAllCategories"
     }, category);
 
+}
+
+function getRestaurantInfo(name){
+    $.getJSON("databaseRequests/restaurants.php",
+        {"function":"getRestaurantInfo",
+         "choice":name}, displayInfo);
+}
+
+function displayInfo(data){
+    var header = $("#restaurantNameScore");
+    var rating = header.children(".avg")[0];
+    rating.innerHTML = "<span class=\"stars\">" + data[0].evaluation + "</span>";
+    //falta adicionar o resto as tabs
 }
 
 function getRestaurants() {
@@ -153,7 +159,8 @@ function displayRestaurants(data){
     parent.empty();
     for (var i = 0; i < data.length; i++) {
         r = data[i];
-        var show = "<li><div class=\"restaurantKey\"> <h2>" + r.name + "</h2> Price Average: " +r.priceAVG +  " Evaluation: " + r.evaluation + "</div></li>";
+        var show = "<li><div class=\"restaurantKey\"> <h2>" + r.name + "</h2> Price Average: " +r.priceAVG +  " Evaluation: " + r.evaluation + "<form action=\"\" method=\"get\">       <input type=\"hidden\" name=\"page\" value=\"Info\">    <input type=\"hidden\" name=\"name\" value=\""+r.name+"\">  <input type=\"submit\" value=\"more Info\">"+
+        "</div></li>";
         parent.append(show);
         if(i !== data.length-1){
             var border = "<div class=\"border\"></div>";
@@ -184,6 +191,19 @@ function print(data) {
         $("#tab").append(line);
     }
 }
+
+$.fn.stars = function() {
+    return $(this).each(function() {
+        // Get the value
+        var val = parseFloat($(this).html());
+        // Make sure that the value is in 0 - 5 range, multiply to get width
+        var size = Math.max(0, (Math.min(5, val))) * 16;
+        // Create stars holder
+        var $span = $('<span />').width(size);
+        // Replace the numerical value with stars
+        $(this).html($span);
+    });
+};
 
 window.onclick = function(event) {
     var dropdowns = document.getElementsByClassName("dropdown");
@@ -235,20 +255,17 @@ function toggleSignUpMenu() {
     document.getElementById("signUpMenu").classList.toggle("show");
 }
 
-function toggleOverview() {
-    document.getElementById("Overview").classList.toggle("show");
+function disableTabs(){
+    document.getElementById("Overview").classList.remove("show");
+    document.getElementById("Menu").classList.remove("show");
+    document.getElementById("Photos").classList.remove("show");
+    document.getElementById("Reviews").classList.remove("show");
+
 }
 
-function toggleMenu() {
-    document.getElementById("Menu").classList.toggle("show");
-}
-
-function togglePhotos() {
-    document.getElementById("Photos").classList.toggle("show");
-}
-
-function toggleReviews() {
-    document.getElementById("Reviews").classList.toggle("show");
+function toggleInfo(tab) {
+    disableTabs();
+    document.getElementById(tab).classList.toggle("show");
 }
 
 function myFunction() {
