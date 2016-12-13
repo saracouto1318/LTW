@@ -8,6 +8,7 @@ DROP TABLE IF EXISTS user;
 DROP TABLE IF EXISTS owner;
 DROP TABLE IF EXISTS reviewer;
 DROP TABLE IF EXISTS restaurant;
+DROP TABLE IF EXISTS hours;
 DROP TABLE IF EXISTS photos;
 DROP TABLE IF EXISTS menu;
 DROP TABLE IF EXISTS location;
@@ -56,6 +57,13 @@ CREATE TABLE restaurant (
 	CHECK(evaluation < 11)
 );
 
+CREATE TABLE hours (
+	idHours INTEGER PRIMARY KEY,
+	day char(15),
+	initialHour char(5),
+	finalHour char(5)
+);
+
 CREATE TABLE photos (
 	idPhoto INTEGER PRIMARY KEY,
 	idRestaurant INTEGER,
@@ -89,7 +97,11 @@ CREATE TABLE review (
 	score INTEGER,
 	comment CHAR(300),
 	idReviewer INTEGER,
+	idRestaurant INTEGER,
 	FOREIGN KEY(idReviewer) REFERENCES reviewer(idReviewer)
+				ON DELETE SET NULL
+				ON UPDATE CASCADE,
+	FOREIGN KEY(idRestaurant) REFERENCES restaurant(idRestaurant)
 				ON DELETE SET NULL
 				ON UPDATE CASCADE,
 	CHECK(score > -1),
@@ -124,17 +136,6 @@ CREATE TABLE restaurantCategory (
 				ON UPDATE CASCADE
 );
 
-CREATE TABLE restaurantReview (
-	idRestaurant INTEGER,
-	idReview INTEGER,
-	FOREIGN KEY(idRestaurant) REFERENCES restaurant(idRestaurant)
-				ON DELETE SET NULL
-				ON UPDATE CASCADE,
-	FOREIGN KEY(idReview) REFERENCES review(idReview)
-				ON DELETE SET NULL
-				ON UPDATE CASCADE
-);
-
 CREATE TABLE restaurantMenu (
 	idRestaurant INTEGER,
 	idFood INTEGER,
@@ -142,6 +143,17 @@ CREATE TABLE restaurantMenu (
 				ON DELETE SET NULL
 				ON UPDATE CASCADE,
 	FOREIGN KEY(idFood) REFERENCES menu(idFood)
+				ON DELETE SET NULL
+				ON UPDATE CASCADE
+);
+
+CREATE TABLE restaurantHours (
+	idRestaurant INTEGER,
+	idHours INTEGER,
+	FOREIGN KEY(idRestaurant) REFERENCES restaurant(idRestaurant)
+				ON DELETE SET NULL
+				ON UPDATE CASCADE,
+	FOREIGN KEY(idHours) REFERENCES hours(idHours)
 				ON DELETE SET NULL
 				ON UPDATE CASCADE
 );
@@ -219,6 +231,14 @@ INSERT INTO restaurant(name, contact, email, priceAVG, evaluation, idOwner, idLo
 	VALUES ('Girl Power', '(+33)987651234', 'girlPower@gmail.com', 40, 3, 21, 9);
 INSERT INTO restaurant(name, contact, email, priceAVG, evaluation, idOwner, idLocation)
 	VALUES ('Valério', '(+351)938228554', 'valerio@gmail.com', 10, 3.5, 22, 10);
+	
+INSERT INTO hours(idHours, day, initialHour, finalHour) VALUES (1, 'Segunda-Feira', '11:00', '21:00');
+INSERT INTO hours(idHours, day, initialHour, finalHour) VALUES (2, 'Terça-Feira', '11:00', '21:00');
+INSERT INTO hours(idHours, day, initialHour, finalHour) VALUES (3, 'Quarta-Feira', '11:00', '21:00');
+INSERT INTO hours(idHours, day, initialHour, finalHour) VALUES (4, 'Quinta-Feira', '11:00', '21:00');
+INSERT INTO hours(idHours, day, initialHour, finalHour) VALUES (5, 'Sexta-Feira', '11:00', '00:00');
+INSERT INTO hours(idHours, day, initialHour, finalHour) VALUES (6, 'Sábado', '10:00', '00:00');
+INSERT INTO hours(idHours, day, initialHour, finalHour) VALUES (7, 'Domingo', '10:00', '23:00');
 
 INSERT INTO location(road, city, country, code, latitude, longitude) VALUES ('Rua 1º de Maio', 'Trofa', 'Portugal', '4785-353', 41.337867, -8.560493);
 INSERT INTO location(road, city, country, code, latitude, longitude) VALUES ('Rua da Madragoa', 'Ovar', 'Portugal', '3880-164', 40.853282, -8.614401);
@@ -231,50 +251,50 @@ INSERT INTO location(road, city, country, code, latitude, longitude) VALUES ('Ru
 INSERT INTO location(road, city, country, code, latitude, longitude) VALUES ('Rua Sem Nome', 'Lisboa', 'Portugal', '2670-675', 38.884943, -9.179544);
 INSERT INTO location(road, city, country, code, latitude, longitude) VALUES ('Travessa 1º de Dezembro', 'Braga', 'Portugal', '4700-860', 41.410203, -8.515568);
 
--- INSERT INTO category(idCategory, category) VALUES (1, 'Italian');
--- INSERT INTO category(idCategory, category) VALUES (2, 'Japanese');
--- INSERT INTO category(idCategory, category) VALUES (3, 'Hamburguer');
--- INSERT INTO category(idCategory, category) VALUES (4, 'French');
--- INSERT INTO category(idCategory, category) VALUES (5, 'Thai');
--- INSERT INTO category(idCategory, category) VALUES (6, 'Gourmet');
--- INSERT INTO category(idCategory, category) VALUES (7, 'Portuguese');
--- INSERT INTO category(idCategory, category) VALUES (8, 'Pizza');
--- INSERT INTO category(idCategory, category) VALUES (9, 'Spanish');
+INSERT INTO category(category) VALUES ('Italian');
+INSERT INTO category(category) VALUES ('Japanese');
+INSERT INTO category(category) VALUES ('Hamburguer');
+INSERT INTO category(category) VALUES ('French');
+INSERT INTO category(category) VALUES ('Thai');
+INSERT INTO category(category) VALUES ('Gourmet');
+INSERT INTO category(category) VALUES ('Portuguese');
+INSERT INTO category(category) VALUES ('Pizza');
+INSERT INTO category(category) VALUES ('Spanish');
 
-INSERT INTO review(idReview, score, comment, idReviewer)
-	VALUES (1, 4, 'Um ótimo restaurante, com um bom ambiente e com uma relação qualidade/preço excelente', 2);
-INSERT INTO review(idReview, score, comment, idReviewer)
-	VALUES (2, 2.5, 'Um BOM restaurante, com um bom ambiente, mas com um atendimento um pouco mau', 2);
-INSERT INTO review(idReview, score, comment, idReviewer)
-	VALUES (3, 4, 'Um ótimo restaurante', 2);
-INSERT INTO review(idReview, score, comment, idReviewer)
-	VALUES (4, 4, 'Restaurante agradável, com boa comida e bom atendimento', 3);
-INSERT INTO review(idReview, score, comment, idReviewer)
-	VALUES (5, 3, 'Um restaurante como todos os outros', 4);
-INSERT INTO review(idReview, score, comment, idReviewer)
-	VALUES (6, 3, 'Um restaurante como todos os outros', 4);
-INSERT INTO review(idReview, score, comment, idReviewer)
-	VALUES (7, 4.5, 'Restaurante maravilhoso!! Conto em lá voltar', 7);
-INSERT INTO review(idReview, score, comment, idReviewer)
-	VALUES (8, 4, 'Um ótimo restaurante, com um bom ambiente', 8);
-INSERT INTO review(idReview, score, comment, idReviewer)
-	VALUES (9, 1.5, 'Atendimento péssimo', 9);
-INSERT INTO review(idReview, score, comment, idReviewer)
-	VALUES (10, 4, 'Restaurante agradável', 10);
-INSERT INTO review(idReview, score, comment, idReviewer)
-	VALUES (11, 3, 'Nice restaurant', 12);
-INSERT INTO review(idReview, score, comment, idReviewer)
-	VALUES (12, 4.5, 'Awesome restaurant! I love it!!!', 12);
-INSERT INTO review(idReview, score, comment, idReviewer)
-	VALUES (13, 4, 'Nice quality and prices', 13);
-INSERT INTO review(idReview, score, comment, idReviewer)
-	VALUES (14, 2.5, 'Horrible and disgusting', 16);
-INSERT INTO review(idReview, score, comment, idReviewer)
-	VALUES (15, 4, 'Restaurante agradável e com boa comida', 18);
-INSERT INTO review(idReview, score, comment, idReviewer)
-	VALUES (16, 3, 'Um restaurante banal', 19);
-INSERT INTO review(idReview, score, comment, idReviewer)
-	VALUES (17, 5, 'Restaurante maravilhoso!', 19);
+INSERT INTO review(idReview, score, comment, idReviewer, idRestaurant)
+	VALUES (1, 4, 'Um ótimo restaurante, com um bom ambiente e com uma relação qualidade/preço excelente', 2, 2);
+INSERT INTO review(idReview, score, comment, idReviewer, idRestaurant)
+	VALUES (2, 2.5, 'Um BOM restaurante, com um bom ambiente, mas com um atendimento um pouco mau', 2, 1);
+INSERT INTO review(idReview, score, comment, idReviewer, idRestaurant)
+	VALUES (3, 4, 'Um ótimo restaurante', 2, 3);
+INSERT INTO review(idReview, score, comment, idReviewer, idRestaurant)
+	VALUES (4, 4, 'Restaurante agradável, com boa comida e bom atendimento', 3, 16);
+INSERT INTO review(idReview, score, comment, idReviewer, idRestaurant)
+	VALUES (5, 3, 'Um restaurante como todos os outros', 4, 1);
+INSERT INTO review(idReview, score, comment, idReviewer, idRestaurant)
+	VALUES (6, 3, 'Um restaurante como todos os outros', 4, 9);
+INSERT INTO review(idReview, score, comment, idReviewer, idRestaurant)
+	VALUES (7, 4.5, 'Restaurante maravilhoso!! Conto em lá voltar', 7, 7);
+INSERT INTO review(idReview, score, comment, idReviewer, idRestaurant)
+	VALUES (8, 4, 'Um ótimo restaurante, com um bom ambiente', 8, 3);
+INSERT INTO review(idReview, score, comment, idReviewer, idRestaurant)
+	VALUES (9, 1.5, 'Atendimento péssimo', 9, 8);
+INSERT INTO review(idReview, score, comment, idReviewer, idRestaurant)
+	VALUES (10, 4, 'Restaurante agradável', 10, 10);
+INSERT INTO review(idReview, score, comment, idReviewer, idRestaurant)
+	VALUES (11, 3, 'Nice restaurant', 12, 8);
+INSERT INTO review(idReview, score, comment, idReviewer, idRestaurant)
+	VALUES (12, 4.5, 'Awesome restaurant! I love it!!!', 12, 7);
+INSERT INTO review(idReview, score, comment, idReviewer, idRestaurant)
+	VALUES (13, 4, 'Nice quality and prices', 13, 10);
+INSERT INTO review(idReview, score, comment, idReviewer, idRestaurant)
+	VALUES (14, 2.5, 'Horrible and disgusting', 16, 8);
+INSERT INTO review(idReview, score, comment, idReviewer, idRestaurant)
+	VALUES (15, 4, 'Restaurante agradável e com boa comida', 18, 10);
+INSERT INTO review(idReview, score, comment, idReviewer, idRestaurant)
+	VALUES (16, 3, 'Um restaurante banal', 19, 4);
+INSERT INTO review(idReview, score, comment, idReviewer, idRestaurant)
+	VALUES (17, 5, 'Restaurante maravilhoso!', 19, 6);
 
 INSERT INTO reply(idReply, comment, idOwner, idReview) VALUES (1, 'Agradeço a sua avaliação! Volte sempre!', 1, 1);
 INSERT INTO reply(idReply, comment, idReviewer, idReview) VALUES (2, 'Conto em voltar', 1, 1);
@@ -320,34 +340,6 @@ INSERT INTO restaurantCategory(idRestaurant, idcategory) VALUES (10,2);
 INSERT INTO restaurantCategory(idRestaurant, idcategory) VALUES (10,3);
 INSERT INTO restaurantCategory(idRestaurant, idcategory) VALUES (10,7);
 INSERT INTO restaurantCategory(idRestaurant, idcategory) VALUES (10,8);
-
-INSERT INTO restaurantReview(idRestaurant, idReview) VALUES (1,5);
-INSERT INTO restaurantReview(idRestaurant, idReview) VALUES (1,2);
-INSERT INTO restaurantReview(idRestaurant, idReview) VALUES (2,1);
-INSERT INTO restaurantReview(idRestaurant, idReview) VALUES (3,3);
-INSERT INTO restaurantReview(idRestaurant, idReview) VALUES (3,8);
-INSERT INTO restaurantReview(idRestaurant, idReview) VALUES (4,16);
-INSERT INTO restaurantReview(idRestaurant, idReview) VALUES (5,4);
-INSERT INTO restaurantReview(idRestaurant, idReview) VALUES (6,17);
-INSERT INTO restaurantReview(idRestaurant, idReview) VALUES (7,7);
-INSERT INTO restaurantReview(idRestaurant, idReview) VALUES (7,12);
-INSERT INTO restaurantReview(idRestaurant, idReview) VALUES (8,11);
-INSERT INTO restaurantReview(idRestaurant, idReview) VALUES (8,9);
-INSERT INTO restaurantReview(idRestaurant, idReview) VALUES (8,14);
-INSERT INTO restaurantReview(idRestaurant, idReview) VALUES (9,6);
-INSERT INTO restaurantReview(idRestaurant, idReview) VALUES (10,10);
-INSERT INTO restaurantReview(idRestaurant, idReview) VALUES (10,13);
-INSERT INTO restaurantReview(idRestaurant, idReview) VALUES (10,15);
-
-INSERT INTO category(category) VALUES ('Italian');
-INSERT INTO category(category) VALUES ('Japanese');
-INSERT INTO category(category) VALUES ('Hamburguer');
-INSERT INTO category(category) VALUES ('French');
-INSERT INTO category(category) VALUES ('Thai');
-INSERT INTO category(category) VALUES ('Gourmet');
-INSERT INTO category(category) VALUES ('Portuguese');
-INSERT INTO category(category) VALUES ('Pizza');
-INSERT INTO category(category) VALUES ('Spanish');
 
 INSERT INTO menu(idFood, detail) VALUES (1, 'Carne assada com arroz');
 INSERT INTO menu(idFood, detail) VALUES (2, 'Francesinha');
@@ -487,5 +479,67 @@ INSERT INTO restaurantMenu(idRestaurant, idFood) VALUES(10,3);
 INSERT INTO restaurantMenu(idRestaurant, idFood) VALUES(10,4);
 INSERT INTO restaurantMenu(idRestaurant, idFood) VALUES(10,35);
 INSERT INTO restaurantMenu(idRestaurant, idFood) VALUES(10,36);
+
+INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(1,2);
+INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(1,3);
+INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(1,4);
+INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(1,5);
+INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(1,6);
+INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(1,7);
+INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(2,2);
+INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(2,3);
+INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(2,5);
+INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(2,6);
+INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(2,7);
+INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(3,1);
+INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(3,2);
+INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(3,3);
+INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(3,4);
+INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(3,5);
+INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(3,6);
+INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(3,7);
+INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(4,1);
+INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(4,2);
+INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(4,3);
+INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(4,4);
+INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(4,5);
+INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(4,6);
+INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(4,7);
+INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(5,2);
+INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(5,3);
+INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(5,4);
+INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(5,5);
+INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(5,6);
+INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(5,7);
+INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(6,3);
+INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(6,4);
+INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(6,5);
+INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(6,6);
+INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(6,7);
+INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(7,1);
+INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(7,2);
+INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(7,3);
+INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(7,4);
+INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(7,5);
+INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(7,6);
+INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(7,7);
+INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(8,1);
+INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(8,2);
+INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(8,3);
+INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(8,4);
+INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(8,5);
+INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(8,6);
+INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(9,1);
+INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(9,2);
+INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(9,3);
+INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(9,4);
+INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(9,5);
+INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(9,6);
+INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(9,7);
+INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(10,2);
+INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(10,3);
+INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(10,4);
+INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(10,5);
+INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(10,6);
 
 INSERT INTO photos(idPhoto, idRestaurant) VALUES(1,1);
