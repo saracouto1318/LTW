@@ -53,14 +53,18 @@ function getCoords(address){
         format: 'json'
     };
 
-    $.getJSON(url, params, function(data){
-        console.log(data);
-        return data;
+    $.ajaxSetup({
+        async: false
     });
-}
+    var coords;
+    $.getJSON(url, params, function(data){
+        coords = data[0];
+    });
+    $.ajaxSetup({
+        async: true
+    });
 
-function getAllRestaurants(){
-    $.getJSON("databaseRequests/restaurants.php", {"function":"getAllRestaurants"}, uploadToMap);
+    return [coords.lat, coords.lon];
 }
 
 function uploadToMap(data){

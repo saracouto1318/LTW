@@ -67,6 +67,10 @@ function displayInfo(data){
     //falta adicionar o resto as tabs
 }
 
+function getAllRestaurants(){
+    $.getJSON("databaseRequests/restaurants.php", {"function":"getAllRestaurants"}, uploadToMap);
+}
+
 function getRestaurants() {
     var query = " SELECT * FROM (SELECT DISTINCT name, evaluation, priceAVG FROM restaurant JOIN restaurantCategory USING(idRestaurant) JOIN category USING (idCategory)";
     var cat = getCategories();
@@ -240,6 +244,20 @@ window.onclick = function(event) {
         dropdowns[j].classList.remove('show');
     }
 };
+
+function createRestaurant(e){
+    e.preventDefault();
+    var road = $("#road")[0].value;
+    var city = $("#city")[0].value;
+    var country = $("#country")[0].value;
+    var address = road + ", " + city + ", " + country;
+    var coords = getCoords(address);
+    console.log(coords);
+    $("#lat")[0].value = coords[0];
+    $("#lon")[0].value = coords[1];
+    var form = $("#submitRestaurant").serialize();
+    $.getJSON("databaseRequests/restaurants.php", form);
+}
 
 function changeProfile(e){
     e.preventDefault();

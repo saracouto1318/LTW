@@ -24,6 +24,7 @@
     $create = $dbh->prepare("INSERT INTO user(userName, email, password) VALUES (?, ?, ?)");
     $create->execute(array($userName, $email, password_hash($_POST["password"], PASSWORD_DEFAULT)));
 
-    $_SESSION["username"] = $email;
+    $_SESSION["username"] = $userName;
+    $_SESSION["email"] = $email;
     header("Location: " . [HTTP_REFERER]);
 ?>

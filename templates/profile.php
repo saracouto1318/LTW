@@ -7,15 +7,22 @@
 
 <div class="profileView">
     <div class="box newRestaurant" id="newRestaurant">
-        <form class="" action="index.html" method="get">
+        <form class="formRestaurant" id="submitRestaurant" onsubmit="createRestaurant(event)" method="get">
+
+            <h2>New Restaurant</h2>
             <p>
-                <label for="name">Restaurant Name: </label>
-                <input type="text" name="name" value="" pattern="\w{, 30}" required>
+                <label>Restaurant Name: </label>
+                <input type="text" name="name" value="" pattern="[A-Za-z0-9]{, 30}" required>
             </p> <p>
-                <label for="location">Address: </label>
-                <input type="text" name="location" value="" required>
+                <label>Road: </label>
+                <input type="text" name="road" id="road" value="" required>
             </p> <p>
-                <label for="priceAVG">Price average: </label>
+                <label>City: </label>
+                <input type="text" name="city" id="city" value="" required>
+                <label>Country: </label>
+                <input type="text" name="country" id="country" value="" required>
+            </p> <p>
+                <label>Price average: </label>
                 <input type="number" name="priceAVG" value="" required>
             </p> <p>
                 <label>Menu: </label>
@@ -24,13 +31,16 @@
                 <label>Schedule: </label>
                 <input type="text" name="name" value="">
             </p> <p>
-                <label for="contact">Contact: </label>
+                <label>Contact: </label>
                 <input type="tel"  name="contact" value="">
-                <label for="email">Email: </label>
+                <label>Email: </label>
                 <input type="email" name="email" value="">
+                <input type="hidden" name="lon" id="lon" value="">
+                <input type="hidden" name="lat" id="lat" value="">
             </p>
 
             <p>
+                <label id="newRestaurantWarning"></label>
                 <input type="submit" name="submit" value="Add New Restaurant">
             </p>
 
@@ -52,7 +62,9 @@ OOOOOOOOOO
                 <label for="password">New password: </label>
                 <input type="password" name="password" value="">
             </p> <p>
-                <p><label id="profileWarning"></label></p>
+                <p>
+                    <label id="profileWarning"></label>
+                </p>
                 <input type="submit" name="submit" value="Update Profile">
             </p>
 
@@ -63,5 +75,6 @@ OOOOOOOOOO
 <script type="text/javascript">
     toggleInfo("myRestaurants", 2);
     loadProfile("<?php echo $_SESSION["username"]; ?>");
+    getCoords("espinho, aveiro");
     // loadMap();
 </script>
