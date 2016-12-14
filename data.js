@@ -244,10 +244,8 @@ window.onclick = function(event) {
 function changeProfile(e){
     e.preventDefault();
     var form = $("#editProfile").serialize();
-    // console.log(form);
     return $.post("updateProfile.php", form)
             .done(function(p1, p2, resp){
-                console.log(resp.responseText);
                 var response = $("#profileWarning")[0];
                 response.innerHTML = resp.responseText;
 
@@ -263,7 +261,7 @@ function submitLogin(e) {
                     var reply = $.parseJSON(resp.responseText);
                     if(reply.type === "fail"){
                         var response = $("#loginWarning")[0];
-                        response.innerHTML = reply.message;
+                        response.innerHTML = "&#9746 " + reply.message;
                     }
                 } catch (e){
                     location.reload();

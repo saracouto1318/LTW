@@ -27,5 +27,6 @@
     }
     $_SESSION["email"] = $email;
     $_SESSION["username"] = $result["userName"];
+
     header("Location: " . [HTTP_REFERER]);
 ?>

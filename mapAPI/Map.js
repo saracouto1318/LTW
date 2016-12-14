@@ -26,9 +26,14 @@ function getImage(mymap){
     }).addTo(mymap);
 }
 
-function loadMap(){
+function loadMap(marker){
     mymap = new L.map("mapid").setView([41.16, -8.59], 12);
     getImage(mymap);
+
+
+    var osmGeocoder = new L.Control.OSMGeocoder();
+
+    mymap.addControl(osmGeocoder);
 
 
     function onMapClick(e) {
@@ -36,6 +41,22 @@ function loadMap(){
     }
 
     mymap.on('click', onMapClick);
+}
+
+function getCoords(address){
+    var protocol = location.protocol;
+    var url = protocol + "//nominatim.openstreetmap.org/search";
+
+    var params = {
+        // Defaults
+        q: address,
+        format: 'json'
+    };
+
+    $.getJSON(url, params, function(data){
+        console.log(data);
+        return data;
+    });
 }
 
 function getAllRestaurants(){
