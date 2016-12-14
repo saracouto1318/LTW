@@ -78,6 +78,51 @@ function getAllFromUser($dbh, $choice){
     return $restaurantsOwned;
 }
 
+/**
+*                  Restaurant Info
+*/
+function getPhoneNumber($dbh){
+    $allFrom = $dbh->prepare("SELECT contact FROM restaurant");
+    $allFrom->execute();
+    return $allFrom->fetchAll();
+}
+	
+function getAVG($dbh){
+    $allFrom = $dbh->prepare("SELECT priceAVG FROM restaurant");
+    $allFrom->execute();
+    return $allFrom->fetchAll();
+}
+
+function getCategoriesRestaurant($dbh){
+    $allFrom = $dbh->prepare("SELECT category FROM restaurant JOIN restaurantCategory USING(idCategory)");
+    $allFrom->execute();
+    return $allFrom->fetchAll();
+}
+
+function getHours($dbh){
+    $allFrom = $dbh->prepare("SELECT day, initialHour, finalHour FROM restaurant JOIN restaurantHours USING(idHours)");
+    $allFrom->execute();
+    return $allFrom->fetchAll();
+}
+
+function getMenu($dbh){
+    $allFrom = $dbh->prepare("SELECT detail FROM restaurant JOIN menu USING(idRestaurant)");
+    $allFrom->execute();
+    return $allFrom->fetchAll();
+}
+
+function getPhotos($dbh){
+    $allFrom = $dbh->prepare("SELECT path FROM restaurant JOIN photo USING(idRestaurant)");
+    $allFrom->execute();
+    return $allFrom->fetchAll();
+}
+
+function getReviews($dbh){
+    $allFrom = $dbh->prepare("SELECT comment, score FROM restaurant JOIN review USING(idRestaurant)");
+    $allFrom->execute();
+    return $allFrom->fetchAll();
+}
+
 // Database connection
 $dbh = new PDO("sqlite:../data.db");
 $dbh->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
