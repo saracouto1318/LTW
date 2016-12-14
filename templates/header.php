@@ -22,12 +22,6 @@
 				}
             ?>
             </div>
-            <div class="headerTabLeft">
-            <?php
-                echo '<li>';
-                include ('templates/tabs.php');
-                echo '</li>';
-			?>
-            </div>
+            
 			</ul>
 	</header>

@@ -9,14 +9,6 @@
 	</div>
 
 	<div id="restaurantInfo">
-		<div class="infoOptions">
-			<input type="button" id="overview" onClick="toggleInfo(this.value, 1)" class="boxAction overview" value="Overview">
-			<input type="button" id="menu" onClick="toggleInfo(this.value, 1)" class="boxAction menu" value="Menu">
-			<input type="button" id="photos" onClick="toggleInfo(this.value, 1)" class="boxAction photos" value="Photos">
-			<input type="button" id="reviews" onClick="toggleInfo(this.value, 1)" class="boxAction reviews" value="Reviews">
-		</div>
-
-
 		<div id="Overview" class="box overview">
 			<div id="column1">
 				<div id="contact">
@@ -76,6 +68,11 @@
 					?>
 			</div>
 		</div>
+			<input type="button" id="overview" onClick="toggleOverview()" class="boxAction overview" value="Overview">
+			<input type="button" id="menu" onClick="toggleMenu()" class="boxAction menu" value="Menu">
+			<input type="button" id="photos" onClick="togglePhotos()" class="boxAction photos" value="Photos">
+			<input type="button" id="reviews" onClick="toggleReviews()" class="boxAction reviews" value="Reviews">
+
 	</div>
 
 </div>
@@ -84,7 +81,6 @@
 	var name = "<?php echo $_GET["name"]; ?>";
 	console.log(name);
 	getRestaurantInfo(name);
-	toggleInfo("Overview");
 	$(function() {
 		$('span.stars').stars();
 	});
