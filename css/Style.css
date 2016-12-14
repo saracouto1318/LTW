@@ -10,6 +10,7 @@ html, body {
 	margin: 200px 500px;
 	padding: 0;
     display: inline;
+	list-style-type: none;
 }
 
 .headerTabLeft{
@@ -19,10 +20,6 @@ html, body {
 
 .headerTabRight{
 	margin-right:1%;
-}
-
-.session{
-	padding: 10%;
 }
 
 .headerTabMiddle{
@@ -37,19 +34,18 @@ html, body {
 #init input {
 	border-radius: 25px;
 	background-color: #A52A2A;
-	border-color: #000;
+	border: none;
 	margin: 10px;
 	color: white;
-	border-width: 2px;
 	height: 60px;
-<<<<<<< HEAD
 	width: 80px;
-=======
-	width: 100%;
->>>>>>> origin/master
     text-align: center;
     display: inline-block;
     font-size: 17px;
+}
+
+#init input.sign{
+	width: 300px;
 }
 
 #init li #user input[type="text"]{
@@ -71,16 +67,7 @@ input[type="submit"]{
 }
 
 #init input[type="radio"]{
-<<<<<<< HEAD
     text-align: center;
-=======
-	/*border-radius: 20px 0;*/
-	background-color: orange;
-	color: white;
-	border: none;
-	/*float: right;*/
-    text-align:left;
->>>>>>> origin/master
     display: inline;
 	transform: scale(0.7);
 }
@@ -97,14 +84,6 @@ input[type="submit"]{
 	position: relative;
 	width: 0;
 	height: 0;
-}
-
-.sign.owner{
-	margin: 20px;
-}
-
-.sign.reviewer{
-	margin: 20px;
 }
 
 header {
@@ -175,13 +154,13 @@ footer p {
 	border-radius: 25px;
 	background-color: #A52A2A;
 	border-color: #000;
-	border-width: 2px;
+	border: none;
 	margin-left: 20px;
 	margin-top: 10px;
 	color: white;
 	height: 60px;
 	width: 75px;
-    font-size: 17px;
+    display: inline-block;
 }
 
 #formSearch {
@@ -193,13 +172,13 @@ footer p {
 
 #formSearch h1 {
     color: white;
-    font-size: 25px;
+    font-size: 40px;
 	text-align: center;
 }
 
 #formSearch h2 {
     color: white;
-    font-size: 15px;
+    font-size: 20px;
 	text-align: center;
 }
 
@@ -209,6 +188,7 @@ footer p {
 	border-radius: 10px;
 	border: none;
 	font-size: 15px;
+	margin: 15px;
 }
 
 #restaurantDiv{
@@ -387,13 +367,12 @@ footer p {
 	background-position: 20px 7px;
 	border-radius: 25px;
 	background-color: #A52A2A;
-	display: inline-block;
+	display: block;
 	text-align: center;
-	border-width: 2px;
-	border-color: #000;
+	border: none;
 	height: 30px;
 	width: 60px;
-	margin: 10px;
+	margin: auto;
 }
 
 .profile {

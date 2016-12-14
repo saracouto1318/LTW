@@ -22,13 +22,6 @@
 				}
             ?>
             </div>
-            <div class="headerTabMiddle">
-            <?php
-                echo '<li>';
-                include ('templates/search.php');
-                echo '</li>';
-            ?>
-            </div>
             <div class="headerTabLeft">
             <?php
                 echo '<li>';
