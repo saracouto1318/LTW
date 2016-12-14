@@ -411,13 +411,7 @@ footer p {
 	max-width: 200px;
 }
 
-.userType{
-	/*transform: scale(1);*/
-	/*display:inline;*/
-	/*width: 10%;*/
-	float: left;
-	position:sticky;
-}
+
 
 .restaurant{
 	background-color: #000000;

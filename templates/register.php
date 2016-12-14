@@ -12,18 +12,16 @@
 
  		<p><label for="password" class="sign register">Password</label></p>
  		<input type="password" class="sign register" name="password" required>
+
 		
-		<p>		</p>
+  			<input type="radio" name="type" value="Owner" class="userTyper register" required>
+  			<input type="radio" name="type" value="Reviewer" class="userType register" required>
+ 			<div id="user">
+ 				<input type="text" name="type" value="Owner">
+ 				<input type="text" name="type" value="Reviewer">
+ 			</div>
 		
-		<div class="radioLabel">
-			<label for="Owner" class="sign register">Owner</label>
-			<input id="Owner" type="radio" name="type" class="userType register" value="Owner" required>
-		</div>
-		<p>		</p>
-		<div class="radioLabel register">
-			<label for="Reviewer" class="sign register">Reviewer</label>
-			<input id="Reviewer" type="radio" name="type" class="userType register" value="Reviewer" required>
-		</div>
+		
 
 		<p><label id="registerWarning" class="sign register"></label></p>
 		<p>		</p>
