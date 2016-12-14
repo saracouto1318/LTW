@@ -192,6 +192,18 @@ function print(data) {
     }
 }
 
+function loadProfile(userName){
+    console.log(userName);
+    $.getJSON("databaseRequests/restaurants.php", {
+        "function":"getProfile",
+        "choice":userName
+    }, displayProfile);
+}
+
+function displayProfile(data){
+    console.log(data);
+}
+
 $.fn.stars = function() {
     return $(this).each(function() {
         // Get the value
@@ -229,12 +241,24 @@ window.onclick = function(event) {
     }
 };
 
+function changeProfile(e){
+    e.preventDefault();
+    var form = $("#editProfile").serialize();
+    // console.log(form);
+    return $.post("updateProfile.php", form)
+            .done(function(p1, p2, resp){
+                console.log(resp.responseText);
+                var response = $("#profileWarning")[0];
+                response.innerHTML = resp.responseText;
+
+            });
+}
+
 function submitLogin(e) {
     e.preventDefault();
     var form = $("#submitLogin").serialize();
-    console.log(form);
     return $.post("action_login.php", form)
-            .done(function(ble, bla, resp){
+            .done(function(p1, p2, resp){
                 try{
                     var reply = $.parseJSON(resp.responseText);
                     if(reply.type === "fail"){
@@ -255,16 +279,24 @@ function toggleSignUpMenu() {
     document.getElementById("signUpMenu").classList.toggle("show");
 }
 
-function disableTabs(){
-    document.getElementById("Overview").classList.remove("show");
-    document.getElementById("Menu").classList.remove("show");
-    document.getElementById("Photos").classList.remove("show");
-    document.getElementById("Reviews").classList.remove("show");
+function disableTabs(view){
+    var restaurantTab = ["Overview", "Menu", "Photos", "Reviews"];
+    var profileTab = ["newRestaurant", "myRestaurants", "myOpinions", "myProfile"];
+    var i;
+    if(view === 1)
+        for (i = 0; i < restaurantTab.length; i++) {
+            document.getElementById(restaurantTab[i]).classList.remove("show");
+        }
+    else if(view === 2){
+        for (i = 0; i < profileTab.length; i++) {
+            document.getElementById(profileTab[i]).classList.remove("show");
+        }
+    }
 
 }
 
-function toggleInfo(tab) {
-    disableTabs();
+function toggleInfo(tab, type) {
+    disableTabs(type);
     document.getElementById(tab).classList.toggle("show");
 }
 

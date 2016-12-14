@@ -31,6 +31,15 @@ function getRestaurantInfo($dbh, $choice){
     return $info->fetchAll();
 }
 
+function getOwnedRestaurants($dbh, $choice){
+    $restaurantsOwned = $dbh->prepare("SELECT name, city, evaluation  FROM restaurant
+        JOIN user USING(idUser)
+        JOIN location USING(idLocation)
+        WHERE user.email = ?");
+    $restaurantsOwned->execute(array($choice));
+    return $restaurantsOwned->fetchAll();
+}
+
 /**
  *  =================== Categories ============================
  */
@@ -54,8 +63,7 @@ function getTopCategories($dbh, $choice){
  *  ==================== Overall ===============================
  */
 
-function getTop5($dbh)
-{
+function getTop5($dbh){
     $choice = 5;
     $result = array();
     $eval = getTopRestaurants($dbh, $choice);
@@ -65,13 +73,10 @@ function getTop5($dbh)
     return $result;
 }
 
-// function getOwnedRestaurants(){
-//     global $dbh, $result, $choice;
-//     $choice = $_GET["choice"];
-//     $restaurantsOwned = $dbh->prepare("SELECT * FROM restaurant JOIN user on idUser WHERE idUser = ?");
-//     $restaurantsOwned->execute(array($choice));
-//     $result = $restaurantsOwned->fetchAll();
-// }
+function getAllFromUser($dbh, $choice){
+    $restaurantsOwned = getOwnedRestaurants($dbh, $choice);
+    return $restaurantsOwned;
+}
 
 
 
@@ -106,6 +111,9 @@ switch ($function) {
         break;
     case "getTop5":
         $result = getTop5($dbh);
+        break;
+    case "getAllFromUser":
+        $result = getAllFromUser($dbh, $choice);
         break;
     default:
         die("Invalid function");

@@ -10,10 +10,10 @@
 
 	<div id="restaurantInfo">
 		<div class="infoOptions">
-			<input type="button" id="overview" onClick="toggleInfo(this.value)" class="boxAction overview" value="Overview">
-			<input type="button" id="menu" onClick="toggleInfo(this.value)" class="boxAction menu" value="Menu">
-			<input type="button" id="photos" onClick="toggleInfo(this.value)" class="boxAction photos" value="Photos">
-			<input type="button" id="reviews" onClick="toggleInfo(this.value)" class="boxAction reviews" value="Reviews">
+			<input type="button" id="overview" onClick="toggleInfo(this.value, 1)" class="boxAction overview" value="Overview">
+			<input type="button" id="menu" onClick="toggleInfo(this.value, 1)" class="boxAction menu" value="Menu">
+			<input type="button" id="photos" onClick="toggleInfo(this.value, 1)" class="boxAction photos" value="Photos">
+			<input type="button" id="reviews" onClick="toggleInfo(this.value, 1)" class="boxAction reviews" value="Reviews">
 		</div>
 
 
@@ -27,7 +27,7 @@
 				</div>
 				<div id="categoriesCol">
 					<p id="categoriesName">Categories</p>
-						<ul id="catRest">   
+						<ul id="catRest">
 						<?php
 							//Categories
 						?>
@@ -51,7 +51,7 @@
 				</div>
 			</div>
 		</div>
-	
+
 		<div id="Menu" class="box menu">
 			<div id="menuDiv">
 				<p id="menuTitle">Menu</p>

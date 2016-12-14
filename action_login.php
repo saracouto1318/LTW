@@ -25,6 +25,7 @@
         echo json_encode($data);
         die();
     }
-    $_SESSION["username"] = $email;
+    $_SESSION["email"] = $email;
+    $_SESSION["username"] = $result["userName"];
     header("Location: " . [HTTP_REFERER]);
 ?>

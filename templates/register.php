@@ -24,14 +24,6 @@
 			<input id="Reviewer" type="radio" name="type" class="userType register" value="Reviewer" required>
 		</div>
 
-<<<<<<< HEAD
-		<input type="radio" name="type" class="userType register" value="Owner" required>
-		<input type="radio" name="type" class="userType register" value="Reviewer" required>
-		<p>	<label for="type" class="sign owner">Owner</label>
-			<label for="type" class="sign owner">Reviewer</label></p>
-=======
-		<!-- <p><label for="type" class="sign register">Owner Reviewer</label></p> -->
->>>>>>> origin/master
 		<p><label id="registerWarning" class="sign register"></label></p>
 		<p>		</p>
 		<input type="submit" name="submit" value="Register" class="submit register">
