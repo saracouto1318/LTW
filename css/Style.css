@@ -264,6 +264,7 @@ footer p {
 	width: 80%;
 	padding: 0;
 	margin-top: 40px;
+	margin-left: 35px;
 	font-weight: bold;
 }
 
@@ -305,17 +306,12 @@ footer p {
 
 .box {
     text-align: center;
-    float: right;
-	z-index: 999;
-    position:absolute;
-    overflow: auto;
-	display: none;
 	border-radius: 20px;
 	background-color: white;
 	color: black;
 	height: 480px;
-	width: 52%;
-	margin: 30px 20px 30px 5px;
+	width: 70%;
+	margin: 30px 30px 60px 15px;
 	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 }
 
