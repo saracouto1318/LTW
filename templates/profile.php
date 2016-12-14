@@ -18,6 +18,12 @@
                 <label for="priceAVG">Price average: </label>
                 <input type="number" name="priceAVG" value="" required>
             </p> <p>
+                <label>Menu: </label>
+                <input type="text" name="menu" value="">
+            </p> <p>
+                <label>Schedule: </label>
+                <input type="text" name="name" value="">
+            </p> <p>
                 <label for="contact">Contact: </label>
                 <input type="tel"  name="contact" value="">
                 <label for="email">Email: </label>
@@ -41,7 +47,7 @@ OOOOOOOOOO
         <form id="editProfile" onsubmit="return changeProfile(event)" method="post">
             <p>
                 <label for="userName">New Username: </label>
-                <input type="text" name="username" pattern="\w{3,15}" placeholder="<?php echo $_SESSION['username'];?>">
+                <input type="text" name="username" title="3 To 15 letters and/or numbers in one word" pattern="\w{3,15}" placeholder="<?php echo $_SESSION['username'];?>">
             </p> <p>
                 <label for="password">New password: </label>
                 <input type="password" name="password" value="">

@@ -2,6 +2,7 @@
     include_once('config/init.php');
     $email = $_SESSION["username"];
 
+    // Database connection
     $dbh = new PDO('sqlite:data.db');
     $dbh->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
     $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -11,7 +12,7 @@
 
     if(!empty($newName)){
         if($_SESSION["username"] === $newName){
-            die("New username cannot be the same as the old one");
+            die("&#9746 New username cannot be the same as the old one");
         }
         $update = $dbh->prepare("UPDATE user SET userName = ? WHERE email = ?");
         $update->execute(array($newName));
@@ -19,15 +20,14 @@
     } else{
         $counter = false;
     }
-    // Database connection
 
     if(!empty($newPass)){
         $update = $dbh->prepare("UPDATE user SET password = ? WHERE email = ?");
         $update->execute(array(password_hash($newPass, PASSWORD_DEFAULT)));
 
     } else if(!$counter){
-        die("You must change an element");
+        die("&#9746 You must change an element");
     }
     $_SESSION["username"] = $newName;
-    exit("Profile updated");
+    exit("&#9745 Profile updated");
 ?>

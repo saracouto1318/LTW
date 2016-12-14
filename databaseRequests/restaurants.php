@@ -78,8 +78,6 @@ function getAllFromUser($dbh, $choice){
     return $restaurantsOwned;
 }
 
-
-
 // Database connection
 $dbh = new PDO("sqlite:../data.db");
 $dbh->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
