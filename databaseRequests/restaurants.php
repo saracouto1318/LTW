@@ -26,9 +26,60 @@ function getRestaurantInfo($dbh, $choice){
         JOIN restaurantCategory USING(email)
         JOIN category USING(idCategory)
         JOIN location USING(idLocation)
-        WHERE name = ?");
+        WHERE name = ? LIMIT 1");
     $info->execute(array($choice));
+    return $info->fetch();
+}
+
+function getRestaurantCategories($dbh, $email){
+    $info = $dbh->prepare("SELECT category FROM category 
+				JOIN restaurantCategory USING(idCategory)
+				WHERE email = ?");
+    $info->execute(array($email));
     return $info->fetchAll();
+}
+
+function getRestaurantMenu($dbh, $email){
+    $info = $dbh->prepare("SELECT * FROM menu
+				WHERE email = ?");
+    $info->execute(array($email));
+    return $info->fetchAll();
+}
+
+function getRestaurantHours($dbh, $email){
+    $info = $dbh->prepare("SELECT * FROM hours 
+				JOIN restaurantHours USING(idHours)
+				WHERE email = ?");
+    $info->execute(array($email));
+    return $info->fetchAll();
+}
+
+function getRestaurantPhotos($dbh, $email){
+    $info = $dbh->prepare("SELECT path FROM photos 
+				WHERE email = ?");
+    $info->execute(array($email));
+    return $info->fetchAll();
+}
+
+function getRestaurantReviews($dbh, $email){
+    $info = $dbh->prepare("SELECT * FROM review 
+				WHERE emailRestaurant = ?");
+    $info->execute(array($email));
+    return $info->fetchAll();
+}
+
+function getReviewReplys($dbh, $idReview){
+    $info = $dbh->prepare("SELECT * FROM reply 
+				WHERE idReview = ?");
+    $info->execute(array($idReview));
+    return $info->fetchAll();
+}
+
+function getReviewUser($dbh, $email){
+    $info = $dbh->prepare("SELECT * FROM user 
+				WHERE email = ? LIMIT 1");
+    $info->execute(array($email));
+    return $info->fetch();
 }
 
 function getOwnedRestaurants($dbh, $choice){
@@ -124,45 +175,53 @@ function getReviews($dbh){
 }
 
 // Database connection
-$dbh = new PDO("sqlite:../data.db");
+$dbh = new PDO("sqlite:Data_Base/data.db");
 $dbh->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-if(!isset($_GET["function"]))
-    die("Invalid operation");
 if(isset($_GET["choice"]))
     $choice = $_GET["choice"];
-$function = $_GET["function"];
+if(isset($_GET["function"]))
+	$function = $_GET["function"];
+else
+	$function = "";
+
 switch ($function) {
     case "getAllRestaurants":
         $result = getAllRestaurants($dbh);
+	echo json_encode($result);
         break;
     case "getTopRestaurants":
         $result = getTopRestaurants($dbh, $choice);
+	echo json_encode($result);
         break;
     case "getRestaurants":
         $result = getRestaurants($dbh, $choice);
+	echo json_encode($result);
         break;
     case "getRestaurantInfo":
         $result = getRestaurantInfo($dbh, $choice);
+	echo json_encode($result);
         break;
     case "getAllCategories":
         $result = getAllCategories($dbh);
+	echo json_encode($result);
         break;
     case "getTopCategories":
         $result = getTopCategories($dbh, $choice);
+	echo json_encode($result);
         break;
     case "getTop5":
         $result = getTop5($dbh);
+	echo json_encode($result);
         break;
     case "getAllFromUser":
         $result = getAllFromUser($dbh, $choice);
+	echo json_encode($result);
         break;
     default:
-        die("Invalid function");
         break;
 }
 
-echo json_encode($result);
 
  ?>

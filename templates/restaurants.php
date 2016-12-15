@@ -13,10 +13,10 @@
 	</ul>
 
 	<div class="parameters">
-		Name contains<br>
-		<input id="restaurantName" type="text" name="name" placeholder="Restaurant name" oninput="getRestaurants()">
-		<br>
-		<div id="categories"></div>
+		<p>Name contains</p>
+		<p><input id="restaurantName" type="text" name="name" placeholder="Restaurant name" oninput="getRestaurants()">
+		</p>
+		<div id="categories" class="categoryParameter"></div>
 		<input type="text" readonly="true" id="amount">
 		<div id="priceRange" class="doubleSlider">
 			  <div id="priceHandle" class="ui-slider-handle"></div>
@@ -24,7 +24,7 @@
 		<div id="evalRange" class="doubleSlider">
 			  <div id="evalHandle" class="ui-slider-handle"></div>
 		</div>
-
+		<p></p>
 	</div>
 	<script>
 		createSliders();

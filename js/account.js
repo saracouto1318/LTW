@@ -1,5 +1,5 @@
 /**
- *  Inputs or changes to user profile and queries related to any    *       belonging
+ *  Inputs or changes to user profile and queries related to any belonging
  */
 
 function loadProfile(user) {
@@ -111,4 +111,26 @@ function createRestaurant(e) {
 function toggleProfileTabs(tab){
     disableProfileTabs();
     document.getElementById(tab).classList.toggle("show");
+}
+
+function loadImage(event){
+	var img = document.getElementById('profilePic');
+	img.src = URL.createObjectURL(event.target.files[0]);
+	
+	var $error = $('#IMGerror');
+	var extension = document.getElementById('file').files[0].name.split('.').pop().toLowerCase();
+	var size = document.getElementById('file').files[0].size;
+	
+	if(extension != 'jpg' && extension != 'jpeg' || extension != 'png'){
+		$error.text("The image must be .jpg, .jpeg ou .png");
+		$error.fadeIn(1000);
+	}
+	else if(size > 20971520){
+		$error.text("The image must have 20MB");
+		$error.fadeIn(1000);
+	}
+	else{
+		$error.innerHTML = "";
+		$error.fadeOut(1000);
+	}
 }

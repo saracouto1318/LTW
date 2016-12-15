@@ -117,7 +117,7 @@ header {
 
 #content {
 	padding-top: 0%;
-	padding-bottom: 25px;
+	padding-bottom: 50px;
 }
 
 footer {
@@ -180,16 +180,23 @@ footer p {
 	text-align: center;
 }
 
-#searchBar input{
-	width: 17.5em;
-    height: 30px;
+#searchBar input {
+	width: 3em;
+    	height: 30px;
 	border-radius: 10px;
 	border: none;
 	font-size: 15px;
 	margin: 15px;
+	padding-left: 10px;
+}
+
+#searchBar input[type="text"] {
+	min-width: 15em;
+	width: 50%;
 }
 
 #restaurantDiv{
+	min-width: 15em;
 	width: 70%;
 	height: 900px;
 	margin: auto;
@@ -223,6 +230,16 @@ footer p {
 	float: left;
 }
 
+.overlay{
+	position: absolute;
+	right: 20%;
+	/*top: 0;*/
+}
+
+.categoryParameter{
+
+}
+
 .avg{
 	margin: 40px 10px;
 	float: right;
@@ -241,6 +258,10 @@ footer p {
 	font-weight: bold;
 }
 
+#menuButtons {
+	min-width: 4.5em;
+}
+
 #photosDIV {
 	margin-top: 10px;
 	font-weight: bold;
@@ -251,6 +272,11 @@ footer p {
 	font-weight: bold;
 }
 
+#restaurantInfo {
+	width: 15%;
+	margin: 0;
+}
+
 #restaurantInfo input{
 	display: table;
 	border-radius: 20px;
@@ -259,56 +285,47 @@ footer p {
 	color: black;
 	text-align: center;
 	height: 60px;
-	width: 15%;
+	width: 100%;
 	padding: 0;
 	margin-top: 40px;
-	margin-left: 15px;
 	font-weight: bold;
 }
 
 #restaurantInfo input:active{
-	display: table;
-	border-radius: 20px;
 	border-color: #A52A2A;
-	border-width: 3px;
-	background-color: white;
-	color: black;
-	text-align: center;
-	height: 60px;
-	width: 15%;
-	padding: 0;
-	margin-top: 40px;
-	font-weight: bold;
 }
 
 #restaurantInfo input:focus{
-	display: table;
-	border-radius: 20px;
 	border-color: #A52A2A;
-	border-width: 3px;
-	background-color: white;
-	color: black;
-	text-align: center;
-	height: 60px;
-	width: 15%;
-	padding: 0;
-	margin-top: 40px;
-	font-weight: bold;
 }
 
 .box {
 	text-align: center;
 	z-index: 999;
-    position: absolute;
+    	position: absolute;
 	display: none;
 	border-radius: 20px;
 	background-color: white;
-	display: none;
 	color: black;
 	height: 480px;
-	width: 55%;
- 	margin-left: 190px;
+	min-width: 10em;
+	width: 54%;
+ 	margin-left: 16%;
 	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+}
+
+.box img {
+	width: 60%;
+}
+
+#photosDIV {
+	height: 96.5%;
+	overflow-y: auto;
+}
+
+#overviewBox {
+	height: 100%;
+	overflow-y: auto;
 }
 
 #restaurantsResult{
@@ -317,6 +334,7 @@ footer p {
 }
 
 #restaurantsIndividuals{
+
 	width: 65%;
 	float:right;
 	height: auto;
@@ -423,14 +441,19 @@ footer p {
 	float: left;
 	height: auto;
 	max-width: 200px;
-	min-width: 175px;
 	min-height: 120px;
 	margin: auto;
+	text-align: center;
+	position: relative;
+	display: block;
+	left: 3%;
+	min-width: 15%;
 }
 
 #categories{
 	padding: 25px 0px 25px 25px;
 	display: table;
+	text-align: left;
 	margin-bottom: 10px;
 }
 
@@ -452,6 +475,12 @@ footer p {
 #secondSliderHandle{
 	background-color: #A52A2A;
 	border-radius: 20px 20px 20px 20px;
+}
+
+.doubleSlider{
+	width: 80%;
+	left: 10%;
+	position: absolute;
 }
 
 .profileTabs {
