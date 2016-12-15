@@ -50,7 +50,6 @@
 			}
 			break;
 		case "Home":
-			include("templates/restaurants.php");
 			break;
 		case "Info":
 			include("templates/restaurantInfo.php");

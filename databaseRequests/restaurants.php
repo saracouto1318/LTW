@@ -26,8 +26,23 @@ function getRestaurantInfo($dbh, $choice){
         JOIN restaurantCategory USING(email)
         JOIN category USING(idCategory)
         JOIN location USING(idLocation)
-        WHERE name = ?");
+        WHERE name = ? LIMIT 1");
     $info->execute(array($choice));
+    return $info->fetch();
+}
+
+function getRestaurantCategories($dbh, $email){
+    $info = $dbh->prepare("SELECT category FROM category 
+				JOIN restaurantCategory USING(idCategory)
+				WHERE email = ?");
+    $info->execute(array($email));
+    return $info->fetchAll();
+}
+
+function getRestaurantMenu($dbh, $email){
+    $info = $dbh->prepare("SELECT detail FROM menu 
+				WHERE email = ?");
+    $info->execute(array($email));
     return $info->fetchAll();
 }
 
@@ -124,45 +139,53 @@ function getReviews($dbh){
 }
 
 // Database connection
-$dbh = new PDO("sqlite:../data.db");
+$dbh = new PDO("sqlite:Data_Base/data.db");
 $dbh->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-if(!isset($_GET["function"]))
-    die("Invalid operation");
 if(isset($_GET["choice"]))
     $choice = $_GET["choice"];
-$function = $_GET["function"];
+if(isset($_GET["function"]))
+	$function = $_GET["function"];
+else
+	$function = "";
+
 switch ($function) {
     case "getAllRestaurants":
         $result = getAllRestaurants($dbh);
+	echo json_encode($result);
         break;
     case "getTopRestaurants":
         $result = getTopRestaurants($dbh, $choice);
+	echo json_encode($result);
         break;
     case "getRestaurants":
         $result = getRestaurants($dbh, $choice);
+	echo json_encode($result);
         break;
     case "getRestaurantInfo":
         $result = getRestaurantInfo($dbh, $choice);
+	echo json_encode($result);
         break;
     case "getAllCategories":
         $result = getAllCategories($dbh);
+	echo json_encode($result);
         break;
     case "getTopCategories":
         $result = getTopCategories($dbh, $choice);
+	echo json_encode($result);
         break;
     case "getTop5":
         $result = getTop5($dbh);
+	echo json_encode($result);
         break;
     case "getAllFromUser":
         $result = getAllFromUser($dbh, $choice);
+	echo json_encode($result);
         break;
     default:
-        die("Invalid function");
         break;
 }
 
-echo json_encode($result);
 
  ?>
