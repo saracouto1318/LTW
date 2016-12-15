@@ -223,6 +223,16 @@ footer p {
 	float: left;
 }
 
+.overlay{
+	position: absolute;
+	right: 20%;
+	/*top: 0;*/
+}
+
+.categoryParameter{
+
+}
+
 .avg{
 	margin: 40px 10px;
 	float: right;
@@ -317,6 +327,7 @@ footer p {
 }
 
 #restaurantsIndividuals{
+
 	width: 65%;
 	float:right;
 	height: auto;
@@ -423,14 +434,19 @@ footer p {
 	float: left;
 	height: auto;
 	max-width: 200px;
-	min-width: 175px;
 	min-height: 120px;
 	margin: auto;
+	text-align: center;
+	position: relative;
+	display: block;
+	left: 3%;
+	min-width: 15%;
 }
 
 #categories{
 	padding: 25px 0px 25px 25px;
 	display: table;
+	text-align: left;
 	margin-bottom: 10px;
 }
 
@@ -452,6 +468,12 @@ footer p {
 #secondSliderHandle{
 	background-color: #A52A2A;
 	border-radius: 20px 20px 20px 20px;
+}
+
+.doubleSlider{
+	width: 80%;
+	left: 10%;
+	position: absolute;
 }
 
 .profileTabs {
