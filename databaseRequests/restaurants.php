@@ -51,9 +51,9 @@ function getAllCategories($dbh){
 }
 
 function getTopCategories($dbh, $choice){
-    $restaurantsOwned = $dbh->prepare("SELECT category,COUNT(*) FROM category JOIN restaurantCategory USING(idCategory) GROUP BY category ORDER BY COUNT(*) DESC LIMIT ?");
-    $restaurantsOwned->execute(array($choice));
-    return $restaurantsOwned->fetchAll();
+    $topCategories = $dbh->prepare("SELECT category,COUNT(*) FROM category JOIN restaurantCategory USING(idCategory) GROUP BY category ORDER BY COUNT(*) DESC LIMIT ?");
+    $topCategories->execute(array($choice));
+    return $topCategories->fetchAll();
 }
 
 

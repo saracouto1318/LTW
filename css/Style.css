@@ -264,10 +264,7 @@ footer p {
 	width: 15%;
 	padding: 0;
 	margin-top: 40px;
-<<<<<<< HEAD
-=======
 	margin-left: 15px;
->>>>>>> 9a79a3c9ced805af553fd5bafa4fba426572a27b
 	font-weight: bold;
 }
 
@@ -314,14 +311,8 @@ footer p {
 	position: absolute;
 	color: black;
 	height: 480px;
-<<<<<<< HEAD
 	width: 65%;
 	margin: 30px 20px 30px 5px;
-=======
-	width: 55%;
-	margin-left: 190px;
->>>>>>> 9a79a3c9ced805af553fd5bafa4fba426572a27b
-	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 }
 
 #restaurantsResult{
@@ -462,10 +453,55 @@ footer p {
 
 }
 
-#alo{
+#secondSliderHandle{
 	background-color: #A52A2A;
 	border-radius: 20px 20px 20px 20px;
 }
+
+.profileTabs {
+	position: absolute;
+	left: 35%;
+	top: 40%;
+	margin: 0 25% 0 25%;
+	padding-top: 2%;
+	margin: auto;
+	height: 150px;
+
+}
+
+.profileTabs input{
+	background-color: #CC0000;
+	color: #FFFFFF;
+	height: 50px;
+	margin-left: 15px;
+	margin-right: 15px;
+	border-radius: 40px;
+}
+
+.profileView .box{
+	left: 10%;
+	top: 47%;
+	width: 80%;
+	background-color: #c0c0c0;
+}
+.profileView input{
+	border-radius: 25px;
+	text-align: center;
+}
+
+.restaurantGrid{
+	width: 22%;
+	/*height: 20%;*/
+	border: 2px solid;
+	border-radius: 25px;
+	margin: 20px 20px 20px 20px;
+}
+
+.restaurantGrid :hover{
+	cursor: pointer;
+	border-color: #00AAFF;
+}
+
 .ui-slider-handle {
 	text-align: center;
 	border-radius: 48px;

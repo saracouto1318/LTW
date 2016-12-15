@@ -10,7 +10,6 @@ function getRestaurants() {
     if (cat) {
         query += " EXCEPT SELECT name, evaluation, priceAVG FROM restaurant JOIN restaurantCategory USING(email) JOIN category USING (idCategory) WHERE category IN (";
         query += cat + ")";
-        started = true;
     }
     query += ")";
     if (price) {
@@ -19,7 +18,11 @@ function getRestaurants() {
         started = true;
     }
     if (name) {
-        query += " WHERE ";
+        if (started) {
+            query += " AND ";
+        } else {
+            query += " WHERE ";
+        }
         query += name;
     }
 
@@ -116,23 +119,4 @@ function showCategory(data) {
         categories.append(option);
     }
 
-}
-
-function createSliders() {
-    var sliders = $(".doubleSlider");
-
-    $("#priceRange").slider({
-        range: true,
-        min: 0,
-        max: 50,
-        values: [0, 50],
-        slide: function(event, ui) {
-            $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
-            getRestaurants();
-        }
-    });
-    $("#amount").val("$" + $("#priceRange").slider("values", 0) +
-        " - $" + $("#priceRange").slider("values", 1));
-
-    $("span").attr("id", "alo");
 }

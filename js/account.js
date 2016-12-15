@@ -1,17 +1,24 @@
 /**
- *  Inputs or changes to user profile
+ *  Inputs or changes to user profile and queries related to any    *       belonging
  */
 
-function loadProfile(userName) {
-    console.log(userName);
+function loadProfile(user) {
     $.getJSON("databaseRequests/restaurants.php", {
-        "function": "getProfile",
-        "choice": userName
+        "function": "getAllFromUser",
+        "choice":user
     }, displayProfile);
 }
 
 function displayProfile(data) {
     console.log(data);
+    var div = $("#myRestaurants");
+
+    for (var i = 0; i < data.length; i++) {
+        var r = data[i];
+        var html = "<form class=\"restaurantGrid\"><h2>" + r.name + "</h2>" + r.city + "<br>" + r.evaluation + "</form>";
+        div.append(html);
+    }
+    console.log(location);
 }
 
 function changeProfile(e) {
@@ -69,7 +76,9 @@ function createRestaurant(e) {
     $("#lat")[0].value = coords[0];
     $("#lon")[0].value = coords[1];
     var form = $("#submitRestaurant").serialize();
-    $.getJSON("databaseRequests/restaurants.php", form);
+    $.getJSON("createRestaurant.php", form, function(data){
+        $("#profileWarning")[0].innerHTML = "Restaurant created. Please proceed to My Restaurants tab and point some categories or it won't show in the general search.";
+    });
 }
 
 function toggleProfileTabs(tab){

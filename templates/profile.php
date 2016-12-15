@@ -29,7 +29,7 @@
                 <input type="text" name="menu" value="">
             </p> <p>
                 <label>Schedule: </label>
-                <input type="text" name="name" value="">
+                <input type="text" name="schedule" value="">
             </p> <p>
                 <label>Contact: </label>
                 <input type="tel"  name="contact" value="">
@@ -45,9 +45,8 @@
             </p>
         </form>
     </div>
-    <div class="box myRestaurants" id="myRestaurants">
-        123456789
-    </div>
+    <div class="box myRestaurants" id="myRestaurants"></div>
+
     <div class="box myOpinions" id="myOpinions">
         OOOOOOOOOO
     </div>
@@ -72,7 +71,7 @@
 
 <script type="text/javascript">
     toggleProfileTabs("myRestaurants");
-    loadProfile("<?php echo $_SESSION["username"]; ?>");
+    loadProfile("<?php echo $_SESSION["email"];?>");
     getCoords("espinho, aveiro");
     // loadMap();
 </script>

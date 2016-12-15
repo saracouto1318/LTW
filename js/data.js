@@ -111,3 +111,22 @@ $.fn.stars = function() {
         $(this).html($span);
     });
 };
+
+function createSliders() {
+    var sliders = $(".doubleSlider");
+
+    $("#priceRange").slider({
+        range: true,
+        min: 0,
+        max: 50,
+        values: [0, 50],
+        slide: function(event, ui) {
+            $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
+            getRestaurants();
+        }
+    });
+    $("#amount").val("$" + $("#priceRange").slider("values", 0) +
+        " - $" + $("#priceRange").slider("values", 1));
+
+    $("span").attr("id", "secondSliderHandle");
+}
