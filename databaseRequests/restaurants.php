@@ -22,10 +22,8 @@ function getRestaurants($dbh, $choice){
 }
 
 function getRestaurantInfo($dbh, $choice){
+
     $info = $dbh->prepare("SELECT * FROM restaurant
-        JOIN restaurantCategory USING(email)
-        JOIN category USING(idCategory)
-        JOIN location USING(idLocation)
         WHERE name = ? LIMIT 1");
     $info->execute(array($choice));
     return $info->fetch();
@@ -83,7 +81,7 @@ function getReviewUser($dbh, $email){
 }
 
 function getOwnedRestaurants($dbh, $choice){
-    $restaurantsOwned = $dbh->prepare("SELECT name, city, evaluation  FROM restaurant
+    $restaurantsOwned = $dbh->prepare("SELECT userName, city, evaluation  FROM restaurant
         JOIN user ON (user.email=restaurant.emailOwner)
         JOIN location USING(idLocation)
         WHERE user.email = ?");

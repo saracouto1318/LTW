@@ -15,7 +15,7 @@
 	$restaurantMenu = getRestaurantMenu($dbh, $restaurantEmail);
 	$restaurantHours = getRestaurantHours($dbh, $restaurantEmail);
 	$restaurantPhotos = getRestaurantPhotos($dbh, $restaurantEmail);
-	$restaurantReviews = getRestaurantReviews($dbh, $restaurantEmail);	
+	$restaurantReviews = getRestaurantReviews($dbh, $restaurantEmail);
 ?>
 <div id="restaurantDiv">
 	<div id="restaurantBackground">
