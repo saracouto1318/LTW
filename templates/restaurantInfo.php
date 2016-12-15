@@ -1,8 +1,24 @@
+<?php
+	include_once ('databaseRequests/restaurants.php');
+
+	global $dbh;
+
+	$restaurantName = $_GET['name'];
+	if( !isset($_GET['name']) ) {
+  		header ('Location: initial.php');
+		return ;
+	}
+
+	$restaurantInfo = getRestaurantInfo($dbh, $restaurantName);
+	$restaurantCategories = getRestaurantCategories($dbh, $restaurantInfo["email"]);
+	$restaurantMenu = getRestaurantMenu($dbh, $restaurantInfo["email"]);
+	
+?>
 <div id="restaurantDiv">
 	<div id="restaurantBackground">
 		<div id="restaurantNameScore">
 			<h3 class="restaurantName">
-				<?php echo $_GET["name"]; ?>
+				<?php echo $restaurantInfo["name"]; ?>
 			</h3>
 			<h3 class="avg"></h3>
 		</div>
@@ -13,9 +29,9 @@
 			<div id="column1">
 				<div id="contact">
 					<p id="phone">Phone Number</p>
-						<?php
-							//Contact
-						?>
+					<?php
+						echo $restaurantInfo["contact"];
+					?>
 				</div>
 				<div id="categoriesCol">
 					<p id="categoriesName">Categories</p>
@@ -30,16 +46,16 @@
 				<div id="avgCost">
 					<p id="AvgTitle">Average Cost</p>
 					<p id="Avg_Cost">
-						<?php
-							//AVG COST
-						?>
+					<?php
+						echo $restaurantInfo["priceAVG"];
+					?>
 					</p>
 				</div>
 				<div id="hours">
 				<p id="HoursTitle">Opening Hours</p>
-					<?php
-						//hours
-					?>
+				<?php
+					//hours
+				?>
 				</div>
 			</div>
 		</div>
@@ -47,25 +63,25 @@
 		<div id="Menu" class="box menu">
 			<div id="menuDiv">
 				<p id="menuTitle">Menu</p>
-					<?php
-						//Menu
-					?>
+				<?php
+					//Menu
+				?>
 			</div>
 		</div>
 		<div id="Photos" class="box photos">
 			<div id="photosDIV">
 				<p id="photosTitle">Photos</p>
-					<?php
-						//Menu
-					?>
+				<?php
+					//Menu
+				?>
 			</div>
 		</div>
 		<div id="Reviews" class="box reviews">
 			<div id="reviewsDiv">
 				<p id="reviewsTitle">Reviews</p>
-					<?php
-						//Menu
-					?>
+				<?php
+					//Menu
+				?>
 			</div>
 		</div>
 		<div id="menuButtons">
@@ -77,12 +93,3 @@
 	</div>
 
 </div>
-
-<script type="text/javascript">
-	var name = "<?php echo $_GET["name"]; ?>";
-	console.log(name);
-	getRestaurantInfo(name);
-	$(function() {
-		$('span.stars').stars();
-	});
-</script>

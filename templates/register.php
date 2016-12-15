@@ -4,8 +4,10 @@
 
  <div class="relativeMenu register">
  	<div id="signUpMenu" class="dropdown register">
+		<div hidden id='IMGerror'></div>
 		<div id="imgDiv">
                 <img id="profilePicture" src="images/noUser.png">
+				<input hidden id="profilePicture" type="file" accept="image/png, image/jpeg" name="profilePic" onchange="loadImage(event)">
         </div>
 		
 		<p><label for="name" class="sign register">Username</label></p>
