@@ -2,36 +2,35 @@
 	<!--<?=$_SESSION["username"]?> -->
 	<input type="button" id="registerMenu" onClick="toggleSignUpMenu()" class="dropdownAction register" value="Register">
 
- <div class="relativeMenu register">
- 	<div id="signUpMenu" class="dropdown register">
-		<div hidden id='IMGerror'></div>
-		<div id="imgDiv">
-                <img id="profilePicture" src="images/noUser.png">
-				<input hidden id="profilePicture" type="file" accept="image/png, image/jpeg" name="profilePic" onchange="loadImage(event)">
-        </div>
-		
-		<p><label for="name" class="sign register">Username</label></p>
- 		<input type="text" name="name" pattern="\w{3,15}" title="Username is between [3,15] simple characters A-z 0-9" class="sign register" placeholder="rui2457" required>
+	<div class="relativeMenu register">
+		<div id="signUpMenu" class="dropdown register">
+			<div hidden id='IMGerror'></div>
+			<div id="imgDiv">
+				<img id="profilePicture" src="images/noUser.png">
+			</div>
 
- 		<p><label for="email" class="sign register">Email</label></p>
- 		<input type="email" name="email" class="sign register" placeholder="example@gmail.com" required>
+			<p><label for="name" class="sign register">Username</label></p>
+			<input type="text" name="name" pattern="\w{3,15}" 
+				title="Username is between [3,15] simple characters A-z 0-9" 
+				class="sign register" placeholder="rui2457" required>
 
- 		<p><label for="password" class="sign register">Password</label></p>
- 		<input type="password" class="sign register" name="password" required>
+			<p><label for="email" class="sign register">Email</label></p>
+			<input type="email" name="email" class="sign register" placeholder="example@gmail.com" required>
 
-		
-  			<input type="radio" name="type" value="Owner" class="userTyper register" required>
-  			<input type="radio" name="type" value="Reviewer" class="userType register" required>
- 			<div id="user">
- 				<input type="text" name="type" value="Owner">
- 				<input type="text" name="type" value="Reviewer">
- 			</div>
-		
-		
+			<p><label for="password" class="sign register">Password</label></p>
+			<input type="password" class="sign register" name="password" required>
 
-		<p><label id="registerWarning" class="sign register"></label></p>
-		<p>		</p>
-		<input type="submit" name="submit" value="✓" class="submit register">
+	
+			<input type="radio" name="userType" value="Owner" class="userTyper register" required>
+			<input type="radio" name="userType" value="Reviewer" class="userType register" required>
+			<div id="user">
+				<input type="text" name="userType" value="Owner">
+				<input type="text" name="userType" value="Reviewer">
+			</div>
+	
+			<p><label id="registerWarning" class="sign register"></label></p>
+			<p>		</p>
+			<input type="submit" name="submit" value="✓" class="submit register">
+		</div>
 	</div>
-</div>
 </form>

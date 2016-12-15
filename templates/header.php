@@ -3,7 +3,7 @@
             <div class="headerTabRight">
 			<?php
 
-				if (isset($_SESSION['username'])) {
+				if (isset($_SESSION['email'])) {
 					echo '<li>';
 						include ('templates/logout.php');
 					echo '</li>';
@@ -23,7 +23,7 @@
             ?>
             </div>
             <?php
-				include ('templates/tabs.php');
-			?>
+			include ('templates/tabs.php');
+		?>
 		</ul>
 	</header>

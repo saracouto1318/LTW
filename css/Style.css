@@ -268,6 +268,7 @@ footer p {
 }
 
 #reviewsDiv {
+	height: 96.5%;
 	margin-top: 10px;
 	font-weight: bold;
 }
@@ -282,7 +283,6 @@ footer p {
 	border-radius: 20px;
 	border-width: 3px;
 	background-color: white;
-	color: black;
 	text-align: center;
 	height: 60px;
 	width: 100%;
@@ -291,12 +291,12 @@ footer p {
 	font-weight: bold;
 }
 
-#restaurantInfo input:active{
+.Selected_Item {
 	border-color: #A52A2A;
 }
 
-#restaurantInfo input:focus{
-	border-color: #A52A2A;
+.Unselected_Item {
+	color: black;
 }
 
 .box {
@@ -318,14 +318,14 @@ footer p {
 	width: 60%;
 }
 
-#photosDIV {
-	height: 96.5%;
-	overflow-y: auto;
-}
-
-#overviewBox {
+.ovYScroll {
 	height: 100%;
 	overflow-y: auto;
+
+}
+
+#photosDIV {
+	height: 96.5%;
 }
 
 #restaurantsResult{

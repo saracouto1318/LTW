@@ -29,7 +29,7 @@
 
 	<div id="restaurantInfo">
 		<div id="Overview" class="box overview">
-			<div id="overviewBox">
+			<div id="overviewBox" class="ovYScroll">
 			<div id="column1">
 				<div id="contact">
 					<p id="phone">Phone Number</p>
@@ -95,15 +95,22 @@
 		</div>
 
 		<div id="Menu" class="box menu">
-			<div id="menuDiv">
+			<div id="menuDiv" class="ovYScroll" >
 				<p id="menuTitle">Menu</p>
 				<?php
-					//Menu
+					foreach($restaurantMenu as $food) {
+				?>
+						<li class="food">
+						<?php
+							echo $food['detail'];
+						?>
+						</li>
+				<?php 	}
 				?>
 			</div>
 		</div>
 		<div id="Photos" class="box photos">
-			<div id="photosDIV">
+			<div id="photosDIV" class="ovYScroll" >
 				<p id="photosTitle">Photos</p>			
 				<?php
 					// Iterate throught all user reviews
@@ -116,7 +123,7 @@
 			</div>
 		</div>
 		<div id="Reviews" class="box reviews">
-			<div id="reviewsDiv">
+			<div id="reviewsDiv" class="ovYScroll" >
 				<p id="reviewsTitle">Reviews</p>
 				<ul id="restaurantReviews">
 				<?php
@@ -165,13 +172,29 @@
 					}
 				?>
 				</ul>
+
+				<p id="addReviewTitle">Submit new review</p>
+				<form id="Review_Form">
+					<div id="Add_Score">
+						<ul>
+							<li id="Score1" class="Curved_Edges Unselected_Score"></li>
+							<li id="Score2" class="Curved_Edges Unselected_Score"></li>
+							<li id="Score3" class="Curved_Edges Unselected_Score"></li>
+							<li id="Score4" class="Curved_Edges Unselected_Score"></li>
+							<li id="Score5" class="Curved_Edges Unselected_Score"></li>
+							<li id="Total_Score">0</li>
+						</ul>
+					</div>
+					<textarea id="Review_Comment" rows="1" placeholder="Write a review..." class="Unselected_TextArea"></textarea>
+					<input type="button" value="Submit" id="Submit_Review" class="style_button Unselected_Button" onclick="updateReviews()">
+				</form>
 			</div>
 		</div>
 		<div id="menuButtons">
-			<input type="button" id="overview" onClick="toggleOverview()" class="Selected_Item" value="Overview">
-			<input type="button" id="menu" onClick="toggleMenu()" class="Unselected_Item" value="Menu">
-			<input type="button" id="photos" onClick="togglePhotos()" class="Unselected_Item" value="Photos">
-			<input type="button" id="reviews" onClick="toggleReviews()" class="Unselected_Item" value="Reviews">
+			<input type="button" id="overview" class="Selected_Item" value="Overview">
+			<input type="button" id="menu" class="Unselected_Item" value="Menu">
+			<input type="button" id="photos" class="Unselected_Item" value="Photos">
+			<input type="button" id="reviews" class="Unselected_Item" value="Reviews">
 		</div>
 	</div>
 
