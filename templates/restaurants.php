@@ -9,6 +9,8 @@
 			<option value="evaluation DESC">Best rating</option>
 		</select>
 	</div>
+	<ul id="restaurantsIndividuals">
+	</ul>
 
 	<div class="parameters">
 		Name contains<br>
