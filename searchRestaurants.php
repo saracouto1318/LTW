@@ -23,7 +23,6 @@
 		?>
 			<div id="content">
 			<?php
-				include ('templates/tabs.php');
 				include ('templates/search.php');
 				include ('templates/restaurants.php');
 			?>

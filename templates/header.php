@@ -22,6 +22,10 @@
 				}
             ?>
             </div>
+			
+			<?php
+				include ('templates/tabs.php');
+			?>
             
-			</ul>
+		</ul>
 	</header>

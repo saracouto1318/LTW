@@ -21,13 +21,14 @@
 			<script src="mapAPI/Control.OSMGeocoder.js"></script>
 		</head>
 		<body>
-			<div id="wrapperInitial">
+		
+<div id="wrapperInitial">
 <?php
 	include ('templates/header.php');
 ?>
 	<div id="content">
 <?php
-	include ('templates/tabs.php');
+	
 	include ('templates/search.php');
 
 	if(isset($_GET["page"])){
