@@ -4,6 +4,10 @@
 
  <div class="relativeMenu register">
  	<div id="signUpMenu" class="dropdown register">
+		<div id="imgDiv">
+                <img id="profilePicture" src="images/noUser.png">
+        </div>
+		
 		<p><label for="name" class="sign register">Username</label></p>
  		<input type="text" name="name" pattern="\w{3,15}" title="Username is between [3,15] simple characters A-z 0-9" class="sign register" placeholder="rui2457" required>
 
@@ -25,7 +29,7 @@
 
 		<p><label id="registerWarning" class="sign register"></label></p>
 		<p>		</p>
-		<input type="submit" name="submit" value="Register" class="submit register">
+		<input type="submit" name="submit" value="✓" class="submit register">
 	</div>
 </div>
 </form>

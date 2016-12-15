@@ -8,7 +8,7 @@
 			  <p><label for="password" class="sign login">Password</label></p>
 			  <input type="password" class="sign login" name="password" required>
 			  <p><label id="loginWarning" class="sign login"></label></p>
-			  <input type="submit" name="submit" value="Login" class="submit login">
+			  <input type="submit" name="submit" value="✓" class="submit login">
 		</div>
 	</div>
 </form>

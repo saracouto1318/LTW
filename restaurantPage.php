@@ -11,8 +11,9 @@
 			<link rel="stylesheet" href="css/Style.css" />
 			<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 			<script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
-			<script src="Map.js"></script>
-			<script src="data.js"></script>
+			<script src="js/Map.js"></script>
+			<script src="js/data.js"></script>
+			<script src="js/restaurantMenu.js"></script>
 		</head>
 		<body>
 			<div id="wrapperRestaurantPage">	

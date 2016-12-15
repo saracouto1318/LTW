@@ -52,7 +52,7 @@
 					?>
 			</div>
 		</div>
-		<div id="Photos" class="box phoyos">
+		<div id="Photos" class="box photos">
 			<div id="photosDIV">
 				<p id="photosTitle">Photos</p>
 					<?php
@@ -68,11 +68,12 @@
 					?>
 			</div>
 		</div>
-			<input type="button" id="overview" onClick="toggleOverview()" class="boxAction overview" value="Overview">
-			<input type="button" id="menu" onClick="toggleMenu()" class="boxAction menu" value="Menu">
-			<input type="button" id="photos" onClick="togglePhotos()" class="boxAction photos" value="Photos">
-			<input type="button" id="reviews" onClick="toggleReviews()" class="boxAction reviews" value="Reviews">
-
+		<div id="menuButtons">
+			<input type="button" id="overview" onClick="toggleOverview()" class="Selected_Item" value="Overview">
+			<input type="button" id="menu" onClick="toggleMenu()" class="Unselected_Item" value="Menu">
+			<input type="button" id="photos" onClick="togglePhotos()" class="Unselected_Item" value="Photos">
+			<input type="button" id="reviews" onClick="toggleReviews()" class="Unselected_Item" value="Reviews">
+		</div>
 	</div>
 
 </div>

@@ -17,6 +17,7 @@
 			<script src="js/account.js"></script>
 			<script src="js/data.js"></script>
 			<script src="js/restaurantQueries.js"></script>
+			<script src="js/restaurantMenu.js"></script>
 			<script src="mapAPI/Map.js"></script>
 			<script src="mapAPI/Control.OSMGeocoder.js"></script>
 		</head>
