@@ -311,9 +311,20 @@ function disableTabs(view){
 
 }
 
-function toggleInfo(tab, type) {
-    disableTabs(type);
-    document.getElementById(tab).classList.toggle("show");
+function toggleOverview() {
+    document.getElementById("Overview").classList.toggle("show");
+}
+
+function toggleMenu() {
+    document.getElementById("Menu").classList.toggle("show");
+}
+
+function togglePhotos() {
+    document.getElementById("Photos").classList.toggle("show");
+}
+
+function toggleReviews() {
+    document.getElementById("Reviews").classList.toggle("show");
 }
 
 function myFunction() {

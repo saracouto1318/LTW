@@ -145,7 +145,6 @@ footer p {
 
 
 #tab{
-	margin: auto;
     list-style-type: none;
 	height: 75px;
 }
@@ -161,6 +160,7 @@ footer p {
 	height: 60px;
 	width: 75px;
     display: inline-block;
+	font-size: 17px;
 }
 
 #formSearch {
@@ -261,9 +261,13 @@ footer p {
 	color: black;
 	text-align: center;
 	height: 60px;
-	width: 80%;
+	width: 15%;
 	padding: 0;
 	margin-top: 40px;
+<<<<<<< HEAD
+=======
+	margin-left: 15px;
+>>>>>>> 9a79a3c9ced805af553fd5bafa4fba426572a27b
 	font-weight: bold;
 }
 
@@ -276,7 +280,7 @@ footer p {
 	color: black;
 	text-align: center;
 	height: 60px;
-	width: 80%;
+	width: 15%;
 	padding: 0;
 	margin-top: 40px;
 	font-weight: bold;
@@ -291,16 +295,10 @@ footer p {
 	color: black;
 	text-align: center;
 	height: 60px;
-	width: 80%;
+	width: 15%;
 	padding: 0;
 	margin-top: 40px;
 	font-weight: bold;
-}
-
-.infoOptions{
-	float: left;
-	min-width: 25%;
-	margin-top: 50px;
 }
 
 .box {
@@ -312,10 +310,17 @@ footer p {
 	display: none;
 	border-radius: 20px;
 	background-color: white;
+	display: none;
+	position: absolute;
 	color: black;
 	height: 480px;
+<<<<<<< HEAD
 	width: 65%;
 	margin: 30px 20px 30px 5px;
+=======
+	width: 55%;
+	margin-left: 190px;
+>>>>>>> 9a79a3c9ced805af553fd5bafa4fba426572a27b
 	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 }
 
@@ -419,13 +424,7 @@ footer p {
 	max-width: 200px;
 }
 
-.userType{
-	/*transform: scale(1);*/
-	/*display:inline;*/
-	/*width: 10%;*/
-	float: left;
-	position:sticky;
-}
+
 
 .restaurant{
 	background-color: #000000;
@@ -484,7 +483,7 @@ footer p {
 	min-height: 25%;
 	background-color: #b1b1b1;
 	border-radius: 25px;
-	margin-left: 4%;
+	margin: 5% 0% 5% 20%;
 }
 
 table{
