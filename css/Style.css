@@ -218,6 +218,11 @@ footer p {
 	text-align: center;
 }
 
+#restaurantName{
+	width: 60%;
+	text-align: center;
+}
+
 .restaurantName{
 	margin: 40px 0px 0px 10px;
 	float: left;
@@ -230,7 +235,12 @@ footer p {
 }
 
 .categoryParameter{
-
+	overflow-y: scroll;
+	padding: 25px 25px 25px 25px;
+	/*display: table;*/
+	text-align: left;
+	margin-bottom: 10px;
+	height: 100px;
 }
 
 .avg{
@@ -340,6 +350,9 @@ footer p {
 	padding: 0;
 	margin-top: 20px;
 	margin-right: 300px;
+	position: absolute;
+	left: 20%;
+	top: 35%;
 }
 
 #restaurantsIndividuals li{
@@ -437,32 +450,30 @@ footer p {
 	min-height: 120px;
 	margin: auto;
 	text-align: center;
-	position: relative;
+	position:fixed;
 	display: block;
 	left: 3%;
+	top: 35%;
 	min-width: 15%;
 }
 
-#categories{
-	padding: 25px 0px 25px 25px;
-	display: table;
-	text-align: left;
-	margin-bottom: 10px;
-}
-
-#amount{
+.amount{
 	border-radius: 10px;
 	border: none;
 	height: 20px;
 	width: 100px;
-	margin: 0px 40px 10px 40px;
+	margin: 0 40px 10px 40px;
 	text-align: center;
 }
 
 #priceHandle{
 	background-color: #A52A2A;
 	border-radius: 20px 20px 20px 20px;
+}
 
+#evalHandle{
+	background-color: #A52A2A;
+	border-radius: 20px 20px 20px 20px;
 }
 
 #secondSliderHandle{
@@ -518,12 +529,6 @@ footer p {
 .restaurantGrid :hover{
 	cursor: pointer;
 	border-color: #00AAFF;
-}
-
-.ui-slider-handle {
-	text-align: center;
-	border-radius: 48px;
-	background-color: #000;
 }
 
 .picture{
