@@ -1,8 +1,8 @@
 <div class="profileTabs" >
-    <input class="boxAction newRestaurant" onclick="toggleInfo(this.name, 2)" type="button" name="newRestaurant" value="Add Restaurant">
-    <input class="boxAction myRestaurants" onclick="toggleInfo(this.name, 2)" type="button" name="myRestaurants" value="My Restaurants">
-    <input class="boxAction myOpinions" onclick="toggleInfo(this.name, 2)" type="button" name="myOpinions" value="My Opinions">
-    <input class="boxAction myProfile" onclick="toggleInfo(this.name, 2)" type="button" name="myProfile" value="Edit Profile">
+    <input class="boxAction newRestaurant" onclick="toggleProfileTabs(this.name)" type="button" name="newRestaurant" value="Add Restaurant">
+    <input class="boxAction myRestaurants" onclick="toggleProfileTabs(this.name)" type="button" name="myRestaurants" value="My Restaurants">
+    <input class="boxAction myOpinions" onclick="toggleProfileTabs(this.name)" type="button" name="myOpinions" value="My Opinions">
+    <input class="boxAction myProfile" onclick="toggleProfileTabs(this.name)" type="button" name="myProfile" value="Edit Profile">
 </div>
 
 <div class="profileView">
@@ -73,7 +73,7 @@ OOOOOOOOOO
 </div>
 
 <script type="text/javascript">
-    toggleInfo("myRestaurants", 2);
+    toggleProfileTabs("myRestaurants");
     loadProfile("<?php echo $_SESSION["username"]; ?>");
     getCoords("espinho, aveiro");
     // loadMap();

@@ -14,7 +14,9 @@
 			<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 			<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 			<script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
-			<script src="data.js"></script>
+			<script src="js/account.js"></script>
+			<script src="js/data.js"></script>
+			<script src="js/restaurantQueries.js"></script>
 			<script src="mapAPI/Map.js"></script>
 			<script src="mapAPI/Control.OSMGeocoder.js"></script>
 		</head>
@@ -27,7 +29,7 @@
 <?php
 	include ('templates/tabs.php');
 	include ('templates/search.php');
-	
+
 	if(isset($_GET["page"])){
 		$page = $_GET["page"];
 	} else{
