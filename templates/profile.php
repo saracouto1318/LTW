@@ -11,8 +11,10 @@
 
             <h2>New Restaurant</h2>
             <p>
-                <label>Restaurant Name: </label>
-                <input type="text" name="name" value="" pattern="[A-Za-z0-9]{, 30}" required>
+                <div class="single">
+                    <label>Restaurant Name: </label>
+                    <input type="text" name="name" value="" pattern="[A-Za-z0-9]{, 30}" required>
+                </div>
             </p> <p>
                 <label>Road: </label>
                 <input type="text" name="road" id="road" value="" required>
