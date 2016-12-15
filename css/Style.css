@@ -306,13 +306,26 @@ footer p {
 	display: none;
 	border-radius: 20px;
 	background-color: white;
-	display: none;
 	color: black;
 	height: 480px;
 	min-width: 10em;
 	width: 54%;
  	margin-left: 16%;
 	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+}
+
+.box img {
+	width: 60%;
+}
+
+#photosDIV {
+	height: 96.5%;
+	overflow-y: auto;
+}
+
+#overviewBox {
+	height: 100%;
+	overflow-y: auto;
 }
 
 #restaurantsResult{

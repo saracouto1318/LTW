@@ -29,6 +29,7 @@
 
 	<div id="restaurantInfo">
 		<div id="Overview" class="box overview">
+			<div id="overviewBox">
 			<div id="column1">
 				<div id="contact">
 					<p id="phone">Phone Number</p>
@@ -40,7 +41,14 @@
 					<p id="categoriesName">Categories</p>
 						<ul id="catRest">
 						<?php
-							//Categories
+							foreach($restaurantCategories as $category) {
+						?>
+							<li class="category">
+							<?php
+								echo $category['category'];
+							?>
+							</li>
+						<?php 	}
 						?>
 						</ul>
 				</div>
@@ -56,10 +64,33 @@
 				</div>
 				<div id="hours">
 				<p id="HoursTitle">Opening Hours</p>
-				<?php
-					//hours
-				?>
+					<ul id="hours">
+					<?php
+						foreach($restaurantHours as $hours) {
+					?>
+							<li class="dayOpenHours">
+								<p class="dayWeek">
+								<?php
+									echo $hours['day'];
+								?>
+								</p>
+								<p class="openHours">						
+								<?php
+									echo $hours['initialHour'];
+								?>
+								</p>
+								<p class="closeHours">						
+								<?php
+									echo $hours['finalHour'];
+								?>
+								</p>
+
+							</li>
+					<?php 	}
+					?>
+					</ul>
 				</div>
+			</div>
 			</div>
 		</div>
 
@@ -73,9 +104,14 @@
 		</div>
 		<div id="Photos" class="box photos">
 			<div id="photosDIV">
-				<p id="photosTitle">Photos</p>
+				<p id="photosTitle">Photos</p>			
 				<?php
-					//Menu
+					// Iterate throught all user reviews
+					foreach($restaurantPhotos as $photo) {
+				?>
+						<img src=<?=$photo['path']?> alt="Restaurant Photo">
+				<?php
+					}
 				?>
 			</div>
 		</div>
