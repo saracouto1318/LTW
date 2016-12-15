@@ -25,7 +25,7 @@ DROP TABLE IF EXISTS restaurantHours;
 
 CREATE TABLE user (
 	userName CHAR(10) NOT NULL,
-	email CHAR(20) PRIMARY KEY,
+	email CHAR(50) PRIMARY KEY,
 	password CHAR(10) NOT NULL
 );
 
@@ -40,7 +40,7 @@ CREATE TABLE reviewer (
 CREATE TABLE restaurant (
 	name CHAR(20) NOT NULL,
 	contact CHAR(20),
-	email CHAR(20) PRIMARY KEY,
+	email CHAR(50) PRIMARY KEY,
 	priceAVG DOUBLE,
 	evaluation DOUBLE,
 	emailOwner INTEGER,
@@ -65,7 +65,7 @@ CREATE TABLE hours (
 CREATE TABLE photos (
 	idPhoto INTEGER PRIMARY KEY AUTOINCREMENT,
 	path CHAR(50),
-	email CHAR(20),
+	email CHAR(50),
 	FOREIGN KEY(email) REFERENCES restaurant(email)
 				ON DELETE SET NULL
 				ON UPDATE CASCADE
@@ -74,7 +74,7 @@ CREATE TABLE photos (
 CREATE TABLE menu (
 	idFood INTEGER PRIMARY KEY AUTOINCREMENT,
 	detail CHAR(50),
-	email CHAR(20),
+	email CHAR(50),
 	FOREIGN KEY(email) REFERENCES restaurant(email)
 				ON DELETE SET NULL
 				ON UPDATE CASCADE
@@ -99,8 +99,8 @@ CREATE TABLE review (
 	idReview INTEGER PRIMARY KEY AUTOINCREMENT,
 	score INTEGER,
 	comment CHAR(300),
-	emailReviewer CHAR(20),
-	emailRestaurant CHAR(20),
+	emailReviewer CHAR(50),
+	emailRestaurant CHAR(50),
 	FOREIGN KEY(emailReviewer) REFERENCES reviewer(email)
 				ON DELETE SET NULL
 				ON UPDATE CASCADE,
@@ -114,7 +114,8 @@ CREATE TABLE review (
 CREATE TABLE reply (
 	idReply INTEGER PRIMARY KEY AUTOINCREMENT,
 	comment CHAR(300),
-	emailOwner CHAR(20),
+	emailOwner CHAR(50),
+	emailReviewer CHAR(50),
 	idReview INTEGER,
 	FOREIGN KEY(emailOwner) REFERENCES owner(email)
 				ON DELETE SET NULL
@@ -128,7 +129,7 @@ CREATE TABLE reply (
 );
 
 CREATE TABLE restaurantCategory (
-	email CHAR(20),
+	email CHAR(50),
 	idCategory INTEGER,
 	FOREIGN KEY(email) REFERENCES restaurant(email)
 				ON DELETE SET NULL
@@ -139,7 +140,7 @@ CREATE TABLE restaurantCategory (
 );
 
 CREATE TABLE restaurantMenu (
-	email CHAR(20),
+	email CHAR(50),
 	idFood INTEGER,
 	FOREIGN KEY(email) REFERENCES restaurant(email)
 				ON DELETE SET NULL
@@ -150,7 +151,7 @@ CREATE TABLE restaurantMenu (
 );
 
 CREATE TABLE restaurantHours (
-	email CHAR(20),
+	email CHAR(50),
 	idHours INTEGER,
 	FOREIGN KEY(email) REFERENCES restaurant(email)
 				ON DELETE SET NULL

@@ -76,7 +76,6 @@ function getReviewReplys($dbh, $idReview){
 }
 
 function getReviewUser($dbh, $email){
-    echo $email;
     $info = $dbh->prepare("SELECT * FROM user 
 				WHERE email = ? LIMIT 1");
     $info->execute(array($email));

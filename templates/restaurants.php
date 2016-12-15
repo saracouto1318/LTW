@@ -15,19 +15,15 @@
 	<div class="parameters">
 		<p>Name contains</p>
 		<p><input id="restaurantName" type="text" name="name" placeholder="Restaurant name" oninput="getRestaurants()">
-		</p><p>
-			<div id="categories" class="categoryParameter"></div>
-		</p><p>
-			<input type="text" readonly="true" id="priceAmount" class="amount">
-			<div id="priceRange" class="doubleSlider">
-				<div id="priceHandle" class="ui-slider-handle"></div>
-			</div>
-		</p><p>
-			<input type="text" readonly="true" id="evalAmount" class="amount">
-			<div id="evalRange" class="doubleSlider">
-				<div id="evalHandle" class="ui-slider-handle"></div>
-			</div>
 		</p>
+		<div id="categories" class="categoryParameter"></div>
+		<input type="text" readonly="true" id="amount">
+		<div id="priceRange" class="doubleSlider">
+			  <div id="priceHandle" class="ui-slider-handle"></div>
+		</div>
+		<div id="evalRange" class="doubleSlider">
+			  <div id="evalHandle" class="ui-slider-handle"></div>
+		</div>
 		<p></p>
 	</div>
 	<script>

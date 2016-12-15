@@ -121,29 +121,12 @@ function createSliders() {
         max: 50,
         values: [0, 50],
         slide: function(event, ui) {
-            $("#priceAmount").val("$" + ui.values[0] + " - $" + ui.values[1]);
-            values = ui;
+            $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
             getRestaurants();
         }
     });
-    $("#priceAmount").val("$" + $("#priceRange").slider("values", 0) +
+    $("#amount").val("$" + $("#priceRange").slider("values", 0) +
         " - $" + $("#priceRange").slider("values", 1));
-
-
-    $("#evalRange").slider({
-        range: true,
-        min: 0,
-        max: 5,
-        values: [0, 5],
-        slide: function(event, ui) {
-            $("#evalAmount").val(String.fromCharCode(9956) + ui.values[0] + " - " + String.fromCharCode(9956) + ui.values[1]);
-            $("#evalRange").attr("values", ui);
-            console.log($("#evalRange").slider("values"));
-            getRestaurants();
-        }
-    });
-    $("#evalAmount").val(String.fromCharCode(9956) + $("#evalRange").slider("values", 0) +
-        " - " + String.fromCharCode(9956) + $("#evalRange").slider("values", 1));
 
     $("span").attr("id", "secondSliderHandle");
 }

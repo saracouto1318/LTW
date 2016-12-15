@@ -90,7 +90,7 @@
 					<li class="review">
 						<p class="reviewUser">
 						<?php
-							echo getReviewUser($dbh, $review['emailReviewer']);
+							echo getReviewUser($dbh, $review['emailReviewer'])['userName'];
 						?>
 						</p>
 						<p class="reviewScore">
@@ -112,8 +112,7 @@
 								<div class="reply">
 									<p class="replyUser">
 									<?php
-										echo getReviewUser($dbh, $reply['emailOwner']);
-										echo "Hello?";
+										echo getReviewUser($dbh, $reply['emailOwner'])['userName'];
 									?>
 									</p>
 									<p class="replyComment">

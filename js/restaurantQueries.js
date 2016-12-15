@@ -1,12 +1,11 @@
 /**
  *  Methods and queries related to restaurant searching
  */
-function getRestaurants(){
+function getRestaurants() {
     var query = " SELECT * FROM (SELECT DISTINCT name, evaluation, priceAVG FROM restaurant JOIN restaurantCategory USING(email) JOIN category USING (idCategory)";
     var cat = getCategories();
     var price = getPriceRange();
     var name = getName();
-    var evaluation = getEvalRange();
     var started = false;
     if (cat) {
         query += " EXCEPT SELECT name, evaluation, priceAVG FROM restaurant JOIN restaurantCategory USING(email) JOIN category USING (idCategory) WHERE category IN (";
@@ -26,14 +25,6 @@ function getRestaurants(){
         }
         query += name;
     }
-    if(evaluation){
-        if (started) {
-            query += " AND ";
-        } else {
-            query += " WHERE ";
-        }
-        query += evaluation;
-    }
 
     query += getSorting();
     console.log(query);
@@ -44,7 +35,7 @@ function getRestaurants(){
     $.getJSON("databaseRequests/restaurants.php", parameters, displayRestaurants);
 }
 
-function getName(){
+function getName() {
     var name = $("#restaurantName")[0].value;
     var string = "";
     if (name) {
@@ -53,7 +44,7 @@ function getName(){
     return string;
 }
 
-function getCategories(){
+function getCategories() {
     var categories = $("#categories").children("input");
     var chosen = false;
     var string = "";
@@ -70,7 +61,7 @@ function getCategories(){
     return string;
 }
 
-function getPriceRange(){
+function getPriceRange() {
     var slider = $("#priceRange");
     var min = slider.slider("option", "min");
     var max = slider.slider("option", "max");
@@ -91,34 +82,12 @@ function getPriceRange(){
     return string;
 }
 
-function getEvalRange(){
-    var slider = $("#evalRange");
-    var min = slider.slider("option", "min");
-    var max = slider.slider("option", "max");
-    var values = slider.slider("values");
-    console.log(values);
-    var used = false;
-    var string = "";
-    if (min !== values[0]) {
-        string += " evaluation > " + values[0];
-        used = true;
-    }
-    if (max !== values[1]) {
-        if (used) {
-            string += " AND evaluation <= " + values[1];
-        } else {
-            string += " evaluation <= " + values[1];
-        }
-    }
-    return string;
-}
-
-function getSorting(){
+function getSorting() {
     var sort = $("#order")[0].value;
     return " ORDER BY " + sort;
 }
 
-function displayRestaurants(data){
+function displayRestaurants(data) {
     var parent = $("#restaurantsIndividuals");
     parent.empty();
     for (var i = 0; i < data.length; i++) {
@@ -135,17 +104,17 @@ function displayRestaurants(data){
 
 }
 
-function showCategories(){
+function showCategories() {
     $.getJSON("databaseRequests/restaurants.php", {
         "function": "getAllCategories"
     }, showCategory);
 }
 
-function showCategory(data){
+function showCategory(data) {
     var categories = $("#categories");
 
     for (var category in data) {
-        var option = "<input type=\"checkbox\" name=\"" + data[category].category + "\" onclick=\"getRestaurants()\" checked=\"true\"/>" + data[category].category + "<br>";
+        var option = "<input type=\"checkbox\" name=\"" + data[category].category + "\" onclick=\"getRestaurants()\" checked=\"true\">" + data[category].category + "<br>";
         //var option = "<option value=\"" + data[category].category + "\">" + data[category].category + "</option>";
         categories.append(option);
     }
