@@ -61,9 +61,9 @@ html, body {
 }
 
 input[type="submit"]{
-	max-height: 30px;
+	max-height: 60px;
 	border-radius: 5px;
-	max-width: 50%;
+	max-width: 80px;
 }
 
 #init input[type="radio"]{
@@ -299,20 +299,18 @@ footer p {
 }
 
 .box {
-    text-align: center;
-    float: right;
+	text-align: center;
 	z-index: 999;
-    position:none;
-    overflow: auto;
+    position: absolute;
 	display: none;
 	border-radius: 20px;
 	background-color: white;
 	display: none;
-	position: absolute;
 	color: black;
 	height: 480px;
-	width: 65%;
-	margin: 30px 20px 30px 5px;
+	width: 55%;
+ 	margin-left: 190px;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 }
 
 #restaurantsResult{
@@ -517,7 +515,8 @@ footer p {
 	float: left;
 	min-width: 20%;
 	min-height: 25%;
-	background-color: #b1b1b1;
+	background-color: white;
+	color: black;
 	border-radius: 25px;
 	margin: 5% 0% 5% 20%;
 }
