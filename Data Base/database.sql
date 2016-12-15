@@ -18,43 +18,42 @@ DROP TABLE IF EXISTS reply;
 DROP TABLE IF EXISTS restaurantCategory;
 DROP TABLE IF EXISTS restaurantReview;
 DROP TABLE IF EXISTS restaurantMenu;
+DROP TABLE IF EXISTS restaurantHours;
 
 /* **************************************************************************** */
 /*								Tables creation                                 */
 /* **************************************************************************** */
 
 CREATE TABLE user (
-	iduser INTEGER PRIMARY KEY AUTOINCREMENT,
 	userName CHAR(10) NOT NULL,
-	email CHAR(20) UNIQUE,
+	email CHAR(20) PRIMARY KEY,
 	password CHAR(10) NOT NULL
 );
 
 CREATE TABLE owner (
-	idOwner REFERENCES user(iduser) PRIMARY KEY
+	email REFERENCES user(email) PRIMARY KEY
 );
 
 CREATE TABLE reviewer (
-	idReviewer REFERENCES user(iduser) PRIMARY KEY
+	email REFERENCES user(email) PRIMARY KEY
 );
 
 CREATE TABLE restaurant (
-	idRestaurant INTEGER PRIMARY KEY AUTOINCREMENT,
 	name CHAR(20) NOT NULL,
 	contact CHAR(20),
-	email CHAR(20),
+	email CHAR(20) PRIMARY KEY,
 	priceAVG DOUBLE,
 	evaluation DOUBLE,
-	idOwner INTEGER,
+	emailOwner INTEGER,
 	idLocation INTEGER,
-	FOREIGN KEY(idOwner) REFERENCES owner(idOwner)
+	FOREIGN KEY(emailOwner) REFERENCES owner(email)
 				ON DELETE SET NULL
 				ON UPDATE CASCADE,
 	FOREIGN KEY(idLocation) REFERENCES location(idLocation)
 				ON DELETE SET NULL
 				ON UPDATE CASCADE,
-	CHECK(evaluation > -1),
-	CHECK(evaluation < 11)
+	CHECK(evaluation >= 0),
+	CHECK(evaluation <= 5)
 );
 
 CREATE TABLE hours (
@@ -66,8 +65,8 @@ CREATE TABLE hours (
 
 CREATE TABLE photos (
 	idPhoto INTEGER PRIMARY KEY,
-	idRestaurant INTEGER,
-	FOREIGN KEY(idRestaurant) REFERENCES restaurant(idRestaurant)
+	email CHAR(20),
+	FOREIGN KEY(email) REFERENCES restaurant(email)
 				ON DELETE SET NULL
 				ON UPDATE CASCADE
 );
@@ -96,39 +95,39 @@ CREATE TABLE review (
 	idReview INTEGER PRIMARY KEY AUTOINCREMENT,
 	score INTEGER,
 	comment CHAR(300),
-	idReviewer INTEGER,
-	idRestaurant INTEGER,
-	FOREIGN KEY(idReviewer) REFERENCES reviewer(idReviewer)
+	emailReviewer CHAR(20),
+	emailRestaurant CHAR(20),
+	FOREIGN KEY(emailReviewer) REFERENCES reviewer(email)
 				ON DELETE SET NULL
 				ON UPDATE CASCADE,
-	FOREIGN KEY(idRestaurant) REFERENCES restaurant(idRestaurant)
+	FOREIGN KEY(emailRestaurant) REFERENCES restaurant(email)
 				ON DELETE SET NULL
 				ON UPDATE CASCADE,
-	CHECK(score > -1),
-	CHECK(score < 11)
+	CHECK(score >= 0),
+	CHECK(score <= 5)
 );
 
 CREATE TABLE reply (
 	idReply INTEGER PRIMARY KEY AUTOINCREMENT,
 	comment CHAR(300),
-	idOwner INTEGER,
-	idReviewer INTEGER,
+	emailOwner CHAR(20),
+	emailReviewer CHAR(20),
 	idReview INTEGER,
-	FOREIGN KEY(idOwner) REFERENCES owner(idOwner)
+	FOREIGN KEY(emailOwner) REFERENCES owner(email)
 				ON DELETE SET NULL
 				ON UPDATE CASCADE,
 	FOREIGN KEY(idReview) REFERENCES review(idReview)
 				ON DELETE SET NULL
 				ON UPDATE CASCADE,
-	FOREIGN KEY(idReviewer) REFERENCES reviewer(idReviewer)
+	FOREIGN KEY(emailReviewer) REFERENCES reviewer(email)
 				ON DELETE SET NULL
 				ON UPDATE CASCADE
 );
 
 CREATE TABLE restaurantCategory (
-	idRestaurant INTEGER,
+	email CHAR(20),
 	idCategory INTEGER,
-	FOREIGN KEY(idRestaurant) REFERENCES restaurant(idRestaurant)
+	FOREIGN KEY(email) REFERENCES restaurant(email)
 				ON DELETE SET NULL
 				ON UPDATE CASCADE,
 	FOREIGN KEY(idCategory) REFERENCES category(idCategory)
@@ -137,9 +136,9 @@ CREATE TABLE restaurantCategory (
 );
 
 CREATE TABLE restaurantMenu (
-	idRestaurant INTEGER,
+	email CHAR(20),
 	idFood INTEGER,
-	FOREIGN KEY(idRestaurant) REFERENCES restaurant(idRestaurant)
+	FOREIGN KEY(email) REFERENCES restaurant(email)
 				ON DELETE SET NULL
 				ON UPDATE CASCADE,
 	FOREIGN KEY(idFood) REFERENCES menu(idFood)
@@ -148,9 +147,9 @@ CREATE TABLE restaurantMenu (
 );
 
 CREATE TABLE restaurantHours (
-	idRestaurant INTEGER,
+	email CHAR(20),
 	idHours INTEGER,
-	FOREIGN KEY(idRestaurant) REFERENCES restaurant(idRestaurant)
+	FOREIGN KEY(email) REFERENCES restaurant(email)
 				ON DELETE SET NULL
 				ON UPDATE CASCADE,
 	FOREIGN KEY(idHours) REFERENCES hours(idHours)
@@ -186,52 +185,52 @@ INSERT INTO user(userName, email, password) VALUES ('Maryah', 'maryahBBB@hotmail
 INSERT INTO user(userName, email, password) VALUES ('Girl Power', 'oiGirl@gmail.com', 'girlPower1001');
 INSERT INTO user(userName, email, password) VALUES ('Paulo Valério', 'pauloValério65@gmail.com', 'paulo65');
 
-INSERT INTO owner(idOwner) VALUES(1);
-INSERT INTO owner(idOwner) VALUES(6);
-INSERT INTO owner(idOwner) VALUES(11);
-INSERT INTO owner(idOwner) VALUES(14);
-INSERT INTO owner(idOwner) VALUES(15);
-INSERT INTO owner(idOwner) VALUES(17);
-INSERT INTO owner(idOwner) VALUES(20);
-INSERT INTO owner(idOwner) VALUES(21);
-INSERT INTO owner(idOwner) VALUES(22);
-INSERT INTO owner(idOwner) VALUES(23);
+INSERT INTO owner(email) VALUES(1);
+INSERT INTO owner(email) VALUES(6);
+INSERT INTO owner(email) VALUES(11);
+INSERT INTO owner(email) VALUES(14);
+INSERT INTO owner(email) VALUES(15);
+INSERT INTO owner(email) VALUES(17);
+INSERT INTO owner(email) VALUES(20);
+INSERT INTO owner(email) VALUES(21);
+INSERT INTO owner(email) VALUES(22);
+INSERT INTO owner(email) VALUES(23);
 
-INSERT INTO reviewer(idReviewer) VALUES(2);
-INSERT INTO reviewer(idReviewer) VALUES(3);
-INSERT INTO reviewer(idReviewer) VALUES(4);
-INSERT INTO reviewer(idReviewer) VALUES(5);
-INSERT INTO reviewer(idReviewer) VALUES(7);
-INSERT INTO reviewer(idReviewer) VALUES(8);
-INSERT INTO reviewer(idReviewer) VALUES(9);
-INSERT INTO reviewer(idReviewer) VALUES(10);
-INSERT INTO reviewer(idReviewer) VALUES(12);
-INSERT INTO reviewer(idReviewer) VALUES(13);
-INSERT INTO reviewer(idReviewer) VALUES(16);
-INSERT INTO reviewer(idReviewer) VALUES(18);
-INSERT INTO reviewer(idReviewer) VALUES(19);
+INSERT INTO reviewer(email) VALUES(2);
+INSERT INTO reviewer(email) VALUES(3);
+INSERT INTO reviewer(email) VALUES(4);
+INSERT INTO reviewer(email) VALUES(5);
+INSERT INTO reviewer(email) VALUES(7);
+INSERT INTO reviewer(email) VALUES(8);
+INSERT INTO reviewer(email) VALUES(9);
+INSERT INTO reviewer(email) VALUES(10);
+INSERT INTO reviewer(email) VALUES(12);
+INSERT INTO reviewer(email) VALUES(13);
+INSERT INTO reviewer(email) VALUES(16);
+INSERT INTO reviewer(email) VALUES(18);
+INSERT INTO reviewer(email) VALUES(19);
 
-INSERT INTO restaurant(name, contact, email, priceAVG, evaluation, idOwner, idLocation)
-	VALUES ('Restaurante Maria Augusta', '(+351)258776094', 'restauranteMAugusta@gmail.com', 15, 3, 1, 3);
-INSERT INTO restaurant(name, contact, email, priceAVG, evaluation, idOwner, idLocation)
-	VALUES ('Master', '(+351)252354110', 'masterRestaurant@gmail.com', 20, 4, 6, 1);
-INSERT INTO restaurant(name, contact, email, priceAVG, evaluation, idOwner, idLocation)
-	VALUES ('Restaurante Ovarense', '(+351)910964453', 'ovarenseRestaurante@gmail.com', 10, 4, 10, 2);
-INSERT INTO restaurant(name, contact, email, priceAVG, evaluation, idOwner, idLocation)
-	VALUES ('Blanca KitchNet', '(+34)123897640', 'blancaKithnet@gmail.com', 30, 4, 14, 4);
-INSERT INTO restaurant(name, contact, email, priceAVG, evaluation, idOwner, idLocation)
-	VALUES ('Gourmet Kitchen', '(+44)099856421', 'gourmet@gmail.com', 20, 4, 15, 5);
-INSERT INTO restaurant(name, contact, email, priceAVG, evaluation, idOwner, idLocation)
-	VALUES ('Fergunson 5 Stars', '(+44)000226176', '5stars@gmail.com', 75, 5, 17, 6);
-INSERT INTO restaurant(name, contact, email, priceAVG, evaluation, idOwner, idLocation)
-	VALUES ('Emma Bistro', '(+351)251886094', 'bistroEmma@gmail.com', 60, 4.5, 19, 7);
-INSERT INTO restaurant(name, contact, email, priceAVG, evaluation, idOwner, idLocation)
-	VALUES ('Evangeline', '(+351)254333159', 'evangelineRestaurante@gmail.com', 10, 2.5, 20, 8);
-INSERT INTO restaurant(name, contact, email, priceAVG, evaluation, idOwner, idLocation)
-	VALUES ('Girl Power', '(+33)987651234', 'girlPower@gmail.com', 40, 3, 21, 9);
-INSERT INTO restaurant(name, contact, email, priceAVG, evaluation, idOwner, idLocation)
-	VALUES ('Valério', '(+351)938228554', 'valerio@gmail.com', 10, 3.5, 22, 10);
-	
+INSERT INTO restaurant(name, contact, email, priceAVG, evaluation, emailOwner, idLocation)
+	VALUES ('Restaurante Maria Augusta', '(+351)258776094', 'restauranteMAugusta@gmail.com', 15, 3, 'maugusta@hotmail.com', 3);
+INSERT INTO restaurant(name, contact, email, priceAVG, evaluation, emailOwner, idLocation)
+	VALUES ('Master', '(+351)252354110', 'masterRestaurant@gmail.com', 20, 4, 'saracouto1318@hotmail.com', 1);
+INSERT INTO restaurant(name, contact, email, priceAVG, evaluation, emailOwner, idLocation)
+	VALUES ('Restaurante Ovarense', '(+351)910964453', 'ovarenseRestaurante@gmail.com', 10, 4, 'andrewAlves@hotmail.com', 2);
+INSERT INTO restaurant(name, contact, email, priceAVG, evaluation, emailOwner, idLocation)
+	VALUES ('Blanca KitchNet', '(+34)123897640', 'blancaKithnet@gmail.com', 30, 4, 'blanca1973@hotmail.com', 4);
+INSERT INTO restaurant(name, contact, email, priceAVG, evaluation, emailOwner, idLocation)
+	VALUES ('Gourmet Kitchen', '(+44)099856421', 'gourmet@gmail.com', 20, 4, 'phOxford@hotmail.com', 5);
+INSERT INTO restaurant(name, contact, email, priceAVG, evaluation, emailOwner, idLocation)
+	VALUES ('Fergunson 5 Stars', '(+44)000226176', '5stars@gmail.com', 75, 5, 'joeFergurson@gmail.com', 6);
+INSERT INTO restaurant(name, contact, email, priceAVG, evaluation, emailOwner, idLocation)
+	VALUES ('Emma Bistro', '(+351)251886094', 'bistroEmma@gmail.com', 60, 4.5, 'emmaBarbosa@gmail.com', 7);
+INSERT INTO restaurant(name, contact, email, priceAVG, evaluation, emailOwner, idLocation)
+	VALUES ('Evangeline', '(+351)254333159', 'evangelineRestaurante@gmail.com', 10, 2.5, 'evangeline1234@gmail.com', 8);
+INSERT INTO restaurant(name, contact, email, priceAVG, evaluation, emailOwner, idLocation)
+	VALUES ('Girl Power', '(+33)987651234', 'girlPower@gmail.com', 40, 3, 'maryahBBB@hotmail.com', 9);
+INSERT INTO restaurant(name, contact, email, priceAVG, evaluation, emailOwner, idLocation)
+	VALUES ('Valério', '(+351)938228554', 'valerio@gmail.com', 10, 3.5, 'oiGirl@gmail.com', 10);
+
 INSERT INTO hours(idHours, day, initialHour, finalHour) VALUES (1, 'Segunda-Feira', '11:00', '21:00');
 INSERT INTO hours(idHours, day, initialHour, finalHour) VALUES (2, 'Terça-Feira', '11:00', '21:00');
 INSERT INTO hours(idHours, day, initialHour, finalHour) VALUES (3, 'Quarta-Feira', '11:00', '21:00');
@@ -261,85 +260,85 @@ INSERT INTO category(category) VALUES ('Portuguese');
 INSERT INTO category(category) VALUES ('Pizza');
 INSERT INTO category(category) VALUES ('Spanish');
 
-INSERT INTO review(idReview, score, comment, idReviewer, idRestaurant)
-	VALUES (1, 4, 'Um ótimo restaurante, com um bom ambiente e com uma relação qualidade/preço excelente', 2, 2);
-INSERT INTO review(idReview, score, comment, idReviewer, idRestaurant)
-	VALUES (2, 2.5, 'Um BOM restaurante, com um bom ambiente, mas com um atendimento um pouco mau', 2, 1);
-INSERT INTO review(idReview, score, comment, idReviewer, idRestaurant)
+INSERT INTO review(idReview, score, comment, emailReviewer, emailRestaurant)
+	VALUES (1, 4, 'Um ótimo restaurante, com um bom ambiente e com uma relação qualidade/preço excelente', 2, 'masterRestaurant@gmail.com');
+INSERT INTO review(idReview, score, comment, emailReviewer, emailRestaurant)
+	VALUES (2, 2.5, 'Um BOM restaurante, com um bom ambiente, mas com um atendimento um pouco mau', 2, 'restauranteMAugusta@gmail.com');
+INSERT INTO review(idReview, score, comment, emailReviewer, emailRestaurant)
 	VALUES (3, 4, 'Um ótimo restaurante', 2, 3);
-INSERT INTO review(idReview, score, comment, idReviewer, idRestaurant)
-	VALUES (4, 4, 'Restaurante agradável, com boa comida e bom atendimento', 3, 16);
-INSERT INTO review(idReview, score, comment, idReviewer, idRestaurant)
-	VALUES (5, 3, 'Um restaurante como todos os outros', 4, 1);
-INSERT INTO review(idReview, score, comment, idReviewer, idRestaurant)
-	VALUES (6, 3, 'Um restaurante como todos os outros', 4, 9);
-INSERT INTO review(idReview, score, comment, idReviewer, idRestaurant)
-	VALUES (7, 4.5, 'Restaurante maravilhoso!! Conto em lá voltar', 7, 7);
-INSERT INTO review(idReview, score, comment, idReviewer, idRestaurant)
-	VALUES (8, 4, 'Um ótimo restaurante, com um bom ambiente', 8, 3);
-INSERT INTO review(idReview, score, comment, idReviewer, idRestaurant)
-	VALUES (9, 1.5, 'Atendimento péssimo', 9, 8);
-INSERT INTO review(idReview, score, comment, idReviewer, idRestaurant)
-	VALUES (10, 4, 'Restaurante agradável', 10, 10);
-INSERT INTO review(idReview, score, comment, idReviewer, idRestaurant)
-	VALUES (11, 3, 'Nice restaurant', 12, 8);
-INSERT INTO review(idReview, score, comment, idReviewer, idRestaurant)
-	VALUES (12, 4.5, 'Awesome restaurant! I love it!!!', 12, 7);
-INSERT INTO review(idReview, score, comment, idReviewer, idRestaurant)
-	VALUES (13, 4, 'Nice quality and prices', 13, 10);
-INSERT INTO review(idReview, score, comment, idReviewer, idRestaurant)
-	VALUES (14, 2.5, 'Horrible and disgusting', 16, 8);
-INSERT INTO review(idReview, score, comment, idReviewer, idRestaurant)
-	VALUES (15, 4, 'Restaurante agradável e com boa comida', 18, 10);
-INSERT INTO review(idReview, score, comment, idReviewer, idRestaurant)
-	VALUES (16, 3, 'Um restaurante banal', 19, 4);
-INSERT INTO review(idReview, score, comment, idReviewer, idRestaurant)
-	VALUES (17, 5, 'Restaurante maravilhoso!', 19, 6);
+INSERT INTO review(idReview, score, comment, emailReviewer, emailRestaurant)
+	VALUES (4, 4, 'Restaurante agradável, com boa comida e bom atendimento', 3, 'valerio@gmail.com');
+INSERT INTO review(idReview, score, comment, emailReviewer, emailRestaurant)
+	VALUES (5, 3, 'Um restaurante como todos os outros', 4, 'restauranteMAugusta@gmail.com');
+INSERT INTO review(idReview, score, comment, emailReviewer, emailRestaurant)
+	VALUES (6, 3, 'Um restaurante como todos os outros', 4, 'girlPower@gmail.com');
+INSERT INTO review(idReview, score, comment, emailReviewer, emailRestaurant)
+	VALUES (7, 4.5, 'Restaurante maravilhoso!! Conto em lá voltar', 7, 'bistroEmma@gmail.com');
+INSERT INTO review(idReview, score, comment, emailReviewer, emailRestaurant)
+	VALUES (8, 4, 'Um ótimo restaurante, com um bom ambiente', 8, 'ovarenseRestaurante@gmail.com');
+INSERT INTO review(idReview, score, comment, emailReviewer, emailRestaurant)
+	VALUES (9, 1.5, 'Atendimento péssimo', 9, 'evangelineRestaurante@gmail.com');
+INSERT INTO review(idReview, score, comment, emailReviewer, emailRestaurant)
+	VALUES (10, 4, 'Restaurante agradável', 10, 'valerio@gmail.com');
+INSERT INTO review(idReview, score, comment, emailReviewer, emailRestaurant)
+	VALUES (11, 3, 'Nice restaurant', 12, 'evangelineRestaurante@gmail.com');
+INSERT INTO review(idReview, score, comment, emailReviewer, emailRestaurant)
+	VALUES (12, 4.5, 'Awesome restaurant! I love it!!!', 12, 'bistroEmma@gmail.com');
+INSERT INTO review(idReview, score, comment, emailReviewer, emailRestaurant)
+	VALUES (13, 4, 'Nice quality and prices', 13, 'valerio@gmail.com');
+INSERT INTO review(idReview, score, comment, emailReviewer, emailRestaurant)
+	VALUES (14, 2.5, 'Horrible and disgusting', 16, 'blancaKithnet@gmail.com');
+INSERT INTO review(idReview, score, comment, emailReviewer, emailRestaurant)
+	VALUES (15, 4, 'Restaurante agradável e com boa comida', 18, 'masterRestaurant@gmail.com');
+INSERT INTO review(idReview, score, comment, emailReviewer, emailRestaurant)
+	VALUES (16, 3, 'Um restaurante banal', 19, '5stars@gmail.com');
+INSERT INTO review(idReview, score, comment, emailReviewer, emailRestaurant)
+	VALUES (17, 5, 'Restaurante maravilhoso!', 19, 'restauranteMAugusta@gmail.com');
 
-INSERT INTO reply(idReply, comment, idOwner, idReview) VALUES (1, 'Agradeço a sua avaliação! Volte sempre!', 1, 1);
-INSERT INTO reply(idReply, comment, idReviewer, idReview) VALUES (2, 'Conto em voltar', 1, 1);
-INSERT INTO reply(idReply, comment, idOwner, idReview) VALUES (3, 'Agradeço a sua avaliação... Espero que da próxima as coisas estejam melhores', 11, 2);
-INSERT INTO reply(idReply, comment, idReviewer, idReview) VALUES (4, 'Espero que melhore', 2, 2);
-INSERT INTO reply(idReply, comment, idOwner, idReview) VALUES (5, 'Agradeço a sua avaliação', 6, 3);
-INSERT INTO reply(idReply, comment, idOwner, idReview) VALUES (6, 'Agradeço a sua avaliação', 6, 4);
-INSERT INTO reply(idReply, comment, idOwner, idReview) VALUES (7, 'Agradeço a sua avaliação', 6, 5);
-INSERT INTO reply(idReply, comment, idOwner, idReview) VALUES (8, 'Agradeço a sua avaliação', 19, 17);
-INSERT INTO reply(idReply, comment, idOwner, idReview) VALUES (9, 'Agradeço a sua avaliação', 20, 15);
-INSERT INTO reply(idReply, comment, idOwner, idReview) VALUES (10, 'Thanks for your evaluation', 20, 13);
+INSERT INTO reply(idReply, comment, emailOwner, idReview) VALUES (1, 'Agradeço a sua avaliação! Volte sempre!', 1, 1);
+INSERT INTO reply(idReply, comment, emailReviewer, idReview) VALUES (2, 'Conto em voltar', 1, 1);
+INSERT INTO reply(idReply, comment, emailOwner, idReview) VALUES (3, 'Agradeço a sua avaliação... Espero que da próxima as coisas estejam melhores', 11, 2);
+INSERT INTO reply(idReply, comment, emailReviewer, idReview) VALUES (4, 'Espero que melhore', 2, 2);
+INSERT INTO reply(idReply, comment, emailOwner, idReview) VALUES (5, 'Agradeço a sua avaliação', 6, 3);
+INSERT INTO reply(idReply, comment, emailOwner, idReview) VALUES (6, 'Agradeço a sua avaliação', 6, 4);
+INSERT INTO reply(idReply, comment, emailOwner, idReview) VALUES (7, 'Agradeço a sua avaliação', 6, 5);
+INSERT INTO reply(idReply, comment, emailOwner, idReview) VALUES (8, 'Agradeço a sua avaliação', 19, 17);
+INSERT INTO reply(idReply, comment, emailOwner, idReview) VALUES (9, 'Agradeço a sua avaliação', 20, 15);
+INSERT INTO reply(idReply, comment, emailOwner, idReview) VALUES (10, 'Thanks for your evaluation', 20, 13);
 
-INSERT INTO restaurantCategory(idRestaurant, idcategory) VALUES (1,1);
-INSERT INTO restaurantCategory(idRestaurant, idcategory) VALUES (1,3);
-INSERT INTO restaurantCategory(idRestaurant, idcategory) VALUES (1,7);
-INSERT INTO restaurantCategory(idRestaurant, idcategory) VALUES (2,1);
-INSERT INTO restaurantCategory(idRestaurant, idcategory) VALUES (2,2);
-INSERT INTO restaurantCategory(idRestaurant, idcategory) VALUES (2,4);
-INSERT INTO restaurantCategory(idRestaurant, idcategory) VALUES (2,6);
-INSERT INTO restaurantCategory(idRestaurant, idcategory) VALUES (3,3);
-INSERT INTO restaurantCategory(idRestaurant, idcategory) VALUES (3,7);
-INSERT INTO restaurantCategory(idRestaurant, idcategory) VALUES (3,8);
-INSERT INTO restaurantCategory(idRestaurant, idcategory) VALUES (4,9);
-INSERT INTO restaurantCategory(idRestaurant, idcategory) VALUES (4,1);
-INSERT INTO restaurantCategory(idRestaurant, idcategory) VALUES (4,5);
-INSERT INTO restaurantCategory(idRestaurant, idcategory) VALUES (5,6);
-INSERT INTO restaurantCategory(idRestaurant, idcategory) VALUES (6,1);
-INSERT INTO restaurantCategory(idRestaurant, idcategory) VALUES (6,2);
-INSERT INTO restaurantCategory(idRestaurant, idcategory) VALUES (6,3);
-INSERT INTO restaurantCategory(idRestaurant, idcategory) VALUES (6,4);
-INSERT INTO restaurantCategory(idRestaurant, idcategory) VALUES (6,5);
-INSERT INTO restaurantCategory(idRestaurant, idcategory) VALUES (6,6);
-INSERT INTO restaurantCategory(idRestaurant, idcategory) VALUES (6,7);
-INSERT INTO restaurantCategory(idRestaurant, idcategory) VALUES (6,8);
-INSERT INTO restaurantCategory(idRestaurant, idcategory) VALUES (7,7);
-INSERT INTO restaurantCategory(idRestaurant, idcategory) VALUES (7,4);
-INSERT INTO restaurantCategory(idRestaurant, idcategory) VALUES (8,4);
-INSERT INTO restaurantCategory(idRestaurant, idcategory) VALUES (8,3);
-INSERT INTO restaurantCategory(idRestaurant, idcategory) VALUES (8,8);
-INSERT INTO restaurantCategory(idRestaurant, idcategory) VALUES (9,8);
-INSERT INTO restaurantCategory(idRestaurant, idcategory) VALUES (9,3);
-INSERT INTO restaurantCategory(idRestaurant, idcategory) VALUES (10,2);
-INSERT INTO restaurantCategory(idRestaurant, idcategory) VALUES (10,3);
-INSERT INTO restaurantCategory(idRestaurant, idcategory) VALUES (10,7);
-INSERT INTO restaurantCategory(idRestaurant, idcategory) VALUES (10,8);
+INSERT INTO restaurantCategory(email, idcategory) VALUES ('restauranteMAugusta@gmail.com',1);
+INSERT INTO restaurantCategory(email, idcategory) VALUES ('restauranteMAugusta@gmail.com',3);
+INSERT INTO restaurantCategory(email, idcategory) VALUES ('restauranteMAugusta@gmail.com',7);
+INSERT INTO restaurantCategory(email, idcategory) VALUES ('masterRestaurant@gmail.com',1);
+INSERT INTO restaurantCategory(email, idcategory) VALUES ('masterRestaurant@gmail.com',2);
+INSERT INTO restaurantCategory(email, idcategory) VALUES ('masterRestaurant@gmail.com',4);
+INSERT INTO restaurantCategory(email, idcategory) VALUES ('masterRestaurant@gmail.com',6);
+INSERT INTO restaurantCategory(email, idcategory) VALUES ('ovarenseRestaurante@gmail.com',3);
+INSERT INTO restaurantCategory(email, idcategory) VALUES ('ovarenseRestaurante@gmail.com',7);
+INSERT INTO restaurantCategory(email, idcategory) VALUES ('ovarenseRestaurante@gmail.com',8);
+INSERT INTO restaurantCategory(email, idcategory) VALUES ('blancaKithnet@gmail.com',9);
+INSERT INTO restaurantCategory(email, idcategory) VALUES ('blancaKithnet@gmail.com',1);
+INSERT INTO restaurantCategory(email, idcategory) VALUES ('blancaKithnet@gmail.com',5);
+INSERT INTO restaurantCategory(email, idcategory) VALUES ('gourmet@gmail.com',6);
+INSERT INTO restaurantCategory(email, idcategory) VALUES ('5stars@gmail.com',1);
+INSERT INTO restaurantCategory(email, idcategory) VALUES ('5stars@gmail.com',2);
+INSERT INTO restaurantCategory(email, idcategory) VALUES ('5stars@gmail.com',3);
+INSERT INTO restaurantCategory(email, idcategory) VALUES ('5stars@gmail.com',4);
+INSERT INTO restaurantCategory(email, idcategory) VALUES ('5stars@gmail.com',5);
+INSERT INTO restaurantCategory(email, idcategory) VALUES ('5stars@gmail.com',6);
+INSERT INTO restaurantCategory(email, idcategory) VALUES ('5stars@gmail.com',7);
+INSERT INTO restaurantCategory(email, idcategory) VALUES ('5stars@gmail.com',8);
+INSERT INTO restaurantCategory(email, idcategory) VALUES ('bistroEmma@gmail.com',7);
+INSERT INTO restaurantCategory(email, idcategory) VALUES ('bistroEmma@gmail.com',4);
+INSERT INTO restaurantCategory(email, idcategory) VALUES ('evangelineRestaurante@gmail.com',4);
+INSERT INTO restaurantCategory(email, idcategory) VALUES ('evangelineRestaurante@gmail.com',3);
+INSERT INTO restaurantCategory(email, idcategory) VALUES ('evangelineRestaurante@gmail.com',8);
+INSERT INTO restaurantCategory(email, idcategory) VALUES ('girlPower@gmail.com',8);
+INSERT INTO restaurantCategory(email, idcategory) VALUES ('girlPower@gmail.com',3);
+INSERT INTO restaurantCategory(email, idcategory) VALUES ('valerio@gmail.com',2);
+INSERT INTO restaurantCategory(email, idcategory) VALUES ('valerio@gmail.com',3);
+INSERT INTO restaurantCategory(email, idcategory) VALUES ('valerio@gmail.com',7);
+INSERT INTO restaurantCategory(email, idcategory) VALUES ('valerio@gmail.com',8);
 
 INSERT INTO menu(idFood, detail) VALUES (1, 'Carne assada com arroz');
 INSERT INTO menu(idFood, detail) VALUES (2, 'Francesinha');
@@ -386,160 +385,160 @@ INSERT INTO menu(idFood, detail) VALUES (42, 'Tortilla');
 INSERT INTO menu(idFood, detail) VALUES (43, 'Tapas');
 INSERT INTO menu(idFood, detail) VALUES (44, 'Pisto');
 
-INSERT INTO restaurantMenu(idRestaurant, idFood) VALUES(1,1);
-INSERT INTO restaurantMenu(idRestaurant, idFood) VALUES(1,2);
-INSERT INTO restaurantMenu(idRestaurant, idFood) VALUES(1,3);
-INSERT INTO restaurantMenu(idRestaurant, idFood) VALUES(1,4);
-INSERT INTO restaurantMenu(idRestaurant, idFood) VALUES(1,8);
-INSERT INTO restaurantMenu(idRestaurant, idFood) VALUES(1,9);
-INSERT INTO restaurantMenu(idRestaurant, idFood) VALUES(1,10);
-INSERT INTO restaurantMenu(idRestaurant, idFood) VALUES(1,11);
-INSERT INTO restaurantMenu(idRestaurant, idFood) VALUES(1,17);
-INSERT INTO restaurantMenu(idRestaurant, idFood) VALUES(1,18);
-INSERT INTO restaurantMenu(idRestaurant, idFood) VALUES(1,19);
-INSERT INTO restaurantMenu(idRestaurant, idFood) VALUES(1,33);
-INSERT INTO restaurantMenu(idRestaurant, idFood) VALUES(1,34);
-INSERT INTO restaurantMenu(idRestaurant, idFood) VALUES(2,12);
-INSERT INTO restaurantMenu(idRestaurant, idFood) VALUES(2,12);
-INSERT INTO restaurantMenu(idRestaurant, idFood) VALUES(2,14);
-INSERT INTO restaurantMenu(idRestaurant, idFood) VALUES(2,22);
-INSERT INTO restaurantMenu(idRestaurant, idFood) VALUES(2,23);
-INSERT INTO restaurantMenu(idRestaurant, idFood) VALUES(2,24);
-INSERT INTO restaurantMenu(idRestaurant, idFood) VALUES(2,29);
-INSERT INTO restaurantMenu(idRestaurant, idFood) VALUES(2,30);
-INSERT INTO restaurantMenu(idRestaurant, idFood) VALUES(2,33);
-INSERT INTO restaurantMenu(idRestaurant, idFood) VALUES(2,37);
-INSERT INTO restaurantMenu(idRestaurant, idFood) VALUES(2,38);
-INSERT INTO restaurantMenu(idRestaurant, idFood) VALUES(3,17);
-INSERT INTO restaurantMenu(idRestaurant, idFood) VALUES(3,18);
-INSERT INTO restaurantMenu(idRestaurant, idFood) VALUES(3,19);
-INSERT INTO restaurantMenu(idRestaurant, idFood) VALUES(3,1);
-INSERT INTO restaurantMenu(idRestaurant, idFood) VALUES(3,2);
-INSERT INTO restaurantMenu(idRestaurant, idFood) VALUES(3,5);
-INSERT INTO restaurantMenu(idRestaurant, idFood) VALUES(3,33);
-INSERT INTO restaurantMenu(idRestaurant, idFood) VALUES(3,34);
-INSERT INTO restaurantMenu(idRestaurant, idFood) VALUES(3,36);
-INSERT INTO restaurantMenu(idRestaurant, idFood) VALUES(4,39);
-INSERT INTO restaurantMenu(idRestaurant, idFood) VALUES(4,40);
-INSERT INTO restaurantMenu(idRestaurant, idFood) VALUES(4,42);
-INSERT INTO restaurantMenu(idRestaurant, idFood) VALUES(4,44);
-INSERT INTO restaurantMenu(idRestaurant, idFood) VALUES(4,10);
-INSERT INTO restaurantMenu(idRestaurant, idFood) VALUES(4,26);
-INSERT INTO restaurantMenu(idRestaurant, idFood) VALUES(4,27);
-INSERT INTO restaurantMenu(idRestaurant, idFood) VALUES(4,28);
-INSERT INTO restaurantMenu(idRestaurant, idFood) VALUES(5,29);
-INSERT INTO restaurantMenu(idRestaurant, idFood) VALUES(5,30);
-INSERT INTO restaurantMenu(idRestaurant, idFood) VALUES(5,31);
-INSERT INTO restaurantMenu(idRestaurant, idFood) VALUES(5,32);
-INSERT INTO restaurantMenu(idRestaurant, idFood) VALUES(6,1);
-INSERT INTO restaurantMenu(idRestaurant, idFood) VALUES(6,2);
-INSERT INTO restaurantMenu(idRestaurant, idFood) VALUES(6,3);
-INSERT INTO restaurantMenu(idRestaurant, idFood) VALUES(6,6);
-INSERT INTO restaurantMenu(idRestaurant, idFood) VALUES(6,7);
-INSERT INTO restaurantMenu(idRestaurant, idFood) VALUES(6,8);
-INSERT INTO restaurantMenu(idRestaurant, idFood) VALUES(6,10);
-INSERT INTO restaurantMenu(idRestaurant, idFood) VALUES(6,12);
-INSERT INTO restaurantMenu(idRestaurant, idFood) VALUES(6,13);
-INSERT INTO restaurantMenu(idRestaurant, idFood) VALUES(6,15);
-INSERT INTO restaurantMenu(idRestaurant, idFood) VALUES(6,18);
-INSERT INTO restaurantMenu(idRestaurant, idFood) VALUES(6,20);
-INSERT INTO restaurantMenu(idRestaurant, idFood) VALUES(6,26);
-INSERT INTO restaurantMenu(idRestaurant, idFood) VALUES(6,28);
-INSERT INTO restaurantMenu(idRestaurant, idFood) VALUES(6,30);
-INSERT INTO restaurantMenu(idRestaurant, idFood) VALUES(6,31);
-INSERT INTO restaurantMenu(idRestaurant, idFood) VALUES(6,32);
-INSERT INTO restaurantMenu(idRestaurant, idFood) VALUES(6,34);
-INSERT INTO restaurantMenu(idRestaurant, idFood) VALUES(6,35);
-INSERT INTO restaurantMenu(idRestaurant, idFood) VALUES(6,36);
-INSERT INTO restaurantMenu(idRestaurant, idFood) VALUES(6,37);
-INSERT INTO restaurantMenu(idRestaurant, idFood) VALUES(7,1);
-INSERT INTO restaurantMenu(idRestaurant, idFood) VALUES(7,2);
-INSERT INTO restaurantMenu(idRestaurant, idFood) VALUES(7,3);
-INSERT INTO restaurantMenu(idRestaurant, idFood) VALUES(7,20);
-INSERT INTO restaurantMenu(idRestaurant, idFood) VALUES(7,21);
-INSERT INTO restaurantMenu(idRestaurant, idFood) VALUES(7,22);
-INSERT INTO restaurantMenu(idRestaurant, idFood) VALUES(8,20);
-INSERT INTO restaurantMenu(idRestaurant, idFood) VALUES(8,21);
-INSERT INTO restaurantMenu(idRestaurant, idFood) VALUES(8,22);
-INSERT INTO restaurantMenu(idRestaurant, idFood) VALUES(8,17);
-INSERT INTO restaurantMenu(idRestaurant, idFood) VALUES(8,18);
-INSERT INTO restaurantMenu(idRestaurant, idFood) VALUES(8,33);
-INSERT INTO restaurantMenu(idRestaurant, idFood) VALUES(8,34);
-INSERT INTO restaurantMenu(idRestaurant, idFood) VALUES(9,33);
-INSERT INTO restaurantMenu(idRestaurant, idFood) VALUES(9,34);
-INSERT INTO restaurantMenu(idRestaurant, idFood) VALUES(9,17);
-INSERT INTO restaurantMenu(idRestaurant, idFood) VALUES(9,19);
-INSERT INTO restaurantMenu(idRestaurant, idFood) VALUES(10,12);
-INSERT INTO restaurantMenu(idRestaurant, idFood) VALUES(10,13);
-INSERT INTO restaurantMenu(idRestaurant, idFood) VALUES(10,14);
-INSERT INTO restaurantMenu(idRestaurant, idFood) VALUES(10,17);
-INSERT INTO restaurantMenu(idRestaurant, idFood) VALUES(10,18);
-INSERT INTO restaurantMenu(idRestaurant, idFood) VALUES(10,1);
-INSERT INTO restaurantMenu(idRestaurant, idFood) VALUES(10,3);
-INSERT INTO restaurantMenu(idRestaurant, idFood) VALUES(10,4);
-INSERT INTO restaurantMenu(idRestaurant, idFood) VALUES(10,35);
-INSERT INTO restaurantMenu(idRestaurant, idFood) VALUES(10,36);
+INSERT INTO restaurantMenu(email, idFood) VALUES('restauranteMAugusta@gmail.com',1);
+INSERT INTO restaurantMenu(email, idFood) VALUES('restauranteMAugusta@gmail.com',2);
+INSERT INTO restaurantMenu(email, idFood) VALUES('restauranteMAugusta@gmail.com',3);
+INSERT INTO restaurantMenu(email, idFood) VALUES('restauranteMAugusta@gmail.com',4);
+INSERT INTO restaurantMenu(email, idFood) VALUES('restauranteMAugusta@gmail.com',8);
+INSERT INTO restaurantMenu(email, idFood) VALUES('restauranteMAugusta@gmail.com',9);
+INSERT INTO restaurantMenu(email, idFood) VALUES('restauranteMAugusta@gmail.com',10);
+INSERT INTO restaurantMenu(email, idFood) VALUES('restauranteMAugusta@gmail.com',11);
+INSERT INTO restaurantMenu(email, idFood) VALUES('restauranteMAugusta@gmail.com',17);
+INSERT INTO restaurantMenu(email, idFood) VALUES('restauranteMAugusta@gmail.com',18);
+INSERT INTO restaurantMenu(email, idFood) VALUES('restauranteMAugusta@gmail.com',19);
+INSERT INTO restaurantMenu(email, idFood) VALUES('restauranteMAugusta@gmail.com',33);
+INSERT INTO restaurantMenu(email, idFood) VALUES('restauranteMAugusta@gmail.com',34);
+INSERT INTO restaurantMenu(email, idFood) VALUES('masterRestaurant@gmail.com',12);
+INSERT INTO restaurantMenu(email, idFood) VALUES('masterRestaurant@gmail.com',12);
+INSERT INTO restaurantMenu(email, idFood) VALUES('masterRestaurant@gmail.com',14);
+INSERT INTO restaurantMenu(email, idFood) VALUES('masterRestaurant@gmail.com',22);
+INSERT INTO restaurantMenu(email, idFood) VALUES('masterRestaurant@gmail.com',23);
+INSERT INTO restaurantMenu(email, idFood) VALUES('masterRestaurant@gmail.com',24);
+INSERT INTO restaurantMenu(email, idFood) VALUES('masterRestaurant@gmail.com',29);
+INSERT INTO restaurantMenu(email, idFood) VALUES('masterRestaurant@gmail.com',30);
+INSERT INTO restaurantMenu(email, idFood) VALUES('masterRestaurant@gmail.com',33);
+INSERT INTO restaurantMenu(email, idFood) VALUES('masterRestaurant@gmail.com',37);
+INSERT INTO restaurantMenu(email, idFood) VALUES('masterRestaurant@gmail.com',38);
+INSERT INTO restaurantMenu(email, idFood) VALUES('ovarenseRestaurante@gmail.com',17);
+INSERT INTO restaurantMenu(email, idFood) VALUES('ovarenseRestaurante@gmail.com',18);
+INSERT INTO restaurantMenu(email, idFood) VALUES('ovarenseRestaurante@gmail.com',19);
+INSERT INTO restaurantMenu(email, idFood) VALUES('ovarenseRestaurante@gmail.com',1);
+INSERT INTO restaurantMenu(email, idFood) VALUES('ovarenseRestaurante@gmail.com',2);
+INSERT INTO restaurantMenu(email, idFood) VALUES('ovarenseRestaurante@gmail.com',5);
+INSERT INTO restaurantMenu(email, idFood) VALUES('ovarenseRestaurante@gmail.com',33);
+INSERT INTO restaurantMenu(email, idFood) VALUES('ovarenseRestaurante@gmail.com',34);
+INSERT INTO restaurantMenu(email, idFood) VALUES('ovarenseRestaurante@gmail.com',36);
+INSERT INTO restaurantMenu(email, idFood) VALUES('blancaKithnet@gmail.com',39);
+INSERT INTO restaurantMenu(email, idFood) VALUES('blancaKithnet@gmail.com',40);
+INSERT INTO restaurantMenu(email, idFood) VALUES('blancaKithnet@gmail.com',42);
+INSERT INTO restaurantMenu(email, idFood) VALUES('blancaKithnet@gmail.com',44);
+INSERT INTO restaurantMenu(email, idFood) VALUES('blancaKithnet@gmail.com',10);
+INSERT INTO restaurantMenu(email, idFood) VALUES('blancaKithnet@gmail.com',26);
+INSERT INTO restaurantMenu(email, idFood) VALUES('blancaKithnet@gmail.com',27);
+INSERT INTO restaurantMenu(email, idFood) VALUES('blancaKithnet@gmail.com',28);
+INSERT INTO restaurantMenu(email, idFood) VALUES('gourmet@gmail.com',29);
+INSERT INTO restaurantMenu(email, idFood) VALUES('gourmet@gmail.com',30);
+INSERT INTO restaurantMenu(email, idFood) VALUES('gourmet@gmail.com',31);
+INSERT INTO restaurantMenu(email, idFood) VALUES('gourmet@gmail.com',32);
+INSERT INTO restaurantMenu(email, idFood) VALUES('5stars@gmail.com',1);
+INSERT INTO restaurantMenu(email, idFood) VALUES('5stars@gmail.com',2);
+INSERT INTO restaurantMenu(email, idFood) VALUES('5stars@gmail.com',3);
+INSERT INTO restaurantMenu(email, idFood) VALUES('5stars@gmail.com',6);
+INSERT INTO restaurantMenu(email, idFood) VALUES('5stars@gmail.com',7);
+INSERT INTO restaurantMenu(email, idFood) VALUES('5stars@gmail.com',8);
+INSERT INTO restaurantMenu(email, idFood) VALUES('5stars@gmail.com',10);
+INSERT INTO restaurantMenu(email, idFood) VALUES('5stars@gmail.com',12);
+INSERT INTO restaurantMenu(email, idFood) VALUES('5stars@gmail.com',13);
+INSERT INTO restaurantMenu(email, idFood) VALUES('5stars@gmail.com',15);
+INSERT INTO restaurantMenu(email, idFood) VALUES('5stars@gmail.com',18);
+INSERT INTO restaurantMenu(email, idFood) VALUES('5stars@gmail.com',20);
+INSERT INTO restaurantMenu(email, idFood) VALUES('5stars@gmail.com',26);
+INSERT INTO restaurantMenu(email, idFood) VALUES('5stars@gmail.com',28);
+INSERT INTO restaurantMenu(email, idFood) VALUES('5stars@gmail.com',30);
+INSERT INTO restaurantMenu(email, idFood) VALUES('5stars@gmail.com',31);
+INSERT INTO restaurantMenu(email, idFood) VALUES('5stars@gmail.com',32);
+INSERT INTO restaurantMenu(email, idFood) VALUES('5stars@gmail.com',34);
+INSERT INTO restaurantMenu(email, idFood) VALUES('5stars@gmail.com',35);
+INSERT INTO restaurantMenu(email, idFood) VALUES('5stars@gmail.com',36);
+INSERT INTO restaurantMenu(email, idFood) VALUES('5stars@gmail.com',37);
+INSERT INTO restaurantMenu(email, idFood) VALUES('bistroEmma@gmail.com',1);
+INSERT INTO restaurantMenu(email, idFood) VALUES('bistroEmma@gmail.com',2);
+INSERT INTO restaurantMenu(email, idFood) VALUES('bistroEmma@gmail.com',3);
+INSERT INTO restaurantMenu(email, idFood) VALUES('bistroEmma@gmail.com',20);
+INSERT INTO restaurantMenu(email, idFood) VALUES('bistroEmma@gmail.com',21);
+INSERT INTO restaurantMenu(email, idFood) VALUES('bistroEmma@gmail.com',22);
+INSERT INTO restaurantMenu(email, idFood) VALUES('evangelineRestaurante@gmail.com',20);
+INSERT INTO restaurantMenu(email, idFood) VALUES('evangelineRestaurante@gmail.com',21);
+INSERT INTO restaurantMenu(email, idFood) VALUES('evangelineRestaurante@gmail.com',22);
+INSERT INTO restaurantMenu(email, idFood) VALUES('evangelineRestaurante@gmail.com',17);
+INSERT INTO restaurantMenu(email, idFood) VALUES('evangelineRestaurante@gmail.com',18);
+INSERT INTO restaurantMenu(email, idFood) VALUES('evangelineRestaurante@gmail.com',33);
+INSERT INTO restaurantMenu(email, idFood) VALUES('evangelineRestaurante@gmail.com',34);
+INSERT INTO restaurantMenu(email, idFood) VALUES('girlPower@gmail.com',33);
+INSERT INTO restaurantMenu(email, idFood) VALUES('girlPower@gmail.com',34);
+INSERT INTO restaurantMenu(email, idFood) VALUES('girlPower@gmail.com',17);
+INSERT INTO restaurantMenu(email, idFood) VALUES('girlPower@gmail.com',19);
+INSERT INTO restaurantMenu(email, idFood) VALUES('valerio@gmail.com',12);
+INSERT INTO restaurantMenu(email, idFood) VALUES('valerio@gmail.com',13);
+INSERT INTO restaurantMenu(email, idFood) VALUES('valerio@gmail.com',14);
+INSERT INTO restaurantMenu(email, idFood) VALUES('valerio@gmail.com',17);
+INSERT INTO restaurantMenu(email, idFood) VALUES('valerio@gmail.com',18);
+INSERT INTO restaurantMenu(email, idFood) VALUES('valerio@gmail.com',1);
+INSERT INTO restaurantMenu(email, idFood) VALUES('valerio@gmail.com',3);
+INSERT INTO restaurantMenu(email, idFood) VALUES('valerio@gmail.com',4);
+INSERT INTO restaurantMenu(email, idFood) VALUES('valerio@gmail.com',35);
+INSERT INTO restaurantMenu(email, idFood) VALUES('valerio@gmail.com',36);
 
-INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(1,2);
-INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(1,3);
-INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(1,4);
-INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(1,5);
-INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(1,6);
-INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(1,7);
-INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(2,2);
-INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(2,3);
-INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(2,5);
-INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(2,6);
-INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(2,7);
-INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(3,1);
-INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(3,2);
-INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(3,3);
-INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(3,4);
-INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(3,5);
-INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(3,6);
-INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(3,7);
-INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(4,1);
-INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(4,2);
-INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(4,3);
-INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(4,4);
-INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(4,5);
-INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(4,6);
-INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(4,7);
-INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(5,2);
-INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(5,3);
-INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(5,4);
-INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(5,5);
-INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(5,6);
-INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(5,7);
-INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(6,3);
-INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(6,4);
-INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(6,5);
-INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(6,6);
-INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(6,7);
-INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(7,1);
-INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(7,2);
-INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(7,3);
-INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(7,4);
-INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(7,5);
-INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(7,6);
-INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(7,7);
-INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(8,1);
-INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(8,2);
-INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(8,3);
-INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(8,4);
-INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(8,5);
-INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(8,6);
-INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(9,1);
-INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(9,2);
-INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(9,3);
-INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(9,4);
-INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(9,5);
-INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(9,6);
-INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(9,7);
-INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(10,2);
-INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(10,3);
-INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(10,4);
-INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(10,5);
-INSERT INTO restaurantHours(idRestaurant, idHours) VALUES(10,6);
+INSERT INTO restaurantHours(email, idHours) VALUES('restauranteMAugusta@gmail.com',2);
+INSERT INTO restaurantHours(email, idHours) VALUES('restauranteMAugusta@gmail.com',3);
+INSERT INTO restaurantHours(email, idHours) VALUES('restauranteMAugusta@gmail.com',4);
+INSERT INTO restaurantHours(email, idHours) VALUES('restauranteMAugusta@gmail.com',5);
+INSERT INTO restaurantHours(email, idHours) VALUES('restauranteMAugusta@gmail.com',6);
+INSERT INTO restaurantHours(email, idHours) VALUES('restauranteMAugusta@gmail.com',7);
+INSERT INTO restaurantHours(email, idHours) VALUES('masterRestaurant@gmail.com',2);
+INSERT INTO restaurantHours(email, idHours) VALUES('masterRestaurant@gmail.com',3);
+INSERT INTO restaurantHours(email, idHours) VALUES('masterRestaurant@gmail.com',5);
+INSERT INTO restaurantHours(email, idHours) VALUES('masterRestaurant@gmail.com',6);
+INSERT INTO restaurantHours(email, idHours) VALUES('masterRestaurant@gmail.com',7);
+INSERT INTO restaurantHours(email, idHours) VALUES('ovarenseRestaurante@gmail.com',1);
+INSERT INTO restaurantHours(email, idHours) VALUES('ovarenseRestaurante@gmail.com',2);
+INSERT INTO restaurantHours(email, idHours) VALUES('ovarenseRestaurante@gmail.com',3);
+INSERT INTO restaurantHours(email, idHours) VALUES('ovarenseRestaurante@gmail.com',4);
+INSERT INTO restaurantHours(email, idHours) VALUES('ovarenseRestaurante@gmail.com',5);
+INSERT INTO restaurantHours(email, idHours) VALUES('ovarenseRestaurante@gmail.com',6);
+INSERT INTO restaurantHours(email, idHours) VALUES('ovarenseRestaurante@gmail.com',7);
+INSERT INTO restaurantHours(email, idHours) VALUES('blancaKithnet@gmail.com',1);
+INSERT INTO restaurantHours(email, idHours) VALUES('blancaKithnet@gmail.com',2);
+INSERT INTO restaurantHours(email, idHours) VALUES('blancaKithnet@gmail.com',3);
+INSERT INTO restaurantHours(email, idHours) VALUES('blancaKithnet@gmail.com',4);
+INSERT INTO restaurantHours(email, idHours) VALUES('blancaKithnet@gmail.com',5);
+INSERT INTO restaurantHours(email, idHours) VALUES('blancaKithnet@gmail.com',6);
+INSERT INTO restaurantHours(email, idHours) VALUES('blancaKithnet@gmail.com',7);
+INSERT INTO restaurantHours(email, idHours) VALUES('gourmet@gmail.com',2);
+INSERT INTO restaurantHours(email, idHours) VALUES('gourmet@gmail.com',3);
+INSERT INTO restaurantHours(email, idHours) VALUES('gourmet@gmail.com',4);
+INSERT INTO restaurantHours(email, idHours) VALUES('gourmet@gmail.com',5);
+INSERT INTO restaurantHours(email, idHours) VALUES('gourmet@gmail.com',6);
+INSERT INTO restaurantHours(email, idHours) VALUES('gourmet@gmail.com',7);
+INSERT INTO restaurantHours(email, idHours) VALUES('5stars@gmail.com',3);
+INSERT INTO restaurantHours(email, idHours) VALUES('5stars@gmail.com',4);
+INSERT INTO restaurantHours(email, idHours) VALUES('5stars@gmail.com',5);
+INSERT INTO restaurantHours(email, idHours) VALUES('5stars@gmail.com',6);
+INSERT INTO restaurantHours(email, idHours) VALUES('5stars@gmail.com',7);
+INSERT INTO restaurantHours(email, idHours) VALUES('bistroEmma@gmail.com',1);
+INSERT INTO restaurantHours(email, idHours) VALUES('bistroEmma@gmail.com',2);
+INSERT INTO restaurantHours(email, idHours) VALUES('bistroEmma@gmail.com',3);
+INSERT INTO restaurantHours(email, idHours) VALUES('bistroEmma@gmail.com',4);
+INSERT INTO restaurantHours(email, idHours) VALUES('bistroEmma@gmail.com',5);
+INSERT INTO restaurantHours(email, idHours) VALUES('bistroEmma@gmail.com',6);
+INSERT INTO restaurantHours(email, idHours) VALUES('bistroEmma@gmail.com',7);
+INSERT INTO restaurantHours(email, idHours) VALUES('evangelineRestaurante@gmail.com',1);
+INSERT INTO restaurantHours(email, idHours) VALUES('evangelineRestaurante@gmail.com',2);
+INSERT INTO restaurantHours(email, idHours) VALUES('evangelineRestaurante@gmail.com',3);
+INSERT INTO restaurantHours(email, idHours) VALUES('evangelineRestaurante@gmail.com',4);
+INSERT INTO restaurantHours(email, idHours) VALUES('evangelineRestaurante@gmail.com',5);
+INSERT INTO restaurantHours(email, idHours) VALUES('evangelineRestaurante@gmail.com',6);
+INSERT INTO restaurantHours(email, idHours) VALUES('girlPower@gmail.com',1);
+INSERT INTO restaurantHours(email, idHours) VALUES('girlPower@gmail.com',2);
+INSERT INTO restaurantHours(email, idHours) VALUES('girlPower@gmail.com',3);
+INSERT INTO restaurantHours(email, idHours) VALUES('girlPower@gmail.com',4);
+INSERT INTO restaurantHours(email, idHours) VALUES('girlPower@gmail.com',5);
+INSERT INTO restaurantHours(email, idHours) VALUES('girlPower@gmail.com',6);
+INSERT INTO restaurantHours(email, idHours) VALUES('girlPower@gmail.com',7);
+INSERT INTO restaurantHours(email, idHours) VALUES('valerio@gmail.com',2);
+INSERT INTO restaurantHours(email, idHours) VALUES('valerio@gmail.com',3);
+INSERT INTO restaurantHours(email, idHours) VALUES('valerio@gmail.com',4);
+INSERT INTO restaurantHours(email, idHours) VALUES('valerio@gmail.com',5);
+INSERT INTO restaurantHours(email, idHours) VALUES('valerio@gmail.com',6);
 
-INSERT INTO photos(idPhoto, idRestaurant) VALUES(1,1);
+INSERT INTO photos(idPhoto, email) VALUES(1,'restauranteMAugusta@gmail.com');

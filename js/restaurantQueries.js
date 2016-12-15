@@ -2,13 +2,13 @@
  *  Methods and queries related to restaurant searching
  */
 function getRestaurants() {
-    var query = " SELECT * FROM (SELECT DISTINCT name, evaluation, priceAVG FROM restaurant JOIN restaurantCategory USING(idRestaurant) JOIN category USING (idCategory)";
+    var query = " SELECT * FROM (SELECT DISTINCT name, evaluation, priceAVG FROM restaurant JOIN restaurantCategory USING(email) JOIN category USING (idCategory)";
     var cat = getCategories();
     var price = getPriceRange();
     var name = getName();
     var started = false;
     if (cat) {
-        query += " EXCEPT SELECT name, evaluation, priceAVG FROM restaurant JOIN restaurantCategory USING(idRestaurant) JOIN category USING (idCategory) WHERE category IN (";
+        query += " EXCEPT SELECT name, evaluation, priceAVG FROM restaurant JOIN restaurantCategory USING(email) JOIN category USING (idCategory) WHERE category IN (";
         query += cat + ")";
         started = true;
     }
@@ -19,11 +19,7 @@ function getRestaurants() {
         started = true;
     }
     if (name) {
-        if (started) {
-            query += " AND ";
-        } else {
-            query += " WHERE ";
-        }
+        query += " WHERE ";
         query += name;
     }
 

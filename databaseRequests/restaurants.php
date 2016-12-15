@@ -23,7 +23,7 @@ function getRestaurants($dbh, $choice){
 
 function getRestaurantInfo($dbh, $choice){
     $info = $dbh->prepare("SELECT * FROM restaurant
-        JOIN restaurantCategory USING(idRestaurant)
+        JOIN restaurantCategory USING(email)
         JOIN category USING(idCategory)
         JOIN location USING(idLocation)
         WHERE name = ?");
@@ -33,7 +33,7 @@ function getRestaurantInfo($dbh, $choice){
 
 function getOwnedRestaurants($dbh, $choice){
     $restaurantsOwned = $dbh->prepare("SELECT name, city, evaluation  FROM restaurant
-        JOIN user USING(idUser)
+        JOIN user ON (user.email=restaurant.emailOwner)
         JOIN location USING(idLocation)
         WHERE user.email = ?");
     $restaurantsOwned->execute(array($choice));
@@ -86,7 +86,7 @@ function getPhoneNumber($dbh){
     $allFrom->execute();
     return $allFrom->fetchAll();
 }
-	
+
 function getAVG($dbh){
     $allFrom = $dbh->prepare("SELECT priceAVG FROM restaurant");
     $allFrom->execute();
@@ -94,7 +94,7 @@ function getAVG($dbh){
 }
 
 function getCategoriesRestaurant($dbh){
-    $allFrom = $dbh->prepare("SELECT category FROM restaurant JOIN restaurantCategory USING(idCategory)");
+    $allFrom = $dbh->prepare("SELECT category FROM restaurant JOIN restaurantCategory USING(email)");
     $allFrom->execute();
     return $allFrom->fetchAll();
 }
@@ -106,19 +106,19 @@ function getHours($dbh){
 }
 
 function getMenu($dbh){
-    $allFrom = $dbh->prepare("SELECT detail FROM restaurant JOIN menu USING(idRestaurant)");
+    $allFrom = $dbh->prepare("SELECT detail FROM restaurant JOIN menu USING(email)");
     $allFrom->execute();
     return $allFrom->fetchAll();
 }
 
 function getPhotos($dbh){
-    $allFrom = $dbh->prepare("SELECT path FROM restaurant JOIN photo USING(idRestaurant)");
+    $allFrom = $dbh->prepare("SELECT path FROM restaurant JOIN photo USING(email)");
     $allFrom->execute();
     return $allFrom->fetchAll();
 }
 
 function getReviews($dbh){
-    $allFrom = $dbh->prepare("SELECT comment, score FROM restaurant JOIN review USING(idRestaurant)");
+    $allFrom = $dbh->prepare("SELECT comment, score FROM restaurant JOIN review USING(email)");
     $allFrom->execute();
     return $allFrom->fetchAll();
 }

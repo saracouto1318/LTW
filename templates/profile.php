@@ -43,15 +43,13 @@
                 <label id="newRestaurantWarning"></label>
                 <input type="submit" name="submit" value="Add New Restaurant">
             </p>
-
-            <!-- <div id="mapid"></div> -->
         </form>
     </div>
     <div class="box myRestaurants" id="myRestaurants">
-123456789
+        123456789
     </div>
     <div class="box myOpinions" id="myOpinions">
-OOOOOOOOOO
+        OOOOOOOOOO
     </div>
     <div class="box myProfile" id="myProfile">
         <form id="editProfile" onsubmit="return changeProfile(event)" method="post">
