@@ -63,7 +63,7 @@ CREATE TABLE hours (
 );
 
 CREATE TABLE photos (
-	idPhoto INTEGER PRIMARY KEY,
+	idPhoto INTEGER PRIMARY KEY AUTOINCREMENT,
 	path CHAR(50),
 	email CHAR(20),
 	FOREIGN KEY(email) REFERENCES restaurant(email)
@@ -115,7 +115,6 @@ CREATE TABLE reply (
 	idReply INTEGER PRIMARY KEY AUTOINCREMENT,
 	comment CHAR(300),
 	emailOwner CHAR(20),
-	emailReviewer CHAR(20),
 	idReview INTEGER,
 	FOREIGN KEY(emailOwner) REFERENCES owner(email)
 				ON DELETE SET NULL
@@ -170,7 +169,7 @@ CREATE TABLE photoUSER (
 );
 
 /* ********************************************************************** */
-/*								Insertions                                */
+/*				Insertions                                */
 /* ********************************************************************** */
 
 INSERT INTO user(userName, email, password) VALUES ('Maria Augusta', 'maugusta@hotmail.com', 'maugusta');
@@ -197,30 +196,30 @@ INSERT INTO user(userName, email, password) VALUES ('Maryah', 'maryahBBB@hotmail
 INSERT INTO user(userName, email, password) VALUES ('Girl Power', 'oiGirl@gmail.com', 'girlPower1001');
 INSERT INTO user(userName, email, password) VALUES ('Paulo Valério', 'pauloValério65@gmail.com', 'paulo65');
 
-INSERT INTO owner(email) VALUES(1);
-INSERT INTO owner(email) VALUES(6);
-INSERT INTO owner(email) VALUES(11);
-INSERT INTO owner(email) VALUES(14);
-INSERT INTO owner(email) VALUES(15);
-INSERT INTO owner(email) VALUES(17);
-INSERT INTO owner(email) VALUES(20);
-INSERT INTO owner(email) VALUES(21);
-INSERT INTO owner(email) VALUES(22);
-INSERT INTO owner(email) VALUES(23);
+INSERT INTO owner(email) VALUES('maugusta@hotmail.com');
+INSERT INTO owner(email) VALUES('saracouto1318@hotmail.com');
+INSERT INTO owner(email) VALUES('vascoPereira96@hotmail.com');
+INSERT INTO owner(email) VALUES('blanca1973@hotmail.com');
+INSERT INTO owner(email) VALUES('phOxford@hotmail.com');
+INSERT INTO owner(email) VALUES('joeFergurson@gmail.com');
+INSERT INTO owner(email) VALUES('evangeline1234@gmail.com');
+INSERT INTO owner(email) VALUES('maryahBBB@hotmail.com');
+INSERT INTO owner(email) VALUES('oiGirl@gmail.com');
+INSERT INTO owner(email) VALUES('pauloValério65@gmail.com');
 
-INSERT INTO reviewer(email) VALUES(2);
-INSERT INTO reviewer(email) VALUES(3);
-INSERT INTO reviewer(email) VALUES(4);
-INSERT INTO reviewer(email) VALUES(5);
-INSERT INTO reviewer(email) VALUES(7);
-INSERT INTO reviewer(email) VALUES(8);
-INSERT INTO reviewer(email) VALUES(9);
-INSERT INTO reviewer(email) VALUES(10);
-INSERT INTO reviewer(email) VALUES(12);
-INSERT INTO reviewer(email) VALUES(13);
-INSERT INTO reviewer(email) VALUES(16);
-INSERT INTO reviewer(email) VALUES(18);
-INSERT INTO reviewer(email) VALUES(19);
+INSERT INTO reviewer(email) VALUES('mancinho@gmail.com');
+INSERT INTO reviewer(email) VALUES('mary_butterfly@hotmail.com');
+INSERT INTO reviewer(email) VALUES('afonsoTeles@hotmail.com');
+INSERT INTO reviewer(email) VALUES('emily_moracean@hotmail.com');
+INSERT INTO reviewer(email) VALUES('williamf@hotmail.com');
+INSERT INTO reviewer(email) VALUES('norio_fukunaga@hotmail.com');
+INSERT INTO reviewer(email) VALUES('manuel96@hotmail.com');
+INSERT INTO reviewer(email) VALUES('andrewAlves@hotmail.com');
+INSERT INTO reviewer(email) VALUES('maryNice@gmail.com');
+INSERT INTO reviewer(email) VALUES('andanderson@gmail.com');
+INSERT INTO reviewer(email) VALUES('amandaFergurson@gmail.com');
+INSERT INTO reviewer(email) VALUES('mixMixMix@hotmail.com');
+INSERT INTO reviewer(email) VALUES('emmaBarbosa@gmail.com');
 
 INSERT INTO restaurant(name, contact, email, priceAVG, evaluation, emailOwner, idLocation)
 	VALUES ('Restaurante Maria Augusta', '(+351)258776094', 'restauranteMAugusta@gmail.com', 15, 3, 'maugusta@hotmail.com', 3);
@@ -272,51 +271,51 @@ INSERT INTO category(category) VALUES ('Portuguese');
 INSERT INTO category(category) VALUES ('Pizza');
 INSERT INTO category(category) VALUES ('Spanish');
 
-INSERT INTO review(idReview, score, comment, emailReviewer, emailRestaurant)
-	VALUES (1, 4, 'Um ótimo restaurante, com um bom ambiente e com uma relação qualidade/preço excelente', 2, 'masterRestaurant@gmail.com');
-INSERT INTO review(idReview, score, comment, emailReviewer, emailRestaurant)
-	VALUES (2, 2.5, 'Um BOM restaurante, com um bom ambiente, mas com um atendimento um pouco mau', 2, 'restauranteMAugusta@gmail.com');
-INSERT INTO review(idReview, score, comment, emailReviewer, emailRestaurant)
-	VALUES (3, 4, 'Um ótimo restaurante', 2, 3);
-INSERT INTO review(idReview, score, comment, emailReviewer, emailRestaurant)
-	VALUES (4, 4, 'Restaurante agradável, com boa comida e bom atendimento', 3, 'valerio@gmail.com');
-INSERT INTO review(idReview, score, comment, emailReviewer, emailRestaurant)
-	VALUES (5, 3, 'Um restaurante como todos os outros', 4, 'restauranteMAugusta@gmail.com');
-INSERT INTO review(idReview, score, comment, emailReviewer, emailRestaurant)
-	VALUES (6, 3, 'Um restaurante como todos os outros', 4, 'girlPower@gmail.com');
-INSERT INTO review(idReview, score, comment, emailReviewer, emailRestaurant)
-	VALUES (7, 4.5, 'Restaurante maravilhoso!! Conto em lá voltar', 7, 'bistroEmma@gmail.com');
-INSERT INTO review(idReview, score, comment, emailReviewer, emailRestaurant)
-	VALUES (8, 4, 'Um ótimo restaurante, com um bom ambiente', 8, 'ovarenseRestaurante@gmail.com');
-INSERT INTO review(idReview, score, comment, emailReviewer, emailRestaurant)
-	VALUES (9, 1.5, 'Atendimento péssimo', 9, 'evangelineRestaurante@gmail.com');
-INSERT INTO review(idReview, score, comment, emailReviewer, emailRestaurant)
-	VALUES (10, 4, 'Restaurante agradável', 10, 'valerio@gmail.com');
-INSERT INTO review(idReview, score, comment, emailReviewer, emailRestaurant)
-	VALUES (11, 3, 'Nice restaurant', 12, 'evangelineRestaurante@gmail.com');
-INSERT INTO review(idReview, score, comment, emailReviewer, emailRestaurant)
-	VALUES (12, 4.5, 'Awesome restaurant! I love it!!!', 12, 'bistroEmma@gmail.com');
-INSERT INTO review(idReview, score, comment, emailReviewer, emailRestaurant)
-	VALUES (13, 4, 'Nice quality and prices', 13, 'valerio@gmail.com');
-INSERT INTO review(idReview, score, comment, emailReviewer, emailRestaurant)
-	VALUES (14, 2.5, 'Horrible and disgusting', 16, 'blancaKithnet@gmail.com');
-INSERT INTO review(idReview, score, comment, emailReviewer, emailRestaurant)
-	VALUES (15, 4, 'Restaurante agradável e com boa comida', 18, 'masterRestaurant@gmail.com');
-INSERT INTO review(idReview, score, comment, emailReviewer, emailRestaurant)
-	VALUES (16, 3, 'Um restaurante banal', 19, '5stars@gmail.com');
-INSERT INTO review(idReview, score, comment, emailReviewer, emailRestaurant)
-	VALUES (17, 5, 'Restaurante maravilhoso!', 19, 'restauranteMAugusta@gmail.com');
+INSERT INTO review( score, comment, emailReviewer, emailRestaurant)
+	VALUES (4, 'Um ótimo restaurante, com um bom ambiente e com uma relação qualidade/preço excelente', 'mancinho@gmail.com', 'masterRestaurant@gmail.com');
+INSERT INTO review( score, comment, emailReviewer, emailRestaurant)
+	VALUES (2.5, 'Um BOM restaurante, com um bom ambiente, mas com um atendimento um pouco mau', 'mancinho@gmail.com', 'masterRestaurant@gmail.com');
+INSERT INTO review( score, comment, emailReviewer, emailRestaurant)
+	VALUES (4, 'Um ótimo restaurante', 'mancinho@gmail.com', 'ovarenseRestaurante@gmail.com');
+INSERT INTO review( score, comment, emailReviewer, emailRestaurant)
+	VALUES (4, 'Restaurante agradável, com boa comida e bom atendimento', 'mary_butterfly@hotmail.com', 'masterRestaurant@gmail.com');
+INSERT INTO review( score, comment, emailReviewer, emailRestaurant)
+	VALUES (3, 'Um restaurante como todos os outros', 'afonsoTeles@hotmail.com', 'masterRestaurant@gmail.com');
+INSERT INTO review( score, comment, emailReviewer, emailRestaurant)
+	VALUES (3, 'Um restaurante como todos os outros', 'afonsoTeles@hotmail.com', 'girlPower@gmail.com');
+INSERT INTO review( score, comment, emailReviewer, emailRestaurant)
+	VALUES (4.5, 'Restaurante maravilhoso!! Conto em lá voltar', 'williamf@hotmail.com', 'bistroEmma@gmail.com');
+INSERT INTO review( score, comment, emailReviewer, emailRestaurant)
+	VALUES (4, 'Um ótimo restaurante, com um bom ambiente', 'norio_fukunaga@hotmail.com', 'ovarenseRestaurante@gmail.com');
+INSERT INTO review( score, comment, emailReviewer, emailRestaurant)
+	VALUES (1.5, 'Atendimento péssimo', 'manuel96@hotmail.com', 'evangelineRestaurante@gmail.com');
+INSERT INTO review( score, comment, emailReviewer, emailRestaurant)
+	VALUES (4, 'Restaurante agradável', 'manuel96@hotmail.com', 'blancaKithnet@gmail.com');
+INSERT INTO review( score, comment, emailReviewer, emailRestaurant)
+	VALUES (3, 'Nice restaurant', 'maryNice@gmail.com', 'evangelineRestaurante@gmail.com');
+INSERT INTO review( score, comment, emailReviewer, emailRestaurant)
+	VALUES (4.5, 'Awesome restaurant! I love it!!!', 'maryNice@gmail.com', 'bistroEmma@gmail.com');
+INSERT INTO review( score, comment, emailReviewer, emailRestaurant)
+	VALUES (4, 'Nice quality and prices', 'maryNice@gmail.com', 'valerio@gmail.com');
+INSERT INTO review( score, comment, emailReviewer, emailRestaurant)
+	VALUES (2.5, 'Horrible and disgusting', 'amandaFergurson@gmail.com', 'blancaKithnet@gmail.com');
+INSERT INTO review( score, comment, emailReviewer, emailRestaurant)
+	VALUES (4, 'Restaurante agradável e com boa comida', 'amandaFergurson@gmail.com', 'blancaKithnet@gmail.com');
+INSERT INTO review( score, comment, emailReviewer, emailRestaurant)
+	VALUES (3, 'Um restaurante banal', 'emmaBarbosa@gmail.com', 'restauranteMAugusta@gmail.com');
+INSERT INTO review( score, comment, emailReviewer, emailRestaurant)
+	VALUES (5, 'Restaurante maravilhoso!', 'emmaBarbosa@gmail.com', 'restauranteMAugusta@gmail.com');
 
-INSERT INTO reply(idReply, comment, emailOwner, idReview) VALUES (1, 'Agradeço a sua avaliação! Volte sempre!', 1, 1);
-INSERT INTO reply(idReply, comment, emailReviewer, idReview) VALUES (2, 'Conto em voltar', 1, 1);
-INSERT INTO reply(idReply, comment, emailOwner, idReview) VALUES (3, 'Agradeço a sua avaliação... Espero que da próxima as coisas estejam melhores', 11, 2);
-INSERT INTO reply(idReply, comment, emailReviewer, idReview) VALUES (4, 'Espero que melhore', 2, 2);
-INSERT INTO reply(idReply, comment, emailOwner, idReview) VALUES (5, 'Agradeço a sua avaliação', 6, 3);
-INSERT INTO reply(idReply, comment, emailOwner, idReview) VALUES (6, 'Agradeço a sua avaliação', 6, 4);
-INSERT INTO reply(idReply, comment, emailOwner, idReview) VALUES (7, 'Agradeço a sua avaliação', 6, 5);
-INSERT INTO reply(idReply, comment, emailOwner, idReview) VALUES (8, 'Agradeço a sua avaliação', 19, 17);
-INSERT INTO reply(idReply, comment, emailOwner, idReview) VALUES (9, 'Agradeço a sua avaliação', 20, 15);
-INSERT INTO reply(idReply, comment, emailOwner, idReview) VALUES (10, 'Thanks for your evaluation', 20, 13);
+INSERT INTO reply( comment, emailOwner, idReview ) VALUES ('Agradeço a sua avaliação! Volte sempre!', 'maugusta@hotmail.com', 17);
+INSERT INTO reply( comment, emailOwner, idReview  ) VALUES ('Conto em voltar', 'maugusta@hotmail.com', 16);
+INSERT INTO reply( comment, emailOwner, idReview  ) VALUES ('Agradeço a sua avaliação... Espero que da próxima as coisas estejam melhores', 'evangeline1234@gmail.com', 9);
+INSERT INTO reply( comment, emailOwner, idReview  ) VALUES ('Espero que melhore', 'saracouto1318@hotmail.com', 1);
+INSERT INTO reply( comment, emailOwner, idReview  ) VALUES ('Agradeço a sua avaliação', 'saracouto1318@hotmail.com', 2);
+INSERT INTO reply( comment, emailOwner, idReview  ) VALUES ('Agradeço a sua avaliação', 'saracouto1318@hotmail.com', 4);
+INSERT INTO reply( comment, emailOwner, idReview  ) VALUES ('Agradeço a sua avaliação', 'saracouto1318@hotmail.com', 5);
+INSERT INTO reply( comment, emailOwner, idReview  ) VALUES ('Agradeço a sua avaliação', 'blanca1973@hotmail.com', 10);
+INSERT INTO reply( comment, emailOwner, idReview  ) VALUES ('Agradeço a sua avaliação', 'blanca1973@hotmail.com', 14);
+INSERT INTO reply( comment, emailOwner, idReview  ) VALUES ('Thanks for your evaluation', 'blanca1973@hotmail.com', 15);
 
 INSERT INTO restaurantCategory(email, idcategory) VALUES ('restauranteMAugusta@gmail.com',1);
 INSERT INTO restaurantCategory(email, idcategory) VALUES ('restauranteMAugusta@gmail.com',3);
@@ -492,22 +491,22 @@ INSERT INTO restaurantHours(email, idHours) VALUES('valerio@gmail.com',4);
 INSERT INTO restaurantHours(email, idHours) VALUES('valerio@gmail.com',5);
 INSERT INTO restaurantHours(email, idHours) VALUES('valerio@gmail.com',6);
 
-INSERT INTO photos(idPhoto, path, email) VALUES(1, 'images/restauranteMariaAugusta.jpg', 'restauranteMAugusta@gmail.com');
-INSERT INTO photos(idPhoto, path, email) VALUES(2, 'images/restauranteMariaAugusta2.png', 'restauranteMAugusta@gmail.com');
-INSERT INTO photos(idPhoto, path, email) VALUES(3, 'images/master.jpg', 'masterRestaurant@gmail.com');
-INSERT INTO photos(idPhoto, path, email) VALUES(4, 'images/master2.jpg', 'masterRestaurant@gmail.com');
-INSERT INTO photos(idPhoto, path, email) VALUES(5, 'images/master.jpg', 'masterRestaurant@gmail.com');
-INSERT INTO photos(idPhoto, path, email) VALUES(6, 'images/ovarense.jpg', 'ovarenseRestaurante@gmail.com');
-INSERT INTO photos(idPhoto, path, email) VALUES(7, 'images/ovarense2.jpg', 'ovarenseRestaurante@gmail.com');
-INSERT INTO photos(idPhoto, path, email) VALUES(8, 'images/ovarense3.jpg', 'ovarenseRestaurante@gmail.com');
-INSERT INTO photos(idPhoto, path, email) VALUES(9, 'images/blanca.jpg', 'blancaKithnet@gmail.com');
-INSERT INTO photos(idPhoto, path, email) VALUES(10, 'images/blanca2.jpg', 'blancaKithnet@gmail.com');
-INSERT INTO photos(idPhoto, path, email) VALUES(11, 'images/blanca3.jpg', 'blancaKithnet@gmail.com');
-INSERT INTO photos(idPhoto, path, email) VALUES(12, 'images/gourmet.jpg', 'gourmet@gmail.com');
-INSERT INTO photos(idPhoto, path, email) VALUES(13, 'images/gourmet.jpg', 'gourmet@gmail.com');
-INSERT INTO photos(idPhoto, path, email) VALUES(14, 'images/fergunson.jpg', '5stars@gmail.com');
-INSERT INTO photos(idPhoto, path, email) VALUES(15, 'images/fergunson2.jpg', '5stars@gmail.com');
-INSERT INTO photos(idPhoto, path, email) VALUES(16, 'images/bistro.jpg', 'bistroEmma@gmail.com');
-INSERT INTO photos(idPhoto, path, email) VALUES(17, 'images/evangeline.jpg', 'evangelineRestaurante@gmail.com');
-INSERT INTO photos(idPhoto, path, email) VALUES(18, 'images/girlPower.jpg', 'girlPower@gmail.com');
-INSERT INTO photos(idPhoto, path, email) VALUES(19, 'images/valerio.jpg', 'valerio@gmail.com');
+INSERT INTO photos( path, email) VALUES('images/restauranteMariaAugusta.jpg', 'restauranteMAugusta@gmail.com');
+INSERT INTO photos( path, email) VALUES('images/restauranteMariaAugusta2.png', 'restauranteMAugusta@gmail.com');
+INSERT INTO photos( path, email) VALUES('images/master.jpg', 'masterRestaurant@gmail.com');
+INSERT INTO photos( path, email) VALUES('images/master2.jpg', 'masterRestaurant@gmail.com');
+INSERT INTO photos( path, email) VALUES('images/master.jpg', 'masterRestaurant@gmail.com');
+INSERT INTO photos( path, email) VALUES('images/ovarense.jpg', 'ovarenseRestaurante@gmail.com');
+INSERT INTO photos( path, email) VALUES('images/ovarense2.jpg', 'ovarenseRestaurante@gmail.com');
+INSERT INTO photos( path, email) VALUES('images/ovarense3.jpg', 'ovarenseRestaurante@gmail.com');
+INSERT INTO photos( path, email) VALUES('images/blanca.jpg', 'blancaKithnet@gmail.com');
+INSERT INTO photos( path, email) VALUES('images/blanca2.jpg', 'blancaKithnet@gmail.com');
+INSERT INTO photos( path, email) VALUES('images/blanca3.jpg', 'blancaKithnet@gmail.com');
+INSERT INTO photos( path, email) VALUES('images/gourmet.jpg', 'gourmet@gmail.com');
+INSERT INTO photos( path, email) VALUES('images/gourmet.jpg', 'gourmet@gmail.com');
+INSERT INTO photos( path, email) VALUES('images/fergunson.jpg', '5stars@gmail.com');
+INSERT INTO photos( path, email) VALUES('images/fergunson2.jpg', '5stars@gmail.com');
+INSERT INTO photos( path, email) VALUES('images/bistro.jpg', 'bistroEmma@gmail.com');
+INSERT INTO photos( path, email) VALUES('images/evangeline.jpg', 'evangelineRestaurante@gmail.com');
+INSERT INTO photos( path, email) VALUES('images/girlPower.jpg', 'girlPower@gmail.com');
+INSERT INTO photos( path, email) VALUES('images/valerio.jpg', 'valerio@gmail.com');

@@ -10,9 +10,12 @@
 	}
 
 	$restaurantInfo = getRestaurantInfo($dbh, $restaurantName);
-	$restaurantCategories = getRestaurantCategories($dbh, $restaurantInfo["email"]);
-	$restaurantMenu = getRestaurantMenu($dbh, $restaurantInfo["email"]);
-	
+	$restaurantEmail = $restaurantInfo["email"];
+	$restaurantCategories = getRestaurantCategories($dbh, $restaurantEmail);
+	$restaurantMenu = getRestaurantMenu($dbh, $restaurantEmail);
+	$restaurantHours = getRestaurantHours($dbh, $restaurantEmail);
+	$restaurantPhotos = getRestaurantPhotos($dbh, $restaurantEmail);
+	$restaurantReviews = getRestaurantReviews($dbh, $restaurantEmail);	
 ?>
 <div id="restaurantDiv">
 	<div id="restaurantBackground">
@@ -79,9 +82,54 @@
 		<div id="Reviews" class="box reviews">
 			<div id="reviewsDiv">
 				<p id="reviewsTitle">Reviews</p>
+				<ul id="restaurantReviews">
 				<?php
-					//Menu
+					// Iterate throught all user reviews
+					foreach($restaurantReviews as $review) {
 				?>
+					<li class="review">
+						<p class="reviewUser">
+						<?php
+							echo getReviewUser($dbh, $review['emailReviewer']);
+						?>
+						</p>
+						<p class="reviewScore">
+						<?php
+							echo $review['score'];
+						?>
+						</p>
+						<p class="reviewComment">
+						<?php
+							echo $review['comment'];
+						?>
+						</p>
+						<?php
+							$replys = getReviewReplys($dbh, $review['idReview']);
+
+							// Iterate throught all replys
+							foreach($replys as $reply) {
+						?>
+								<div class="reply">
+									<p class="replyUser">
+									<?php
+										echo getReviewUser($dbh, $reply['emailOwner']);
+										echo "Hello?";
+									?>
+									</p>
+									<p class="replyComment">
+									<?php
+										echo $reply['comment'];
+									?>
+									</p>
+								</div>
+						<?php
+							}
+						?>
+					</li>	
+				<?php
+					}
+				?>
+				</ul>
 			</div>
 		</div>
 		<div id="menuButtons">

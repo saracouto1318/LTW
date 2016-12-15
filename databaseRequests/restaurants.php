@@ -40,10 +40,47 @@ function getRestaurantCategories($dbh, $email){
 }
 
 function getRestaurantMenu($dbh, $email){
-    $info = $dbh->prepare("SELECT detail FROM menu 
+    $info = $dbh->prepare("SELECT * FROM menu
 				WHERE email = ?");
     $info->execute(array($email));
     return $info->fetchAll();
+}
+
+function getRestaurantHours($dbh, $email){
+    $info = $dbh->prepare("SELECT * FROM hours 
+				JOIN restaurantHours USING(idHours)
+				WHERE email = ?");
+    $info->execute(array($email));
+    return $info->fetchAll();
+}
+
+function getRestaurantPhotos($dbh, $email){
+    $info = $dbh->prepare("SELECT path FROM photos 
+				WHERE email = ?");
+    $info->execute(array($email));
+    return $info->fetchAll();
+}
+
+function getRestaurantReviews($dbh, $email){
+    $info = $dbh->prepare("SELECT * FROM review 
+				WHERE emailRestaurant = ?");
+    $info->execute(array($email));
+    return $info->fetchAll();
+}
+
+function getReviewReplys($dbh, $idReview){
+    $info = $dbh->prepare("SELECT * FROM reply 
+				WHERE idReview = ?");
+    $info->execute(array($idReview));
+    return $info->fetchAll();
+}
+
+function getReviewUser($dbh, $email){
+    echo $email;
+    $info = $dbh->prepare("SELECT * FROM user 
+				WHERE email = ? LIMIT 1");
+    $info->execute(array($email));
+    return $info->fetch();
 }
 
 function getOwnedRestaurants($dbh, $choice){
