@@ -116,7 +116,7 @@ header {
 }
 
 #content {
-	padding-top: 5%;
+	padding-top: 0%;
 	padding-bottom: 25px;
 }
 
@@ -516,7 +516,7 @@ footer p {
 	background-color: white;
 	color: black;
 	border-radius: 25px;
-	margin: 5% 0% 5% 20%;
+	margin: 2% 0% 1% 20%;
 }
 
 table{
