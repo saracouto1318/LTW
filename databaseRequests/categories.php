@@ -16,10 +16,10 @@ function getTopCategories(){
 }
 
 // Database connection
-$dbh = new PDO('sqlite:Data_Base/data.db');
+$dbh = new PDO('sqlite:../data.db');
 $dbh->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-/*
+
 $function = $_GET["function"];
 switch ($function) {
     case "getAllCategories":
@@ -33,6 +33,6 @@ switch ($function) {
         break;
 }
 
-echo json_encode($result);*/
+echo json_encode($result);
 
  ?>
