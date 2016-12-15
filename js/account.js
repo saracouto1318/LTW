@@ -35,18 +35,45 @@ function changeProfile(e) {
 function submitLogin(e) {
     e.preventDefault();
     var form = $("#submitLogin").serialize();
-    return $.post("action_login.php", form)
-        .done(function(p1, p2, resp) {
+    var success = false;
+    $.ajaxSetup({
+        async: false
+    });
+    $.post("action_login.php", form, s)
+        .done(function(p1,p2,resp){
+            alert("yay");
+            console.log(p1);
+            console.log(p2);
+            console.log(resp);
             try {
                 var reply = $.parseJSON(resp.responseText);
+
                 if (reply.type === "fail") {
                     var response = $("#loginWarning")[0];
                     response.innerHTML = "&#9746 " + reply.message;
                 }
             } catch (e) {
                 location.reload();
+                success = true;
+            }
+        }).fail(function(p1,p2,p3){
+            console.log(p1.responseText);
+            if(p1.responseText.indexOf("Fail") != -1){
+                var response = $("#loginWarning")[0];
+                response.innerHTML = "&#9746" + p1.responseText;
+            } else{
+                location.reload();
+                success = true;
             }
         });
+    $.ajaxSetup({
+        async: true
+    });
+    return success;
+}
+
+function s(data){
+    console.log(data);
 }
 
 function toggleSignInMenu() {

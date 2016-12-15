@@ -17,7 +17,7 @@
     $result = $users->fetch();
 
     if($result){
-        $error = "This email is already in use";
+        $error = "Fail: This email is already in use";
         die ($error);
     }
 
@@ -27,4 +27,5 @@
     $_SESSION["username"] = $userName;
     $_SESSION["email"] = $email;
     header("Location: " . [HTTP_REFERER]);
+    die("Account created");
 ?>
