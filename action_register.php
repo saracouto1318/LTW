@@ -26,6 +26,5 @@
 
     $_SESSION["username"] = $userName;
     $_SESSION["email"] = $email;
-    header("Location: " . [HTTP_REFERER]);
-    die("Account created");
+    header("Location: " . $_SERVER["HTTP_REFERER"]);
 ?>
