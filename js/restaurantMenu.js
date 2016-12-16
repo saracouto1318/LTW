@@ -2,21 +2,20 @@ var selectedMenu = '#overview';
 
 $(document).ready( function() { menuButtons(); } )
 
-function menuButtons () {
+function menuButtons(){
 
-	div_id = getID(selectedMenu);
-	$(div_id).fadeIn(500);
-	$(div_id).show();
+	divId = getID(selectedMenu);
+	$(divId).fadeIn(500);
+	$(divId).show();
 
-	$('#menuButtons input').click( function(event) {
-			showID('#' + $(this).attr("id"));
-			event.preventDefault();
-		});
-
+	$('#menuButtons input').click(function(event){
+		showID('#' + $(this).attr("id"));
+		event.preventDefault();
+	});
 	review_handlers();
 }
 
-function getID ( id ) {
+function getID(id){
 	switch(id) {
 		case '#overview':
 			return '#Overview';
@@ -26,13 +25,15 @@ function getID ( id ) {
 			return '#Photos';
 		case '#reviews':
 			return '#Reviews';
+		case '#settings':
+			return '#Settings';
 		default:
 			return '';
 	}
 }
 
-function showID(id) {
-	switch(id) {
+function showID(id){
+	switch(id){
 		case '#overview':
 			return showOverview();
 		case '#menu':
@@ -41,27 +42,28 @@ function showID(id) {
 			return showPhotos();
 		case '#reviews':
 			return showReviews();
+		case '#settings':
+			return showSettings();
 		default:
-			return ;
+			return;
 	}
 }
 
 function showOverview() {
-	console.debug('Hey');
-	if( selectedMenu == '#overview' )
+	if(selectedMenu == '#overview')
 		return;
 
 	$(selectedMenu).attr("class","Unselected_Item");
 
-	var div_id = getID(selectedMenu);
-	$(div_id).fadeOut(500);
-	$(div_id).hide();
+	var divId = getID(selectedMenu);
+	$(divId).fadeOut(500);
+	$(divId).hide();
 
 	selectedMenu = '#overview';
 
-	div_id = getID(selectedMenu);
-	$(div_id).fadeIn(500);
-	$(div_id).show();
+	divId = getID(selectedMenu);
+	$(divId).fadeIn(500);
+	$(divId).show();
 
 	$(selectedMenu).attr("class","Selected_Item");
 }
@@ -72,15 +74,15 @@ function showMenu() {
 
 	$(selectedMenu).attr("class","Unselected_Item");
 
-	var div_id = getID(selectedMenu);
-	$(div_id).fadeOut();
-	$(div_id).hide();
+	var divId = getID(selectedMenu);
+	$(divId).fadeOut();
+	$(divId).hide();
 
 	selectedMenu = '#menu';
 
-	div_id = getID(selectedMenu);
-	$(div_id).fadeIn();
-	$(div_id).show();
+	divId = getID(selectedMenu);
+	$(divId).fadeIn();
+	$(divId).show();
 
 	$(selectedMenu).attr("class","Selected_Item");
 }
@@ -91,15 +93,15 @@ function showReviews() {
 
 	$(selectedMenu).attr("class","Unselected_Item");
 
-	var div_id = getID(selectedMenu);
-	$(div_id).fadeOut();
-	$(div_id).hide();
+	var divId = getID(selectedMenu);
+	$(divId).fadeOut();
+	$(divId).hide();
 
 	selectedMenu = '#reviews';
 
-	div_id = getID(selectedMenu);
-	$(div_id).fadeIn();
-	$(div_id).show();
+	divId = getID(selectedMenu);
+	$(divId).fadeIn();
+	$(divId).show();
 
 	$(selectedMenu).attr("class","Selected_Item");
 }
@@ -110,15 +112,35 @@ function showPhotos() {
 
 	$(selectedMenu).attr("class","Unselected_Item");
 
-	var div_id = getID(selectedMenu);
-	$(div_id).fadeOut();
-	$(div_id).hide();
+	var divId = getID(selectedMenu);
+	$(divId).fadeOut();
+	$(divId).hide();
 
 	selectedMenu = '#photos';
 
-	div_id = getID(selectedMenu);
-	$(div_id).fadeIn();
-	$(div_id).show();
+	divId = getID(selectedMenu);
+	$(divId).fadeIn();
+	$(divId).show();
+
+	$(selectedMenu).attr("class","Selected_Item");
+}
+
+function showSettings() {
+	if( selectedMenu == '#settings' )
+		return;
+
+	$(selectedMenu).attr("class","Unselected_Item");
+
+	var divId = getID(selectedMenu);
+	$(divId).fadeOut();
+	$(divId).hide();
+
+	selectedMenu = '#settings';
+
+	divId = getID(selectedMenu);
+	$(divId).fadeIn();
+	$(divId).show();
+	console.log($(divId));
 
 	$(selectedMenu).attr("class","Selected_Item");
 }
@@ -128,7 +150,7 @@ function showPhotos() {
 */
 var score_clicked = 'Score0';
 
-function get_score_color(id) {
+function getScoreColor(id) {
 	var color;
 	switch(id) {
 		case 'Score1':
@@ -193,7 +215,7 @@ function hover_score(hovered_li) {
 			if(isPastId)
 				select_score( $(li), '#aaa' );
 			else {
-				select_score( $(li), get_score_color($(li).attr("id")) );
+				select_score( $(li), getScoreColor($(li).attr("id")) );
 				if($(li).attr("id") == id)
 					isPastId = true;
 			}
@@ -224,7 +246,7 @@ function revert_hover_score() {
 			if(isPastId)
 				select_score( $(li), '#aaa' );
 			else {
-				select_score( $(li), get_score_color($(li).attr("id")) );
+				select_score( $(li), getScoreColor($(li).attr("id")) );
 				if($(li).attr("id") == score_clicked)
 					isPastId = true;
 			}
@@ -301,66 +323,4 @@ function updateReviews() {
 
 	$('#Total_Score').text(0);
 	$('#Review_Comment').val("").blur();
-}
-
-function updateReplys(elem) {
-/*	$reviewID = $(elem).data("id");
-	$showmoreButton = $("input[data-id="+$reviewID+"]");
-	$content = $textarea.val();
-	$restaurantID = getRestaurantID();
-
-	if( $content == "" )
-		return ;
-
-	var $result;
-
-	$.ajax({
-		type:"POST",
-		url: "Database/restaurant.php",
-		async: false,
-		data: {
-			action: 'insertReply',
-			reviewID: $reviewID,
-			content: $content
-		},
-		success: function(result) {
-			$result = JSON.parse(result);
-		}
-	});
-
-	$.ajax({
-		type:"POST",
-		url: "Database/restaurant.php",
-		async: false,
-		data: {
-			action: 'insertReply',
-			reviewID: $reviewID,
-			content: $content
-		},
-		success: function(result) {
-			$result = JSON.parse(result);
-		}
-	});
-
-	$insertHtml = "<div class='ReviewReply'>\
-						<div class='CommentInfo'>\
-							<p class='CommentUsername'>\
-								" + $result['username'] + " \
-							</p>\
-							<p class='GeneralDate'>\
-								" + $result['Date'] + "\
-							</p>\
-						</div>\
-						<div class='GeneralContent'>\
-							" + $content + "\
-						</div>\
-					</div>";
-
-	$showmoreButton.before($insertHtml).val("").blur();*/
-}
-
-function showReplyForm(elem) {
-	$reviewID = $(elem).data("id");
-
-	$("div[data-id="+$reviewID+"]").toggle(200);
 }

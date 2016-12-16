@@ -11,6 +11,8 @@
 
 	$restaurantInfo = getRestaurantInfo($dbh, $restaurantName);
 	$restaurantEmail = $restaurantInfo["email"];
+	$restaurantOwner = $restaurantInfo["emailOwner"];
+	$restaurantRating = $restaurantInfo["evaluation"];
 	$restaurantCategories = getRestaurantCategories($dbh, $restaurantEmail);
 	$restaurantMenu = getRestaurantMenu($dbh, $restaurantEmail);
 	$restaurantHours = getRestaurantHours($dbh, $restaurantEmail);
@@ -23,7 +25,7 @@
 			<h3 class="restaurantName">
 				<?php echo $restaurantInfo["name"]; ?>
 			</h3>
-			<h3 class="avg"></h3>
+			<h3 class="avg"><span class="stars"><?php echo($restaurantRating);?></h3>
 		</div>
 	</div>
 
@@ -189,11 +191,31 @@
 				</form>
 			</div>
 		</div>
+		<div id="Settings" class="box settings">
+			<div id="settingsDiv" class="ovYScroll">
+				<form id="settingsForm" action="updateRestaurant.php" method="get">
+					<input type="hidden" name="email" value="<?php echo ($restaurantEmail); ?>">
+					<h2>Add new categories:</h2>
+					<p>
+						Category: <input type="text" name="category" value="" class="text" required>
+					</p> <p>
+						<input type="submit" name="submit" value="update">
+					</p>
+				</form>
+			</div>
+		</div>
 		<div id="menuButtons">
 			<input type="button" id="overview" class="Selected_Item" value="Overview">
 			<input type="button" id="menu" class="Unselected_Item" value="Menu">
 			<input type="button" id="photos" class="Unselected_Item" value="Photos">
 			<input type="button" id="reviews" class="Unselected_Item" value="Reviews">
+			<?php if(isset($_SESSION["email"])):
+					if($_SESSION["email"] === $restaurantOwner):
+
+			?>
+				<input type="button" id="settings" class="Unselected_Item" value="Settings">
+			<?php endif;  endif; ?>
+
 		</div>
 	</div>
 

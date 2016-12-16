@@ -345,6 +345,12 @@ footer p {
 	font-weight: bold;
 }
 
+#settingsDiv {
+	height: 500px;
+	margin-top: 10px;
+	font-weight: bold;
+}
+
 #restaurantInfo {
 	width: 15%;
 	margin: 0;

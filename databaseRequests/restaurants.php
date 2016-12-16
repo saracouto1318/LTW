@@ -219,56 +219,47 @@ else
 switch ($function) {
     case "getAllRestaurants":
         $result = getAllRestaurants($dbh);
-	echo json_encode($result);
         break;
     case "getTopRestaurants":
         $result = getTopRestaurants($dbh, $choice);
-	echo json_encode($result);
         break;
     case "getRestaurants":
         $result = getRestaurants($dbh, $choice);
-	echo json_encode($result);
         break;
     case "getRestaurantInfo":
         $result = getRestaurantInfo($dbh, $choice);
-	echo json_encode($result);
         break;
     case "getAllCategories":
         $result = getAllCategories($dbh);
-	echo json_encode($result);
         break;
     case "getTopCategories":
         $result = getTopCategories($dbh, $choice);
-	echo json_encode($result);
         break;
     case "getTop5":
         $result = getTop5($dbh);
-	echo json_encode($result);
         break;
     case "getAllFromUser":
         $result = getAllFromUser($dbh, $choice);
-	echo json_encode($result);
         break;
     case 'insertReviews':
     	$score = $_GET['score'];
     	$comment = $_GET['comment'];
     	$emailRestaurant = $_GET['emailRestaurant'];
-
     	$result = insertReviews($dbh, $score, $comment, $emailRestaurant);
-    	echo json_encode($result);
-
     	break ;
     case 'insertReply':
-	$comment = $_GET['comment'];
-	$emailOwner = $_GET['emailOwner'];
-	$idReview = $_GET['idReview'];
+    	$comment = $_GET['comment'];
+    	$emailOwner = $_GET['emailOwner'];
+    	$idReview = $_GET['idReview'];
 
-	$result = $function($comment, $emailOwner, $idReview);
-	echo json_encode($result);
-
-	break ;
+    	$result = $function($comment, $emailOwner, $idReview);
+        break;
     default:
         break;
 }
 
- ?>
+if(isset($result)){
+    echo json_encode($result);
+}
+
+?>
