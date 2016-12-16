@@ -204,7 +204,7 @@ footer p {
 
 #restaurantBackground{
 	display: flex;
-	background-image: url('../images/logo.jpg');
+	background-image: url('../images/fancy.jpg');
     background-position: center;
     background-size: cover;
 	background-repeat: no-repeat;
@@ -253,18 +253,79 @@ footer p {
 	font-weight: bold;
 }
 
-#menuDiv {
+#phone, #AvgTitle{
+	font-size: 23px;
+	color: #A52A2A;
+	margin-top: 30px;
+}
+
+#categoriesName, #HoursTitle, #menuTitle, #photosTitle, #reviewsTitle{
+	color: #A52A2A;
+	margin-top: 30px;
+	font-weight: bold;
+	font-size: 23px;
+}
+
+.category, .dayOpenHours{
+	list-style-type: none;
+	margin-left: -35px;
+}
+
+#menuDiv, #photosDiv {
 	margin-top: 10px;
 	font-weight: bold;
+}
+
+.food, .review{
+	list-style-type: none;
+}
+
+.reviewUser {
+	color: #ff4000;
+	float: left;
+	margin-left: -20px;
+}
+
+.reviewScore{
+	color: #cccc00;
+	padding: 1.25em;
+}
+
+.reviewComment{
+	float: left;
+	margin-top: 10px;
+}
+
+.replyUser {
+	color: #ff4d4d;
+	margin-top: 60px;
+}
+
+#addReviewTitle{
+	margin-top: 40px;
+	color: orange;
+}
+
+#Add_Score li {
+    width: 25px;
+    height: 25px;
+    margin: 2px 2px 0px -5px;
+    display: inline-block;
+    vertical-align: middle;
+    background-color: #aaa;
+}
+
+#Add_Score #Total_Score {
+    height: auto;
+    background-color: white;
+}
+
+.Curved_Edges {
+	border-radius: 10px;
 }
 
 #menuButtons {
 	min-width: 4.5em;
-}
-
-#photosDIV {
-	margin-top: 10px;
-	font-weight: bold;
 }
 
 #reviewsDiv {
