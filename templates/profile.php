@@ -74,6 +74,4 @@
 <script type="text/javascript">
     toggleProfileTabs("myRestaurants");
     loadProfile("<?php echo $_SESSION["email"];?>");
-    getCoords("espinho, aveiro");
-    // loadMap();
 </script>

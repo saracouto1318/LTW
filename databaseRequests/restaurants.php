@@ -2,7 +2,7 @@
 
 /**
  *  ================= Restaurants ========================
- */	
+ */
 
 function getAllRestaurants($dbh){
 
@@ -15,7 +15,7 @@ function getTopRestaurants($dbh, $choice){
     $restaurantsOwned = $dbh->prepare("SELECT * FROM restaurant ORDER BY evaluation DESC LIMIT ?");
     $restaurantsOwned->execute(array($choice));
     return $restaurantsOwned->fetchAll();
-}	
+}
 
 function getRestaurants($dbh, $choice){
     $restaurantsOwned = $dbh->query($choice);
@@ -31,7 +31,7 @@ function getRestaurantInfo($dbh, $choice){
 }
 
 function getRestaurantCategories($dbh, $email){
-    $info = $dbh->prepare("SELECT category FROM category 
+    $info = $dbh->prepare("SELECT category FROM category
 				JOIN restaurantCategory USING(idCategory)
 				WHERE email = ?");
     $info->execute(array($email));
@@ -46,7 +46,7 @@ function getRestaurantMenu($dbh, $email){
 }
 
 function getRestaurantHours($dbh, $email){
-    $info = $dbh->prepare("SELECT * FROM hours 
+    $info = $dbh->prepare("SELECT * FROM hours
 				JOIN restaurantHours USING(idHours)
 				WHERE email = ?");
     $info->execute(array($email));
@@ -54,35 +54,35 @@ function getRestaurantHours($dbh, $email){
 }
 
 function getRestaurantPhotos($dbh, $email){
-    $info = $dbh->prepare("SELECT path FROM photos 
+    $info = $dbh->prepare("SELECT path FROM photos
 				WHERE email = ?");
     $info->execute(array($email));
     return $info->fetchAll();
 }
 
 function getRestaurantReviews($dbh, $email){
-    $info = $dbh->prepare("SELECT * FROM review 
+    $info = $dbh->prepare("SELECT * FROM review
 				WHERE emailRestaurant = ?");
     $info->execute(array($email));
     return $info->fetchAll();
 }
 
 function getReviewReplys($dbh, $idReview){
-    $info = $dbh->prepare("SELECT * FROM reply 
+    $info = $dbh->prepare("SELECT * FROM reply
 				WHERE idReview = ?");
     $info->execute(array($idReview));
     return $info->fetchAll();
 }
 
 function getReviewUser($dbh, $email){
-    $info = $dbh->prepare("SELECT * FROM user 
+    $info = $dbh->prepare("SELECT * FROM user
 				WHERE email = ? LIMIT 1");
     $info->execute(array($email));
     return $info->fetch();
 }
 
 function getOwnedRestaurants($dbh, $choice){
-    $restaurantsOwned = $dbh->prepare("SELECT userName, city, evaluation  FROM restaurant
+    $restaurantsOwned = $dbh->prepare("SELECT name, city, evaluation  FROM restaurant
         JOIN user ON (user.email=restaurant.emailOwner)
         JOIN location USING(idLocation)
         WHERE user.email = ?");
@@ -250,7 +250,7 @@ switch ($function) {
     case "getAllFromUser":
         $result = getAllFromUser($dbh, $choice);
 	echo json_encode($result);
-        break;			
+        break;
     case 'insertReviews':
 	$score = $_POST['score'];
 	$comment = $_POST['comment'];
