@@ -61,6 +61,9 @@
                 <label for="password">New password: </label>
                 <input type="password" name="password" value="">
             </p> <p>
+                <label for="profilePic">New profile picture: </label>
+                <input type="file" name="picture" value="">
+            </p> <p>
                 <p>
                     <label id="profileWarning"></label>
                 </p>

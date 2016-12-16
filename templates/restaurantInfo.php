@@ -74,12 +74,12 @@
 									echo $hours['day'];
 								?>
 								</p>
-								<p class="openHours">						
+								<p class="openHours">
 								<?php
 									echo $hours['initialHour'];
 								?>
 								</p>
-								<p class="closeHours">						
+								<p class="closeHours">
 								<?php
 									echo $hours['finalHour'];
 								?>
@@ -111,7 +111,7 @@
 		</div>
 		<div id="Photos" class="box photos">
 			<div id="photosDIV" class="ovYScroll" >
-				<p id="photosTitle">Photos</p>			
+				<p id="photosTitle">Photos</p>
 				<?php
 					// Iterate throught all user reviews
 					foreach($restaurantPhotos as $photo) {
@@ -167,7 +167,9 @@
 						<?php
 							}
 						?>
-					</li>	
+					</li>
+
+					<div class="border"></div>
 				<?php
 					}
 				?>
@@ -175,6 +177,7 @@
 
 				<p id="addReviewTitle">Submit new review</p>
 				<form id="Review_Form">
+					<input type="hidden" id="emailRestaurant" name="emailRestaurant" value="<?php echo ($restaurantEmail); ?>">
 					<div id="Add_Score">
 						<ul>
 							<li id="Score1" class="Curved_Edges Unselected_Score"></li>

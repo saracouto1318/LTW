@@ -176,16 +176,14 @@ function getReviews($dbh){
 /**
  *  ================= Reviews ========================
  */
-function insertReviews($score, $comment, $emailRestaurant) {
-	$answer = array();
+function insertReviews($dbh, $score, $comment, $emailRestaurant) {
 
-	$emailReviewer = $_SESSION(['email']);
+	$emailReviewer = $_SESSION["email"];
 
 	$stmt = $dbh->prepare('INSERT INTO review (score, comment, emailReviewer, emailRestaurant) VALUES (?, ?, ?, ?)');
 	$stmt->execute(array($score, $comment, $emailReviewer, $emailRestaurant));
 
-	$answer['userName'] = getReviewUser($dbh, $emailReviewer);
-	return $answer;
+	return getReviewUser($dbh, $emailReviewer);
 }
 
 function insertReply($comment, $idReview) {
@@ -252,18 +250,18 @@ switch ($function) {
 	echo json_encode($result);
         break;
     case 'insertReviews':
-	$score = $_POST['score'];
-	$comment = $_POST['comment'];
-	$emailRestaurant = $_POST['emailRestaurant'];
+    	$score = $_GET['score'];
+    	$comment = $_GET['comment'];
+    	$emailRestaurant = $_GET['emailRestaurant'];
 
-	$result = $function($score, $content, $emailReviewer, $emailRestaurant);
-	echo json_encode($result);
+    	$result = insertReviews($dbh, $score, $comment, $emailRestaurant);
+    	echo json_encode($result);
 
-	break ;
+    	break ;
     case 'insertReply':
-	$comment = $_POST['comment'];
-	$emailOwner = $_POST['emailOwner'];
-	$idReview = $_POST['idReview'];
+	$comment = $_GET['comment'];
+	$emailOwner = $_GET['emailOwner'];
+	$idReview = $_GET['idReview'];
 
 	$result = $function($comment, $emailOwner, $idReview);
 	echo json_encode($result);

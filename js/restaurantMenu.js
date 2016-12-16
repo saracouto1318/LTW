@@ -3,7 +3,7 @@ var selectedMenu = '#overview';
 $(document).ready( function() { menuButtons(); } )
 
 function menuButtons () {
-	console.debug('Hello');	
+	console.debug('Hello');
 
 	div_id = getID(selectedMenu);
 	$(div_id).fadeIn(500);
@@ -124,7 +124,7 @@ function showPhotos() {
 	$(selectedMenu).attr("class","Selected_Item");
 }
 
-/* 
+/*
 	REVIEW ITEMS
 */
 var score_clicked = 'Score0';
@@ -261,43 +261,27 @@ function review_handlers() {
 	score_buttons();
 }
 
-function getUrlParameter(sParam) {
-    var sPageURL = decodeURIComponent(window.location.search.substring(1)),
-        sURLVariables = sPageURL.split('&'),
-        sParameterName,
-        i;
-
-    for (i = 0; i < sURLVariables.length; i++) {
-        sParameterName = sURLVariables[i].split('=');
-
-        if (sParameterName[0] === sParam) {
-            return sParameterName[1] === undefined ? true : sParameterName[1];
-        }
-    }
-};
-
 function updateReviews() {
 	$score = $("#Total_Score").text();
 	$review = $("#Review_Comment").val();
-	$restaurantEmail = getUrlParameter("email");
-
+	$emailRestaurant = $("#emailRestaurant").val();
+	console.log($emailRestaurant);
 	var $result;
 
-	$.ajax({
-		type:"POST",
-		url: "Data_Base/restaurants.php",
-		async: false,
-		data: {
-			action: 'insertReviews',
-			score: $score,
-			comment: $review,
-			restaurantEmail: $emailRestaurant
-		},
-		success: function(result) {
-			$result = JSON.parse(result);
-		}
+	$.ajaxSetup({
+		async: false
 	});
-
+	$.getJSON("databaseRequests/restaurants.php",{
+			"function": 'insertReviews',
+			"score": $score,
+			"comment": $review,
+			"emailRestaurant": $emailRestaurant
+		}, function(result) {
+			$result = result;
+		});
+	$.ajaxSetup({
+		async: true
+	});
 	$insertHtml = "<li class='review'> \
 				<p class='reviewUser'>\
 					" + $result['userName'] + "\
@@ -306,7 +290,7 @@ function updateReviews() {
 					" + $score + "\
 				</p>\
 				<p class='reviewComment'>\
-					" + review + "\
+					" + $review + "\
 				</p>\
 				</div>\
 			</li>";
@@ -329,7 +313,7 @@ function updateReplys(elem) {
 
 	if( $content == "" )
 		return ;
-	
+
 	var $result;
 
 	$.ajax({
@@ -382,4 +366,3 @@ function showReplyForm(elem) {
 
 	$("div[data-id="+$reviewID+"]").toggle(200);
 }
-
