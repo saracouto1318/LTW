@@ -1,17 +1,17 @@
 <?php
     include_once('config/init.php');
 
-        $email = addslashes($_GET["email"]);
-        $contact = $_GET["contact"];
-        $name = addslashes($_GET["name"]);
-        $price = $_GET["priceAVG"];
-        $road = addslashes($_GET["road"]);
-        $city = addslashes($_GET["city"]);
-        $country = addslashes($_GET["country"]);
-        $city = addslashes($_GET["city"]);
+    $email = addslashes($_GET["email"]);
+    $contact = $_GET["contact"];
+    $name = addslashes($_GET["name"]);
+    $price = $_GET["priceAVG"];
+    $road = addslashes($_GET["road"]);
+    $city = addslashes($_GET["city"]);
+    $country = addslashes($_GET["country"]);
+    $city = addslashes($_GET["city"]);
 
     // Database connection
-    $dbh = new PDO('sqlite:data.db');
+    $dbh = new PDO('sqlite:Data_Base/data.db');
     $dbh->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
     $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
