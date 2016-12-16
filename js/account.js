@@ -14,7 +14,9 @@ function displayProfile(data) {
 
     for (var i = 0; i < data.length; i++) {
         var r = data[i];
-        var html = "<form class=\"restaurantGrid\"><h2>" + r.name + "</h2>" + r.city + "<br>" + r.evaluation + "</form>";
+        var html = "<form action=\"\" method=\"get\" class=\"restaurantGrid\"><h2>" + r.name + "</h2>" + r.city + "<br>" + r.evaluation +
+        "<input type=\"hidden\" name=\"page\" value=\"Info\">\
+        <input type=\"hidden\" name=\"name\" value=\"" + r.name + "\"><br> <input type=\"submit\" name=\"submit\" value=\"More Info\"></form>";
         div.append(html);
     }
 }
@@ -37,25 +39,15 @@ function submitLogin(e) {
     $.ajaxSetup({
         async: false
     });
-    $.post("action_login.php", form, s)
+    $.post("action_login.php", form)
         .done(function(p1,p2,resp){
-            alert("yay");
-            console.log(p1);
-            console.log(p2);
-            console.log(resp);
-            try {
-                var reply = $.parseJSON(resp.responseText);
+            var reply = resp.responseText;
 
-                if (reply.type === "fail") {
-                    var response = $("#loginWarning")[0];
-                    response.innerHTML = "&#9746 " + reply.message;
-                }
-            } catch (e) {
-                location.reload();
-                success = true;
+            if (reply.type === "fail") {
+                var response = $("#loginWarning")[0];
+                response.innerHTML = "&#9746 " + reply.message;
             }
         }).fail(function(p1,p2,p3){
-            console.log(p1.responseText);
             if(p1.responseText.indexOf("Fail") != -1){
                 var response = $("#loginWarning")[0];
                 response.innerHTML = "&#9746" + p1.responseText;
@@ -68,10 +60,6 @@ function submitLogin(e) {
         async: true
     });
     return success;
-}
-
-function s(data){
-    console.log(data);
 }
 
 function toggleSignInMenu() {
@@ -97,7 +85,6 @@ function createRestaurant(e) {
     var country = $("#country")[0].value;
     var address = road + ", " + city + ", " + country;
     var coords = getCoords(address);
-    console.log(coords);
     $("#lat")[0].value = coords[0];
     $("#lon")[0].value = coords[1];
     var form = $("#submitRestaurant").serialize();

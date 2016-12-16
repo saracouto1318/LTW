@@ -129,8 +129,6 @@ function displayRestaurants(data) {
             parent.append(border);
         }
     }
-
-
 }
 
 function showCategories() {
