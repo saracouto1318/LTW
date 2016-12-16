@@ -25,5 +25,5 @@
     $create = $dbh->prepare("INSERT INTO restaurant(name, contact, email, priceAVG, evaluation, emailOwner, idLocation) VALUES (?, ?, ?, ?, 0.0, ?, ?)");
     $create->execute(array($name, $contact, $email, $price, $_SESSION["email"], $idLocation["idLocation"]));
 
-    header("Location: " . [HTTP_REFERER]);
+    header("Location: " . $_SERVER["HTTP_REFERER"]);
 ?>

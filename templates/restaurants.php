@@ -1,3 +1,11 @@
+<?php
+	if(isset($_GET["name"])){
+		$name = $_GET["name"];
+	} else{
+		$name = "";
+	}
+?>
+
 <div id="restaurantsResult">
 	<div class="overlay">
 		<select id="order" name="order" onchange="getRestaurants()">
@@ -14,7 +22,7 @@
 
 	<div class="parameters">
 		<p>Name contains</p>
-		<p><input id="restaurantName" type="text" name="name" placeholder="Restaurant name" oninput="getRestaurants()">
+		<p><input id="restaurantName" type="text" name="name" placeholder="Restaurant name" value="<?php echo $name; ?>" oninput="getRestaurants()">
 		</p>
 		<div id="categories" class="categoryParameter"></div>
 		<input type="text" readonly="true" id="amount">

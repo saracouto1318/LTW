@@ -10,7 +10,6 @@ function loadProfile(user) {
 }
 
 function displayProfile(data) {
-    console.log(data);
     var div = $("#myRestaurants");
 
     for (var i = 0; i < data.length; i++) {
@@ -18,7 +17,6 @@ function displayProfile(data) {
         var html = "<form class=\"restaurantGrid\"><h2>" + r.name + "</h2>" + r.city + "<br>" + r.evaluation + "</form>";
         div.append(html);
     }
-    console.log(location);
 }
 
 function changeProfile(e) {
@@ -116,11 +114,11 @@ function toggleProfileTabs(tab){
 function loadImage(event){
 	var img = document.getElementById('profilePic');
 	img.src = URL.createObjectURL(event.target.files[0]);
-	
+
 	var $error = $('#IMGerror');
 	var extension = document.getElementById('file').files[0].name.split('.').pop().toLowerCase();
 	var size = document.getElementById('file').files[0].size;
-	
+
 	if(extension != 'jpg' && extension != 'jpeg' || extension != 'png'){
 		$error.text("The image must be .jpg, .jpeg ou .png");
 		$error.fadeIn(1000);
