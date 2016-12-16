@@ -3,8 +3,11 @@ var selectedMenu = '#overview';
 $(document).ready( function() { menuButtons(); } )
 
 function menuButtons () {
+<<<<<<< HEAD
 	console.debug('Hello');
 
+=======
+>>>>>>> 590c76571296d65e6aee6eca8d2770038c499855
 	div_id = getID(selectedMenu);
 	$(div_id).fadeIn(500);
 	$(div_id).show();
@@ -133,19 +136,19 @@ function get_score_color(id) {
 	var color;
 	switch(id) {
 		case 'Score1':
-			color = '#ff8806';
+			color = '#ffffcc';
 			break;
 		case 'Score2':
-			color = "#f4aa06";
+			color = "#ffcc99";
 			break;
 		case 'Score3':
-			color = "#eec606";
+			color = "#ff9966";
 			break;
 		case 'Score4':
-			color = "#b5f406";
+			color = "#ff9933";
 			break;
 		case 'Score5':
-			color = "#aaff06";
+			color = "#ff3300";
 			break;
 		default:
 			color = "#aaa";
