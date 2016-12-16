@@ -20,6 +20,17 @@
         header($_SERVER["SERVER_PROTOCOL"]."400 Bad Request");
         die("Fail: Incorrect password");
     }
+
+    $type = $dbh->prepare("SELECT * FROM owner WHERE email = ?");
+    $type->execute(array($email));
+    $result = $type->fetch();
+
+    if(empty($result)){
+        $_SESSION["type"] = "Reviewer";
+    } else{
+        $_SESSION["type"] = "Owner";
+    }
+
     $_SESSION["email"] = $email;
     $_SESSION["username"] = $result["userName"];
 

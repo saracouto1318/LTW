@@ -83,7 +83,7 @@ function toggleSignUpMenu() {
 }
 
 function disableProfileTabs() {
-    var profileTab = ["newRestaurant", "myRestaurants", "myOpinions", "myProfile"];
+    var profileTab = ["newRestaurant", "myRestaurants", "myProfile"];
 
     for (var i = 0; i < profileTab.length; i++) {
         document.getElementById(profileTab[i]).classList.remove("show");

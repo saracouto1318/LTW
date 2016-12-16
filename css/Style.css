@@ -555,19 +555,23 @@ footer p {
 	margin-bottom: 10px;
 }
 
-#amount{
+.amount{
 	border-radius: 10px;
 	border: none;
 	height: 20px;
 	width: 100px;
-	margin: 0px 40px 10px 40px;
+	margin: 0 40px 10px 40px;
 	text-align: center;
 }
 
 #priceHandle{
 	background-color: #A52A2A;
 	border-radius: 20px 20px 20px 20px;
+}
 
+#evalHandle{
+	background-color: #A52A2A;
+	border-radius: 20px 20px 20px 20px;
 }
 
 #secondSliderHandle{

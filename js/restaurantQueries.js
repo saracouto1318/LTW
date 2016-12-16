@@ -6,6 +6,7 @@ function getRestaurants() {
     var cat = getCategories();
     var price = getPriceRange();
     var name = getName();
+    var evaluation = getEvalRange();
     var started = false;
     if (cat) {
         query += " EXCEPT SELECT name, evaluation, priceAVG FROM restaurant JOIN restaurantCategory USING(email) JOIN category USING (idCategory) WHERE category IN (";
@@ -25,14 +26,42 @@ function getRestaurants() {
         }
         query += name;
     }
+    if(evaluation){
+        if (started) {
+            query += " AND ";
+        } else {
+            query += " WHERE ";
+        }
+        query += evaluation;
+    }
 
     query += getSorting();
-    console.log(query);
 
     var parameters = {};
     parameters.function = "getRestaurants";
     parameters.choice = query;
     $.getJSON("databaseRequests/restaurants.php", parameters, displayRestaurants);
+}
+
+function getEvalRange(){
+    var slider = $("#evalRange");
+    var min = slider.slider("option", "min");
+    var max = slider.slider("option", "max");
+    var values = slider.slider("values");
+    var used = false;
+    var string = "";
+    if (min !== values[0]) {
+        string += " evaluation > " + values[0];
+        used = true;
+    }
+    if (max !== values[1]) {
+        if (used) {
+            string += " AND evaluation <= " + values[1];
+        } else {
+            string += " evaluation <= " + values[1];
+        }
+    }
+    return string;
 }
 
 function getName() {

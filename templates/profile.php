@@ -1,7 +1,8 @@
 <div class="profileTabs" >
+        <?php if($_SESSION["type"] === "Owner"):?>
     <input class="boxAction newRestaurant" onclick="toggleProfileTabs(this.name)" type="button" name="newRestaurant" value="Add Restaurant">
     <input class="boxAction myRestaurants" onclick="toggleProfileTabs(this.name)" type="button" name="myRestaurants" value="My Restaurants">
-    <input class="boxAction myOpinions" onclick="toggleProfileTabs(this.name)" type="button" name="myOpinions" value="My Opinions">
+<?php endif; ?>
     <input class="boxAction myProfile" onclick="toggleProfileTabs(this.name)" type="button" name="myProfile" value="Edit Profile">
 </div>
 
@@ -47,11 +48,10 @@
             </p>
         </form>
     </div>
+
+
     <div class="box myRestaurants" id="myRestaurants"></div>
 
-    <div class="box myOpinions" id="myOpinions">
-        OOOOOOOOOO
-    </div>
     <div class="box myProfile" id="myProfile">
         <form id="editProfile" onsubmit="return changeProfile(event)" method="post">
             <p>

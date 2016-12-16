@@ -10,8 +10,8 @@
 			</div>
 
 			<p><label for="name" class="sign register">Username</label></p>
-			<input type="text" name="name" pattern="\w{3,15}" 
-				title="Username is between [3,15] simple characters A-z 0-9" 
+			<input type="text" name="name" pattern="\w{3,15}"
+				title="Username is between [3,15] simple characters A-z 0-9"
 				class="sign register" placeholder="rui2457" required>
 
 			<p><label for="email" class="sign register">Email</label></p>
@@ -20,14 +20,14 @@
 			<p><label for="password" class="sign register">Password</label></p>
 			<input type="password" class="sign register" name="password" required>
 
-	
+
 			<input type="radio" name="userType" value="Owner" class="userTyper register" required>
 			<input type="radio" name="userType" value="Reviewer" class="userType register" required>
 			<div id="user">
-				<input type="text" name="userType" value="Owner">
-				<input type="text" name="userType" value="Reviewer">
+				<input type="text" name="a" value="Owner">
+				<input type="text" name="a" value="Reviewer">
 			</div>
-	
+
 			<p><label id="registerWarning" class="sign register"></label></p>
 			<p>		</p>
 			<input type="submit" name="submit" value="✓" class="submit register">

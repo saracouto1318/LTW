@@ -7,6 +7,7 @@
         $_POST["name"] = addslashes($_POST["name"]);
         $userName = $_POST["name"];
         $email = strtolower($_POST["email"]);
+        $type = $_POST["userType"];
     }
     // Database connection
     $dbh = new PDO("sqlite:Data_Base/data.db");
@@ -24,7 +25,16 @@
     $create = $dbh->prepare("INSERT INTO user(userName, email, password) VALUES (?, ?, ?)");
     $create->execute(array($userName, $email, password_hash($_POST["password"], PASSWORD_DEFAULT)));
 
+    if($type === "Owner"){
+        $create = $dbh->prepare("INSERT INTO owner(email) VALUES (?)");
+        $create->execute(array($email));
+    } else{
+        $create = $dbh->prepare("INSERT INTO reviewer(email) VALUES (?)");
+        $create->execute(array($email));
+    }
+
     $_SESSION["username"] = $userName;
     $_SESSION["email"] = $email;
+    $_SESSION["type"] = $type;
     header("Location: " . $_SERVER["HTTP_REFERER"]);
 ?>
