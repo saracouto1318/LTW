@@ -9,7 +9,7 @@
 			<option value="evaluation DESC">Best rating</option>
 		</select>
 	</div>
-	<ul id="restaurantsIndividuals">
+	<ul id="restaurantsIndividuals" class="ovYScroll">
 	</ul>
 
 	<div class="parameters">

@@ -3,6 +3,7 @@
  */
 
 function getTop5() {
+	console.debug("LOL");
     $.getJSON("databaseRequests/restaurants.php", {
         "function": "getTop5"
     }, loadTop5);
@@ -11,6 +12,7 @@ function getTop5() {
 function loadTop5(data) {
     var evaluation = data.evaluation;
     var cat = data.categories;
+
     var html = "<table> <thead><tr><th>Categories</th><th>Count</th></tr></thead>",
         i;
     for (i = 0; i < cat.length; i++) {

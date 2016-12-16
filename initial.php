@@ -17,7 +17,6 @@
 			<script src="js/account.js"></script>
 			<script src="js/data.js"></script>
 			<script src="js/restaurantQueries.js"></script>
-			<script src="js/restaurantMenu.js"></script>
 			<script src="mapAPI/Map.js"></script>
 			<script src="mapAPI/Control.OSMGeocoder.js"></script>
 		</head>
@@ -49,9 +48,15 @@
 				die("Trying to access page without proper authorization");
 			}
 			break;
+		case "Search":
+			include("templates/restaurants.php");
+			break;
 		case "Home":
 			break;
 		case "Info":
+?>
+			<script src="js/restaurantMenu.js"></script>
+<?php
 			include("templates/restaurantInfo.php");
 			break;
 		default:

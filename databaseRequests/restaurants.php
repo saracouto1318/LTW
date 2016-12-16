@@ -2,7 +2,8 @@
 
 /**
  *  ================= Restaurants ========================
- */
+ */	
+
 function getAllRestaurants($dbh){
 
     $allFrom = $dbh->prepare("SELECT * FROM restaurant JOIN location USING(idLocation)");
@@ -14,7 +15,7 @@ function getTopRestaurants($dbh, $choice){
     $restaurantsOwned = $dbh->prepare("SELECT * FROM restaurant ORDER BY evaluation DESC LIMIT ?");
     $restaurantsOwned->execute(array($choice));
     return $restaurantsOwned->fetchAll();
-}
+}	
 
 function getRestaurants($dbh, $choice){
     $restaurantsOwned = $dbh->query($choice);
@@ -99,7 +100,7 @@ function getAllCategories($dbh){
     return $allFrom->fetchAll();
 }
 
-function getTopCategories($dbh, $choice){
+function getTopCategories($dbh, $choice) {
     $topCategories = $dbh->prepare("SELECT category,COUNT(*) FROM category JOIN restaurantCategory USING(idCategory) GROUP BY category ORDER BY COUNT(*) DESC LIMIT ?");
     $topCategories->execute(array($choice));
     return $topCategories->fetchAll();
@@ -172,15 +173,48 @@ function getReviews($dbh){
     return $allFrom->fetchAll();
 }
 
+/**
+ *  ================= Reviews ========================
+ */
+function insertReviews($score, $comment, $emailRestaurant) {
+	$answer = array();
+
+	$emailReviewer = $_SESSION(['email']);
+
+	$stmt = $dbh->prepare('INSERT INTO review (score, comment, emailReviewer, emailRestaurant) VALUES (?, ?, ?, ?)');
+	$stmt->execute(array($score, $comment, $emailReviewer, $emailRestaurant));
+
+	$answer['userName'] = getReviewUser($dbh, $emailReviewer);
+	return $answer;
+}
+
+function insertReply($comment, $idReview) {
+	require_once('connection.php');
+	$answer = array();
+
+	$emailOwner = $_SESSION(['email']);
+
+	$stmt = $dbh->prepare('INSERT INTO Reply (comment, emailOwner, idReview) VALUES (?, ?, ?)');
+	$stmt->execute(array($comment, $emailOwner, $idReview));
+
+	$answer['emailOwner'] = $emailOwner;
+	return $answer;
+}
+
 // Database connection
-$dbh = new PDO("sqlite:Data_Base/data.db");
+if( basename(getcwd()) == "databaseRequests" ) {
+	session_start();
+	$dbh = new PDO("sqlite:../Data_Base/data.db");
+} else
+	$dbh = new PDO("sqlite:Data_Base/data.db");
 $dbh->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 if(isset($_GET["choice"]))
     $choice = $_GET["choice"];
-if(isset($_GET["function"]))
+if(isset($_GET["function"])) {
 	$function = $_GET["function"];
+}
 else
 	$function = "";
 
@@ -216,10 +250,27 @@ switch ($function) {
     case "getAllFromUser":
         $result = getAllFromUser($dbh, $choice);
 	echo json_encode($result);
-        break;
+        break;			
+    case 'insertReviews':
+	$score = $_POST['score'];
+	$comment = $_POST['comment'];
+	$emailRestaurant = $_POST['emailRestaurant'];
+
+	$result = $function($score, $content, $emailReviewer, $emailRestaurant);
+	echo json_encode($result);
+
+	break ;
+    case 'insertReply':
+	$comment = $_POST['comment'];
+	$emailOwner = $_POST['emailOwner'];
+	$idReview = $_POST['idReview'];
+
+	$result = $function($comment, $emailOwner, $idReview);
+	echo json_encode($result);
+
+	break ;
     default:
         break;
 }
-
 
  ?>
