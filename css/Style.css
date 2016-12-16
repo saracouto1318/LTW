@@ -395,23 +395,23 @@ footer p {
 ::-webkit-scrollbar {
 	width: 10px;
 }
- 
+
 /* Track */
 ::-webkit-scrollbar-track {
-	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
 	-webkit-border-radius: 10px;
 	border-radius: 10px;
 }
- 
+
 /* Handle */
 ::-webkit-scrollbar-thumb {
 	-webkit-border-radius: 10px;
 	border-radius: 10px;
-	background: #601010; 
-	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+	background: #601010;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
 }
 ::-webkit-scrollbar-thumb:hover{
-	background: #A52A2A; 
+	background: #A52A2A;
 }
 
 #photosDIV {
@@ -574,31 +574,11 @@ footer p {
 
 .profileTabs {
 	position: absolute;
-	left: 35%;
-	top: 40%;
-	margin: 0 25% 0 25%;
-	padding-top: 2%;
-	margin: auto;
-	height: 150px;
-
-}
-
-.profileTabs input{
-	background-color: #CC0000;
-	color: #FFFFFF;
-	height: 50px;
-	margin-left: 15px;
-	margin-right: 15px;
-	border-radius: 40px;
-}
-
-.profileTabs {
-	position: absolute;
 	left: 32.5%;
 	top: 37%;
+	margin: 0 25% 0 25%;
 	margin: auto;
 	height: 150px;
-	text-align: center;
 
 }
 
@@ -618,7 +598,7 @@ footer p {
 }
 
 .profileView{
-	left: 6%;
+	left: 15%;
 	position: absolute;
 	top: 45%;
 	width: 80%;
