@@ -3,11 +3,7 @@ var selectedMenu = '#overview';
 $(document).ready( function() { menuButtons(); } )
 
 function menuButtons () {
-<<<<<<< HEAD
-	console.debug('Hello');
 
-=======
->>>>>>> 590c76571296d65e6aee6eca8d2770038c499855
 	div_id = getID(selectedMenu);
 	$(div_id).fadeIn(500);
 	$(div_id).show();
@@ -287,16 +283,15 @@ function updateReviews() {
 	});
 	$insertHtml = "<li class='review'> \
 				<p class='reviewUser'>\
-					" + $result['userName'] + "\
-				</p>\
+					" + $result['userName'] +
+				"</p>\
 				<p class='reviewScore'>\
-					" + $score + "\
-				</p>\
-				<p class='reviewComment'>\
-					" + $review + "\
-				</p>\
-				</div>\
-			</li>";
+					" + $score +
+				"</p>\
+				<p class='reviewComment'>"
+					 + $review +
+				"</p>\
+			</li><div class='border'></div>";
 
 	$("#addReviewTitle").before($insertHtml);
 
