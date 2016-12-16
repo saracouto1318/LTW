@@ -113,7 +113,6 @@
 			<div id="photosDIV" class="ovYScroll" >
 				<p id="photosTitle">Photos</p>			
 				<?php
-					// Iterate throught all user reviews
 					foreach($restaurantPhotos as $photo) {
 				?>
 						<img src=<?=$photo['path']?> alt="Restaurant Photo">
@@ -127,7 +126,6 @@
 				<p id="reviewsTitle">Reviews</p>
 				<ul id="restaurantReviews">
 				<?php
-					// Iterate throught all user reviews
 					foreach($restaurantReviews as $review) {
 				?>
 					<li class="review">
@@ -148,8 +146,6 @@
 						</p>
 						<?php
 							$replys = getReviewReplys($dbh, $review['idReview']);
-
-							// Iterate throught all replys
 							foreach($replys as $reply) {
 						?>
 								<div class="reply">
@@ -182,7 +178,7 @@
 							<li id="Score3" class="Curved_Edges Unselected_Score"></li>
 							<li id="Score4" class="Curved_Edges Unselected_Score"></li>
 							<li id="Score5" class="Curved_Edges Unselected_Score"></li>
-							<li id="Total_Score">0</li>
+							<li id="Total_Score"></li>
 						</ul>
 					</div>
 					<textarea id="Review_Comment" rows="1" placeholder="Write a review..." class="Unselected_TextArea"></textarea>
