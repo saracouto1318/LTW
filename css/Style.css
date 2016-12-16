@@ -278,6 +278,7 @@ footer p {
 
 .food, .review{
 	list-style-type: none;
+	font-weight: normal;
 }
 
 .reviewUser {
@@ -294,6 +295,12 @@ footer p {
 .reviewComment{
 	float: left;
 	margin-top: 10px;
+	font-size: 15px;
+	font-weight: normal;
+}
+
+.replyComment{
+	font-weight: normal;
 }
 
 .replyUser {
